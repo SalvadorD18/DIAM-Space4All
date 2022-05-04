@@ -1,0 +1,16 @@
+{% extends "./secondbase.html" %}
+
+{% block title %} Criar questão {% endblock %}
+
+{% block body %}
+    <h2>Texto da nova Questão:</h2>
+    <form action="{% url 'votacao:view_questao_otimizada' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="questao" id="questao">
+        <input type="submit" value="Gravar nova Questão">
+        <br>
+        <br>
+    </form>
+    <br>
+
+{% endblock %}

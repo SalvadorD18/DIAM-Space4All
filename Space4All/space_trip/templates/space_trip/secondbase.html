@@ -1,0 +1,14 @@
+{% extends "./index.html" %}
+
+{% load static%}
+
+{% block slidePlanetas %}
+
+{% endblock %}
+
+{% block homepage %}
+<form action="{% url 'votacao:index' %}">
+    <center><input type="image" src="{% static 'media/home.png' %}" alt="Logo" style="width:10%"></center>
+</form>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "./secondbase.html" %}
+
+{% block title %}
+    Iniciar Sessão
+{% endblock %}
+
+{% block body %}
+
+    <form id="form1" action="{% url 'votacao:iniciarsessao' %}" method="post">
+        {% csrf_token %}
+        <div>
+          <h1>INICIAR SESSÃO</h1>
+          <label for="username"><strong>Nome de utilizador:</strong></label><br>
+            <input type="text" placeholder="Introduzir nome de utilizador" name="username" required>
+            <br><br>
+            <label for="password"><strong>Palavra-passe:</strong></label><br>
+            <input type="password" placeholder="Introduzir palavra-passe" name="password" required>
+            <br><br>
+          </div>
+          <button type="submit"><strong>Iniciar Sessão</strong></button>
+    </form>
+    <br>
+
+{% endblock %}

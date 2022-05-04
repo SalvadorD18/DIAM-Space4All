@@ -1,0 +1,48 @@
+{% extends "./secondbase.html" %}
+
+{% block title %} Perfil {% endblock %}
+
+{% block body %}
+
+<div>
+    {% if request.user.is_authenticated %}
+        <h2>BEM-VINDO!</h2>
+        <p>
+            <img src="{{ uploaded_file_url }}" alt="Imagem do utilizador" onmouseover="showUserInfo()" id="u" onmouseout="hideUserInfo()">
+        </p>
+        <center><form id="userInfo" action="{% url 'votacao:logoutview' %}" style="display:none;">
+            <label for="username">Nome de utilizador:</label>
+            <input type="text" id="username" name="username" value="{{request.user.username}}" readonly>
+            <br><br>
+            <label for="email">E-mail:</label>
+            <input type="text" id="email" name="email" value="{{request.user.email}}" readonly>
+            <br><br>
+            <label for="curso">Curso:</label>
+            <input type="text" id="curso" name="curso" value="{{request.user.aluno.course}}" readonly>
+            <br><br>
+        </form>
+        </center>
+            <br>
+            <br>
+            <form method="post" enctype="multipart/form-data" action="{% url 'votacao:fazer_upload' %}">
+                {% csrf_token %}
+                <input type="file" name="myfile">
+                <br>
+                <br>
+                <input type="submit" value="Upload">
+            </form>
+            {% if uploaded_file_url %}
+                <br>
+                <br>
+                <p>Upload feito para:
+                    <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a>
+                </p>
+                <br>
+                <br>
+            {% endif %}
+            <input type="submit" form="userInfo" value="TERMINAR SESSÃO">
+    {% endif %}
+</div>
+    <br>
+
+{% endblock %}

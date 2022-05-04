@@ -1,0 +1,59 @@
+{% extends "./secondbase.html" %}
+
+{% block title %} Questão {% endblock %}
+
+{% block body %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <h1>{{ questao.questao_texto }}</h1>
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+    <form id="form1" action="{% url 'votacao:voto' questao.id %}" method="post">
+        {% csrf_token %}
+        {% for opcao in questao.opcao_set.all %}
+            <input type="radio" name="opcao" id="opcao{{ forloop.counter }}" value="{{ opcao.id }}" />
+            <label for="opcao{{ forloop.counter }}">{{ opcao.opcao_texto }}</label>
+            <div id="votos{{ forloop.counter }}" class="votos" style="display: none">
+                {{ opcao.votos }} voto{{ opcao.votos|pluralize }}
+            </div>
+            <script>
+                $(document).ready(function (){
+
+                    $("#opcao{{ forloop.counter }}").click(function (){
+                        $(".votos").slideUp(300);
+                        $("#votos{{ forloop.counter }}").slideDown(300);
+                    });
+                });
+            </script>
+        <br>
+        <br>
+        {% endfor %}
+        <br>
+        {% if request.user.is_authenticated %}
+            <input type="submit" value="Voto" />
+        {% endif %}
+        <br>
+        <br>
+    </form>
+    <br>
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+
+        <form action="{% url 'votacao:view_opcao_otimizada' questao.id %}" method="get">
+            {% csrf_token %}
+            <input type="submit" value="Criar nova Opção" />
+        </form>
+        <br>
+        <br>
+        <form action="{% url 'votacao:apagarquestao' questao.id %}" method="get">
+                {% csrf_token %}
+                <input type="submit" value="Apagar esta Questão" />
+        </form>
+        <br>
+        <br>
+        <button type="submit" form="form1" formaction="{% url 'votacao:apagaropcao' questao.id %}"><b>Apagar Opção selecionada</b></button>
+    {% endif %}
+    <br>
+    <br>
+
+{% endblock %}
