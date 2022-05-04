@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<form id="form1" action="{% url 'space_trip:registar'%}" method="post">
+<form id="form1" action="{% url 'space_trip:createaccount'%}" method="post">
     {% csrf_token %}
     <div>
       <h1>CRIAR CONTA</h1>
