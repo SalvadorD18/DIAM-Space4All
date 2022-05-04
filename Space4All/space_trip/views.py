@@ -25,7 +25,7 @@ def detalhe(request, questao_id):
     questao = get_object_or_404(Questao, pk=questao_id)
     return render(request, 'space_trip/detalhe.html', {'questao': questao})
 
-@login_required(login_url='/space_trip/iniciarsessao')
+@login_required(login_url='/space_trip/login')
 def voto(request, questao_id):
     questao = get_object_or_404(Questao, pk=questao_id)
     try:
@@ -47,7 +47,7 @@ def resultados(request, questao_id):
     questao = get_object_or_404(Questao, pk=questao_id)
     return render(request, 'space_trip/resultados.html', {'questao': questao})
 
-@permission_required('space_trip.add_questao', login_url=reverse_lazy('space_trip:iniciarsessao'))
+@permission_required('space_trip.add_questao', login_url=reverse_lazy('space_trip:login'))
 def view_questao_otimizada(request):
     if request.method == 'POST':
         questao_texto = request.POST['questao']
@@ -58,7 +58,7 @@ def view_questao_otimizada(request):
     else:
         return render(request, 'space_trip/criarquestao.html')
 
-@permission_required('space_trip.add_opcao', login_url=reverse_lazy('space_trip:iniciarsessao'))
+@permission_required('space_trip.add_opcao', login_url=reverse_lazy('space_trip:login'))
 def view_opcao_otimizada(request, questao_id):
     if request.method == 'POST':
         questao = Questao.objects.get(pk=questao_id)
@@ -68,13 +68,13 @@ def view_opcao_otimizada(request, questao_id):
         questao = get_object_or_404(Questao, pk=questao_id)
         return render(request, 'space_trip/novaopcao.html', {'questao': questao})
 
-@permission_required('space_trip.add_opcao', login_url=reverse_lazy('space_trip:iniciarsessao'))
+@permission_required('space_trip.add_opcao', login_url=reverse_lazy('space_trip:login'))
 def apagarquestao(request, questao_id):
     questao = get_object_or_404(Questao, pk=questao_id)
     questao.delete()
     return HttpResponseRedirect(reverse('space_trip:index'))
 
-@permission_required('space_trip.add_opcao', login_url=reverse_lazy('space_trip:iniciarsessao'))
+@permission_required('space_trip.add_opcao', login_url=reverse_lazy('space_trip:login'))
 def apagaropcao(request, questao_id):
     questao = get_object_or_404(Questao, pk=questao_id)
     try:
@@ -85,7 +85,7 @@ def apagaropcao(request, questao_id):
         opcao_seleccionada.delete()
         return HttpResponseRedirect(reverse('space_trip:detalhe', args=(questao.id,)))
 
-def registar(request):
+def createaccount(request):
     try:
         username = request.POST['username']
         password = request.POST['password']
@@ -95,11 +95,11 @@ def registar(request):
         a = Aluno(user=u, course=course)
         a.save()
         user = authenticate(username=username, password=password)
-        return render(request, 'space_trip/iniciarsessao.html')
+        return render(request, 'space_trip/login.html')
     except MultiValueDictKeyError:
-        return render(request, 'space_trip/registar.html')
+        return render(request, 'space_trip/createaccount.html')
 
-def iniciarsessao(request):
+def login(request):
     try:
         username = request.POST['username']
         password = request.POST['password']
@@ -110,24 +110,24 @@ def iniciarsessao(request):
             return HttpResponseRedirect(reverse('space_trip:index'))
 
         else:
-            return render(request, 'space_trip/registar.html')
+            return render(request, 'space_trip/createaccount.html')
     except MultiValueDictKeyError:
-        return render(request, 'space_trip/iniciarsessao.html')
+        return render(request, 'space_trip/login.html')
 
 
-def perfil(request):
+def profile(request):
     try:
         uploaded_file_url = request.user.foto.foto_url
-        return render(request, 'space_trip/perfil.html', {'uploaded_file_url': uploaded_file_url})
+        return render(request, 'space_trip/profile.html', {'uploaded_file_url': uploaded_file_url})
     except ObjectDoesNotExist:
-        return render(request, 'space_trip/perfil.html')
+        return render(request, 'space_trip/profile.html')
 
 
 def logoutview(request):
     logout(request)
     return HttpResponseRedirect(reverse('space_trip:index'))
 
-@login_required(login_url='space_trip/registar.html')
+@login_required(login_url='space_trip/createaccount.html')
 def fazer_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
@@ -137,8 +137,8 @@ def fazer_upload(request):
         u = request.user
         foto = Foto(user=u, foto_url=uploaded_file_url)
         foto.save()
-        return render(request,'space_trip/perfil.html', {'uploaded_file_url': uploaded_file_url})
-    return render(request, 'space_trip/perfil.html')
+        return render(request,'space_trip/profile.html', {'uploaded_file_url': uploaded_file_url})
+    return render(request, 'space_trip/profile.html')
 
 def planets(request):
     return render(request, 'space_trip/planets.html')
