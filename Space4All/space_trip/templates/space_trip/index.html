@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <title> {% block title %} 👨‍🚀 Space4All 👩‍🚀 {% endblock %} </title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'space_trip/css/galaxy.css' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'space_trip/css/planetslider.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js"></script>
+
     <script src="{% static 'space_trip/scripts/scripts.js' %}"></script>
 </head>
 
@@ -14,38 +17,38 @@
 
 {% block header %}
 
-<header class="header">
-    {% block body %}
+    <header class="header">
+        {% block body %}
 
-    {% if request.user.is_authenticated %}
-        <a onmouseover="show()" id="u" onmouseout="hide()">{{request.user.username}} tem a sessão iniciada</a>
-        <br>
-        <br>
-        <center><img id="userimage" src="{{ uploaded_file_url }}" style="display:none;"></center>
+            {% if request.user.is_authenticated %}
+                <a onmouseover="show()" id="u" onmouseout="hide()">{{ request.user.username }} tem a sessão iniciada</a>
+                <br>
+                <br>
+                <center><img id="userimage" src="{{ uploaded_file_url }}" style="display:none;"></center>
 
-    {% else %}
-        <p style="font-color: white; margin-top:0px;">O utilizador não tem a sessão iniciada</p>
+            {% else %}
+                <p style="font-color: white; margin-top:0px;">O utilizador não tem a sessão iniciada</p>
 
-        <form action="{% url 'space_trip:createaccount' %}">
-            <input type="submit" class="mr-0" value="Criar conta" />
+                <form action="{% url 'space_trip:createaccount' %}">
+                    <input type="submit" class="mr-0" value="Criar conta"/>
+                </form>
+
+            {% endif %}
+
+            <div>
+                {% if request.user.is_authenticated %}
+                    <p><a href="{% url 'space_trip:profile' %}"/>O teu profile</p>
+                {% endif %}
+            </div>
+
+        {% endblock %}
+        <form action="{% url 'space_trip:login' %}">
+            <input type="submit" class="mr-0" value="Iniciar Sessão">
         </form>
-
-    {% endif %}
-
-    <div>
-        {% if request.user.is_authenticated %}
-            <p><a href="{% url 'space_trip:profile' %}"/>O teu profile</p>
-        {% endif %}
-    </div>
-
-{% endblock %}
-    <form action="{% url 'space_trip:login' %}">
-        <input type="submit" class="mr-0" value="Iniciar Sessão">
-    </form>
-    <form action="{% url 'space_trip:index' %}">
-        <input type="image" src="{% static 'media/logo.png' %}" alt="Logo" style="width:10%">
-    </form>
-</header>
+        <form action="{% url 'space_trip:index' %}">
+            <input type="image" src="{% static 'media/logo.png' %}" alt="Logo" style="width:10%">
+        </form>
+    </header>
 
 {% endblock %}
 
@@ -57,154 +60,201 @@
 
 <nav class="sidenav">
 
-{% block homepage %}
-{% endblock %}
+    {% block homepage %}
+    {% endblock %}
 </nav>
 
 {% block slidePlanetas %}
 
-{% load static %}
+    {% load static %}
 
-<main class="slideshow-container">
-
-    <div class="mySlides fade">
-      <div class="numbertext">1 / 9</div>
-        <a href="{% url 'space_trip:moon' %}" target="_self">
-            <p><img src="{% static 'media/moon.png' %}" alt="Lua" style="width:100%"></p>
-        </a>
-      <div class="text">Lua</div>
+    <div class="container">
+        <div id="mercury" class="planet">
+            <img src="{% static 'media/mercury.png' %}">
+            <a href="{% url 'space_trip:mercury' %}" target="_self"><h3>MERCÚRIO</h3></a>
+            <h3>MERCÚRIO</h3>
+        </div>
+        <div id="venus" class="planet">
+            <img src="{% static 'media/venus.png' %}">
+            <a href="{% url 'space_trip:venus' %}" target="_self"><h3>VÉNUS</h3></a>
+        </div>
+        <div id="earth" class="planet">
+            <img src="{% static 'media/earth.png' %}">
+            <a href="{% url 'space_trip:earth' %}" target="_self"><h3>TERRA</h3></a>
+        </div>
+        <div id="mars" class="planet">
+            <img src="{% static 'media/mars.png' %}">
+            <a href="{% url 'space_trip:mars' %}" target="_self"><h3>MARTE</h3></a>
+        </div>
+        <div id="moon" class="planet">
+            <img src="{% static 'media/moon.png' %}">
+            <a href="{% url 'space_trip:moon' %}" target="_self"><h3>LUA</h3></a>
+        </div>
+        <div id="jupiter" class="planet">
+            <img src="{% static 'media/jupiter.png' %}">
+            <a href="{% url 'space_trip:jupiter' %}" target="_self"><h3>JÚPITER</h3></a>
+        </div>
+        <div id="saturn" class="planet">
+            <img src="{% static 'media/saturn.png' %}">
+            <a href="{% url 'space_trip:saturn' %}" target="_self"><h3>SATURNO</h3></a>
+        </div>
+        <div id="uranus" class="planet">
+            <img src="{% static 'media/uranus.png' %}">
+            <a href="{% url 'space_trip:uranus' %}" target="_self"><h3>URANO</h3></a>
+        </div>
+        <div id="neptune" class="planet">
+            <img src="{% static 'media/neptune.png' %}">
+            <a href="{% url 'space_trip:neptune' %}" target="_self"><h3>NEPTUNO</h3></a>
+        </div>
     </div>
 
-    <div class="mySlides fade">
-      <div class="numbertext">2 / 9</div>
-        <a href="{% url 'space_trip:mercury' %}" target="_self">
-            <p><img src="{% static 'media/mercury.png' %}" alt="Mercúrio" style="width:100%"></p>
-        </a>
-      <div class="text">Mercúrio</div>
-    </div>
-
-    <div class="mySlides fade">
-      <div class="numbertext">3 / 9</div>
-        <a href="{% url 'space_trip:venus' %}" target="_self">
-            <p><img src="{% static 'media/venus.png' %}" alt="Vénus" style="width:100%"></p>
-        </a>
-      <div class="text">Vénus</div>
-    </div>
-
-    <div class="mySlides fade">
-      <div class="numbertext">4 / 9</div>
-        <a href="{% url 'space_trip:earth' %}" target="_self">
-            <p><img src="{% static 'media/earth.png' %}" style="width:100%"></p>
-        </a>
-      <div class="text">Terra</div>
-    </div>
-            <div class="mySlides fade">
-      <div class="numbertext">5 / 9</div>
-        <a href="{% url 'space_trip:mars' %}" target="_self">
-            <p><img src="{% static 'media/mars.png' %}" style="width:100%"></p>
-        </a>
-      <div class="text">Marte</div>
-    </div>
-
-            <div class="mySlides fade">
-      <div class="numbertext">6 / 9</div>
-        <a href="{% url 'space_trip:jupiter' %}" target="_self">
-            <p><img src="{% static 'media/jupiter.png' %}" style="width:100%"></p>
-        </a>
-      <div class="text">Júpiter</div>
-    </div>
-
-            <div class="mySlides fade">
-      <div class="numbertext">7 / 9</div>
-        <a href="{% url 'space_trip:saturn' %}" target="_self">
-            <p><img src="{% static 'media/saturn.png' %}" style="width:100%"></p>
-        </a>
-      <div class="text">Saturno</div>
-    </div>
-
-            <div class="mySlides fade">
-      <div class="numbertext">8 / 9</div>
-        <a href="{% url 'space_trip:uranus' %}" target="_self">
-            <p><img src="{% static 'media/uranus.png' %}" style="width:100%"></p>
-        </a>
-      <div class="text">Urano</div>
-    </div>
-
-            <div class="mySlides fade">
-      <div class="numbertext">9 / 9</div>
-        <a href="{% url 'space_trip:neptune' %}" target="_self">
-            <p><img src="{% static 'media/neptune.png' %}" style="width:100%"></p>
-        </a>
-      <div class="text">Neptuno</div>
-    </div>
-
-    <a class="prev" onclick="plusSlides(-1)">❮</a>
-    <a class="next" onclick="plusSlides(1)">❯</a>
-
-    <br>
-    <div style="text-align:center">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-      <span class="dot" onclick="currentSlide(4)"></span>
-      <span class="dot" onclick="currentSlide(5)"></span>
-      <span class="dot" onclick="currentSlide(6)"></span>
-      <span class="dot" onclick="currentSlide(7)"></span>
-      <span class="dot" onclick="currentSlide(8)"></span>
-      <span class="dot" onclick="currentSlide(9)"></span>
-    </div>
-</main>
 {% endblock %}
 
+<script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"> </script>
+    function show(planet) {
+        document.getElementById(planet).style.display = "block";
+    }
 
-    <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
+    function hide(planet) {
+        document.getElementById(planet).style.display = "none";
+    }
 
-        function plusSlides(n){
-          clearInterval(myTimer);
-          if (n < 0){
-            showSlides(slideIndex -= 1);
-          } else {
-           showSlides(slideIndex += 1);
-          }
-          if (n === -1){
-            myTimer = setInterval(function(){plusSlides(n + 2)}, 4000);
-          } else {
-            myTimer = setInterval(function(){plusSlides(n + 1)}, 4000);
-          }
-        }
+    $(".planet").click(function () {
+        $('.container').attr("planet-center", this.id);
+        if (this.id == "mercury") centermercury();
+        if (this.id == "venus") centervenus();
+        if (this.id == "earth") centerearth();
+        if (this.id == "moon") centermoon();
+        if (this.id == "mars") centermars();
+        if (this.id == "jupiter") centerjupiter();
+        if (this.id == "saturn") centersaturn();
+        if (this.id == "uranus") centeruranus();
+        if (this.id == "neptune") centerneptune();
+    });
 
-         function currentSlide(n){
-          clearInterval(myTimer);
-          myTimer = setInterval(function(){plusSlides(n + 1)}, 4000);
-          showSlides(slideIndex = n);
-        }
+    function centermercury() {
+        var tl = new TimelineMax()
+            .to('#mercury', 1, {xPercent: 0, z: 1}, 0) // Center
+            .to('#venus', 1, {xPercent: 140, z: -800}, 0) // Right
+            .to('#neptune', 1, {xPercent: -140, z: -800}, 0) // Left
+            .to('#uranus', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#saturn', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#jupiter', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#earth', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#moon', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#mars', 1, {xPercent: 200, z: -1500}, 0)
+    }
 
-        function showSlides(n){
-          var i;
-          var slides = document.getElementsByClassName("mySlides");
-          var dots = document.getElementsByClassName("dot");
-          if (n > slides.length) {slideIndex = 1}
-          if (n < 1) {slideIndex = slides.length}
-          for (i = 0; i < slides.length; i++) {
-              slides[i].style.display = "none";
-          }
-          for (i = 0; i < dots.length; i++) {
-              dots[i].className = dots[i].className.replace(" active", "");
-          }
-          slides[slideIndex-1].style.display = "block";
-          dots[slideIndex-1].className += " active";
-        }
+    function centervenus() {
+        var tl = new TimelineMax()
+            .to('#venus', 1, {xPercent: 0, z: 1}, 0)
+            .to('#earth', 1, {xPercent: 140, z: -800}, 0)
+            .to('#mercury', 1, {xPercent: -140, z: -800}, 0)
+            .to('#moon', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#mars', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#jupiter', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#neptune', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#uranus', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#saturn', 1, {xPercent: -200, z: -1500}, 0)
+    }
 
-        window.addEventListener("load",function() {
-            showSlides(slideIndex);
-            myTimer = setInterval(function(){plusSlides(1)}, 4000);
-        })
+    function centerearth() {
+        var tl = new TimelineMax()
+            .to('#earth', 1, {xPercent: 0, z: 1}, 0)
+            .to('#moon', 1, {xPercent: 140, z: -800}, 0)
+            .to('#venus', 1, {xPercent: -140, z: -800}, 0)
+            .to('#mars', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#jupiter', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#saturn', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#mercury', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#neptune', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#uranus', 1, {xPercent: -200, z: -1500}, 0)
+    }
 
-    </script>
+    function centermoon() {
+        var tl = new TimelineMax()
+            .to('#moon', 1, {xPercent: 0, z: 1}, 0)
+            .to('#mars', 1, {xPercent: 140, z: -800}, 0)
+            .to('#earth', 1, {xPercent: -140, z: -800}, 0)
+            .to('#jupiter', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#saturn', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#uranus', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#venus', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#mercury', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#neptune', 1, {xPercent: -200, z: -1500}, 0)
+    }
+
+    function centermars() {
+        var tl = new TimelineMax()
+            .to('#mars', 1, {xPercent: 0, z: 1}, 0)
+            .to('#jupiter', 1, {xPercent: 140, z: -800}, 0)
+            .to('#moon', 1, {xPercent: -140, z: -800}, 0)
+            .to('#saturn', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#uranus', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#neptune', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#earth', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#venus', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#mercury', 1, {xPercent: -200, z: -1500}, 0)
+    }
+
+    function centerjupiter() {
+        var tl = new TimelineMax()
+            .to('#jupiter', 1, {xPercent: 0, z: 1}, 0)
+            .to('#saturn', 1, {xPercent: 140, z: -800}, 0)
+            .to('#mars', 1, {xPercent: -140, z: -800}, 0)
+            .to('#uranus', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#neptune', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#mercury', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#moon', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#earth', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#venus', 1, {xPercent: -200, z: -1500}, 0)
+    }
+
+    function centersaturn() {
+        var tl = new TimelineMax()
+            .to('#saturn', 1, {xPercent: 0, z: 1}, 0)
+            .to('#uranus', 1, {xPercent: 140, z: -800}, 0)
+            .to('#jupiter', 1, {xPercent: -140, z: -800}, 0)
+            .to('#neptune', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#mercury', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#venus', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#mars', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#moon', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#earth', 1, {xPercent: -200, z: -1500}, 0)
+    }
+
+    function centeruranus() {
+        var tl = new TimelineMax()
+            .to('#uranus', 1, {xPercent: 0, z: 1}, 0)
+            .to('#neptune', 1, {xPercent: 140, z: -800}, 0)
+            .to('#saturn', 1, {xPercent: -140, z: -800}, 0)
+            .to('#mercury', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#venus', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#earth', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#jupiter', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#mars', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#moon', 1, {xPercent: -200, z: -1500}, 0)
+    }
+
+    function centerneptune() {
+        var tl = new TimelineMax()
+            .to('#neptune', 1, {xPercent: 0, z: 1}, 0)
+            .to('#mercury', 1, {xPercent: 140, z: -800}, 0)
+            .to('#uranus', 1, {xPercent: -140, z: -800}, 0)
+            .to('#venus', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#earth', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#moon', 1, {xPercent: 200, z: -1500}, 0)
+            .to('#saturn', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#jupiter', 1, {xPercent: -200, z: -1500}, 0)
+            .to('#mars', 1, {xPercent: -200, z: -1500}, 0)
+    }
+
+
+    $(function () {
+        centermercury();
+    })
+</script>
 
 </body>
 </html>

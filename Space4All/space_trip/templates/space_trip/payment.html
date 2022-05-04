@@ -6,5 +6,22 @@
 </head>
 <body>
 
+<form action="{% url 'space_trip:payment' %}" method="post">
+    {% csrf_token %}
+    <h3>Payment</h3>
+   <label for="cardname">Nome que Consta no Cartão</label><br>
+    <input type="text" id="cardname" name="cardname" placeholder="Introduza o seu nome">
+    <br><br>
+    <label for="cardnumber">Número do Cartão</label><br>
+    <input type="text" maxlength="19" id="cardnumber" name="cardnumber" placeholder="xxxx xxxx xxxx xxxx">
+    <br><br>
+    <label for="expirationdate">Data de Validade do Cartão de Crédito</label><br>
+    <input type="month" name="expirationdate"  id="expirationdate" placeholder="">
+    <br><br>
+    <label for="cvv">CVV</label><br>
+    <input type="number" id="cvv" name="cvv" min="100" max="999">
+    <br><br>
+</form>
+
 </body>
 </html>
