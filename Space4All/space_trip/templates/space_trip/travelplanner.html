@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Planner</title>
+</head>
+<body>
+<form id="form1" action="{% url 'space_trip:travelplanner' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <input list="destination" name="destination" placeholder="Destino">
+            <datalist id="destination">
+                <option value="Terra">
+                <option value="Jupiter">
+                <option value="Marte">
+                <option value="Mercúrio">
+                <option value="Lua Terrestre">
+                <option value="Neptuno">
+                <option value="Saturno">
+                <option value="Úrano">
+                <option value="Vênus">
+            </datalist>
+            <br><br>
+            <input list="origin" name="origin" placeholder="Origem">
+            <datalist id="origin">
+                <option value="Terra">
+                <option value="Jupiter">
+                <option value="Marte">
+                <option value="Mercúrio">
+                <option value="Lua Terrestre">
+                <option value="Neptuno">
+                <option value="Saturno">
+                <option value="Úrano">
+                <option value="Vênus">
+            </datalist>
+            <br><br>
+            <label for="departure_date"><strong>Data de Partida:</strong></label><br>
+            <input type="date" name="departure_date" placeholder="Data de Partida" required>
+            <br><br>
+            <label for="return_date"><strong>Data de Regresso:</strong></label><br>
+            <input type="date" name="return_date" placeholder="Data de Regresso" required>
+            <br><br>
+            <label for="number_of_passengers">Número de Passageiros:</label><br>
+            <input type="number" id="number_of_passengers" name="number_of_passengers">
+            <br><br>
+          </div>
+          <button type="submit"><strong>Confirmar</strong></button>
+    </form>
+</body>
+</html>
