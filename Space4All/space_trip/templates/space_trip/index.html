@@ -135,11 +135,11 @@
     {% else %}
         <p style="font-color: white;">O utilizador não tem a sessão iniciada</p>
 
-        <form action="{% url 'space_trip:registar' %}">
-            <input type="submit" value="Registar" />
+        <form action="{% url 'space_trip:createaccount' %}">
+            <input type="submit" value="Criar conta" />
         </form>
 
-        <form action="{% url 'space_trip:iniciarsessao' %}">
+        <form action="{% url 'space_trip:login' %}">
             <input type="submit" value="Iniciar Sessão" />
         </form>
 
@@ -153,7 +153,7 @@
 
     <div>
         {% if request.user.is_authenticated %}
-            <p><a href="{% url 'space_trip:perfil' %}"/>O teu profile</p>
+            <p><a href="{% url 'space_trip:profile' %}"/>O teu profile</p>
         {% endif %}
     </div>
 
