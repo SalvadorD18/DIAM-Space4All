@@ -6,7 +6,7 @@
 
 {% block body %}
 
-    <form id="form1" action="{% url 'votacao:iniciarsessao' %}" method="post">
+    <form id="form1" action="{% url 'space_trip:login' %}" method="post">
         {% csrf_token %}
         <div>
           <h1>INICIAR SESSÃO</h1>

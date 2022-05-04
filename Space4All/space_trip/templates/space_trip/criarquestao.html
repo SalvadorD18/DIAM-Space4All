@@ -4,7 +4,7 @@
 
 {% block body %}
     <h2>Texto da nova Questão:</h2>
-    <form action="{% url 'votacao:view_questao_otimizada' %}" method="post">
+    <form action="{% url 'space_trip:view_questao_otimizada' %}" method="post">
         {% csrf_token %}
         <input type="text" name="questao" id="questao">
         <input type="submit" value="Gravar nova Questão">
