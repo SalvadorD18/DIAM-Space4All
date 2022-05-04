@@ -28,5 +28,6 @@ urlpatterns = [ path("", views.index, name="index"),
                 path("jupiter", views.jupiter, name="jupiter"),
                 path("saturn", views.saturn, name="saturn"),
                 path("uranus", views.uranus, name="uranus"),
-                path("neptune", views.neptune, name="neptune")
+                path("neptune", views.neptune, name="neptune"),
+                path("travelplanner", views.travelplanner, name="travelplanner")
                 ]

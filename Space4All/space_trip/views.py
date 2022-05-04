@@ -15,7 +15,7 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 
-from .models import Questao, Opcao, Aluno, Foto
+from .models import Questao, Opcao, Aluno, Foto, TwoWayTrip, OneWayTrip
 
 def index(request):
         latest_question_list = Questao.objects.all()
@@ -169,3 +169,26 @@ def uranus(request):
 
 def neptune(request):
     return render(request, 'space_trip/neptune.html')
+
+def travelplanner(request):
+    try:
+        username = request.POST['username']
+        password = request.POST['password']
+        destination = request.POST['destination']
+        origin = request.POST['origin']
+        departure_date = request.POST['departure_date']
+        return_date = request.POST['return_date']
+        number_of_passengers = request.POST['number_of_passengers']
+        user = authenticate(username=username, password=password)
+        trip = TwoWayTrip(user=user, destination=destination, origin=origin, departure_date=departure_date, return_date=return_date, number_of_passengers=number_of_passengers)
+        trip.save()
+        return render(request, 'space_trip/createaccount.html')
+        if user is not None:
+
+            return HttpResponseRedirect(reverse('space_trip:index'))
+
+        else:
+            return render(request, 'space_trip/login.html')
+    except MultiValueDictKeyError:
+        return render(request, 'space_trip/travelplanner.html')
+
