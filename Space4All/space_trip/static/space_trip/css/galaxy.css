@@ -9,6 +9,12 @@ body {
     background-color: DarkGray;
 }
 
+.mr-0 {
+  margin-right: 0;
+  margin-left:auto;
+  display:block;
+}
+
 p {
 	text-align:center;
 	color: white;
@@ -25,6 +31,7 @@ p {
   overflow-x: hidden;
   /* border: 2px solid white; */
   color: white;
+  background-color: DarkGray
 }
 
 #bg{
