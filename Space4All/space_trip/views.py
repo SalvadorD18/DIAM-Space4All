@@ -182,13 +182,14 @@ def travelplanner(request):
         user = authenticate(username=username, password=password)
         trip = TwoWayTrip(user=user, destination=destination, origin=origin, departure_date=departure_date, return_date=return_date, number_of_passengers=number_of_passengers)
         trip.save()
-        return render(request, 'space_trip/createaccount.html')
         if user is not None:
 
-            return HttpResponseRedirect(reverse('space_trip:index'))
+            return render(request, 'space_trip/payment.html')
 
         else:
             return render(request, 'space_trip/login.html')
     except MultiValueDictKeyError:
         return render(request, 'space_trip/travelplanner.html')
 
+def payment(request):
+    return render(request, 'space_trip/payment.html')

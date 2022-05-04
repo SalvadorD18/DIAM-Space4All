@@ -29,5 +29,6 @@ urlpatterns = [ path("", views.index, name="index"),
                 path("saturn", views.saturn, name="saturn"),
                 path("uranus", views.uranus, name="uranus"),
                 path("neptune", views.neptune, name="neptune"),
-                path("travelplanner", views.travelplanner, name="travelplanner")
+                path("travelplanner", views.travelplanner, name="travelplanner"),
+                path("payment", views.payment, name="payment")
                 ]
