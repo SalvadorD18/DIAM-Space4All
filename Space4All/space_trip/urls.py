@@ -34,5 +34,6 @@ urlpatterns = [path("", views.index, name="index"),
                path("neptune", views.neptune, name="neptune"),
                path("travelplanner", views.travelplanner, name="travelplanner"),
                path("payment", views.payment, name="payment"),
-               path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('media/favicon.ico')))
+               path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('media/favicon.ico'))),
+               path("about-us", views.aboutUs, name="about-us")
                ]
