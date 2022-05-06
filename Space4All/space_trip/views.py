@@ -85,7 +85,7 @@ def apagaropcao(request, questao_id):
         opcao_seleccionada.delete()
         return HttpResponseRedirect(reverse('space_trip:detalhe', args=(questao.id,)))
 
-def createaccount(request):
+def register(request):
     try:
         username = request.POST['username']
         password = request.POST['password']
@@ -97,7 +97,7 @@ def createaccount(request):
         user = authenticate(username=username, password=password)
         return render(request, 'space_trip/login.html')
     except MultiValueDictKeyError:
-        return render(request, 'space_trip/createaccount.html')
+        return render(request, 'space_trip/register.html')
 
 def login(request):
     try:
@@ -110,7 +110,7 @@ def login(request):
             return HttpResponseRedirect(reverse('space_trip:index'))
 
         else:
-            return render(request, 'space_trip/createaccount.html')
+            return render(request, 'space_trip/register.html')
     except MultiValueDictKeyError:
         return render(request, 'space_trip/login.html')
 
@@ -127,7 +127,7 @@ def logoutview(request):
     logout(request)
     return HttpResponseRedirect(reverse('space_trip:index'))
 
-@login_required(login_url='space_trip/createaccount.html')
+@login_required(login_url='space_trip/register.html')
 def fazer_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
