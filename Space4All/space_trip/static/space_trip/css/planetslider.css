@@ -33,7 +33,7 @@ img {
     cursor: pointer;
     filter: brightness(120%);
     filter: contrast(120%);
-    filter: drop-shadow(10px 10px 10px #190c3b);
+    filter: drop-shadow(10px 10px 10px black);
 }
 
 h3 {
