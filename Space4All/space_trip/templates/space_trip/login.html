@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-    <section class="h-100 gradient-form" style="background-color: #eee;">
+    <section class="h-100 gradient-form">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-xl-10">
@@ -24,7 +24,7 @@
 
                     <form id="form1" action="{% url 'space_trip:login' %}" method="post">
                       {% csrf_token %}
-                      <p>Please login to your account</p>
+                      <p>Por favor, inicie sessão</p>
 
                       <div class="form-outline mb-4">
                         <label for="email" class="form-label" for="form2Example11">E-mail</label>
