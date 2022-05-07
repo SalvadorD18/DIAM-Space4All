@@ -196,3 +196,6 @@ def payment(request):
 
 def aboutUs(request):
     return render(request, 'space_trip/about-us.html')
+
+def onewaytrip(request):
+    return render(request, 'space_trip/onewaytrip.html')

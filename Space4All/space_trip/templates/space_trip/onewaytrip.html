@@ -1,0 +1,31 @@
+{% extends "./index.html" %}
+{% load static %}
+{% block title %}
+    Só ida
+{% endblock %}
+
+{% block body %}
+<div class="card mb-3" style="width: 18rem; left: 5%; top: 13%; position: fixed;">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'space_trip:index' %}">Ida e volta</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'space_trip:onewaytrip' %}">Só ida</a>
+      </li>
+    </ul>
+  </div>
+  <form>
+    <div class="card-body">
+      <label for="exampleInputDestino">Destino:</label>
+      <input type="text" class="form-control" id="exampleInputDestino" placeholder="Exemplo: Marte">
+      <br>
+      <a href="#" class="btn btn-primary">Pesquisar</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+</body>
+</html>

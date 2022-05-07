@@ -5,111 +5,222 @@
     {% load static %}
     <meta charset="UTF-8">
     <title> {% block title %} 👨‍🚀 Space4All 👩‍🚀 {% endblock %} </title>
-    <link rel="stylesheet" type="text/css" href="{% static 'space_trip/css/planetslider.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'space_trip/css/bootstrap.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js"></script>
 
-    <script src="{% static 'space_trip/scripts/scripts.js' %}"></script>
 </head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block header %}
+<header class="header">
 
-    <header class="header">
+    <link rel="shortcut icon" type="image/png" href="{% static 'spicy space/favicon.ico' %}"/>
 
-            <link rel="shortcut icon" type="image/png" href="{% static 'spicy space/favicon.ico' %}"/>
+</header>
 
-        {% block body %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Container wrapper -->
+    <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand me-2" href="{% url 'space_trip:index' %}">
+            <img src="{% static 'spicy space/SPACE4ALL_02 transparent.png' %}" height="60px" alt="Logo"
+                 loading="lazy" style="margin-top: -1px;"/>
+        </a>
 
-            {% if request.user.is_authenticated %}
-                <a onmouseover="show()" id="u" onmouseout="hide()">{{ request.user.username }} tem a sessão iniciada</a>
-                <br>
-                <br>
-                <center><img id="userimage" src="{{ uploaded_file_url }}" style="display:none;"></center>
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
 
-            {% else %}
-                <p style="font-color: white; margin-top:0px;">O utilizador não tem a sessão iniciada</p>
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'space_trip:index' %}">Space4All</a>
+                </li>
+            </ul>
+            <!-- Left links -->
 
-                <form action="{% url 'space_trip:register' %}">
-                    <input type="submit" class="mr-0" value="Criar conta"/>
-                </form>
-
-            {% endif %}
-
-            <div>
-                {% if request.user.is_authenticated %}
-                    <p><a href="{% url 'space_trip:profile' %}"/>O teu profile</p>
-                {% endif %}
+            <!-- Links -->
+            <div class="mx-5">
+                <ul class="navbar-nav" style="position: relative;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Promoções</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Destinos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Informações</a>
+                    </li>
+                </ul>
             </div>
 
-        {% endblock %}
-        <form action="{% url 'space_trip:login' %}">
-            <input type="submit" class="mr-0" value="Iniciar Sessão">
-        </form>
-        <form action="{% url 'space_trip:index' %}">
-            <input type="image" src="{% static 'spicy space/SPACE4ALL_02 transparent.png' %}" alt="Logo" style="width:10%">
-        </form>
-    </header>
-
-{% endblock %}
-
-{% block planet %}
-
-{% endblock %}
-
-<body id="bg" style="background-image: url('{% static 'media/universe.png' %}');">
-
-<nav class="sidenav">
-
-    {% block homepage %}
-    {% endblock %}
+            <div class="d-flex align-items-center">
+                <a class="btn btn-secondary me-3" href="{% url 'space_trip:login' %}" role="button">Iniciar
+                    Sessão</a>
+            </div>
+        </div>
+        <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
 </nav>
+<!-- Navbar -->
 
-{% block slidePlanetas %}
+{% block body %}
+    <!-- Sidebar -->
+    <div class="card mb-3" style="width: 18rem; left: 5%; top: 13%; position: fixed;">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active">Ida e volta</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{% url 'space_trip:onewaytrip' %}">Só ida</a>
+                </li>
+            </ul>
+        </div>
+        <form>
+            <div class="card-body">
+                <label for="exampleInputOrigem">Origem:</label>
+                <input type="text" class="form-control" id="exampleInputOrigem" placeholder="Exemplo: Lua">
+            </div>
+            <div class="card-body">
+                <label for="exampleInputDestino">Destino:</label>
+                <input type="text" class="form-control" id="exampleInputDestino" placeholder="Exemplo: Marte">
+                <br>
+                <a href="#" class="btn btn-primary">Pesquisar</a>
+            </div>
+        </form>
+    </div>
+    <!-- Sidebar -->
+{% endblock %}
 
-    {% load static %}
+{% block planetSlider %}
 
-    <div class="slider">
+    <!-- slideshow Planetas -->
+
+    <div id="planetSlider" class="slider">
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+            *, *:before, *:after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                width: 100%;
+                height: 100vh;
+            }
+
+            .slider {
+                width: 70vw;
+                max-width: 300px;
+                text-align: center;
+                top: 40%;
+                left: 60%;
+                height: 100vh;
+                position: relative;
+                perspective: 1000px;
+                transform: translate3d(-50%, -50%, 600px);
+                /* ^^^ 600px for safari hack */
+                transform-style: preserve-3d;
+                display: flex;
+                align-items: center;
+            }
+
+            .planetimage {
+                width: 300px;
+                cursor: pointer;
+                filter: brightness(120%);
+                filter: contrast(120%);
+                filter: drop-shadow(10px 10px 10px black);
+            }
+
+            .planetname {
+                display: block;
+                font-size: 1.17em;
+                font-weight: bold;
+                color: #fbdcb9;
+                font-family: 'Titillium Web', sans-serif;
+                letter-spacing: 2px;
+            }
+
+            .planet {
+                margin: auto;
+                width: 100%;
+                position: absolute;
+                cursor: pointer;
+            }
+        </style>
         <div id="mercury" class="planet">
             <img class="planetimage" src="{% static 'media/mercury.png' %}">
-            <a href="{% url 'space_trip:mercury' %}" style="text-decoration: none;" target="_self"><div class="planetname">MERCÚRIO</div></a>
+            <a href="{% url 'space_trip:mercury' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">MERCÚRIO</div>
+            </a>
         </div>
         <div id="venus" class="planet">
             <img class="planetimage" src="{% static 'media/venus.png' %}">
-            <a href="{% url 'space_trip:venus' %}" style="text-decoration: none;" target="_self"><div class="planetname">VÉNUS</div></a>
+            <a href="{% url 'space_trip:venus' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">VÉNUS</div>
+            </a>
         </div>
         <div id="earth" class="planet">
             <img class="planetimage" src="{% static 'media/earth.png' %}">
-            <a href="{% url 'space_trip:earth' %}" style="text-decoration: none;" target="_self"><div class="planetname">TERRA</div></a>
+            <a href="{% url 'space_trip:earth' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">TERRA</div>
+            </a>
         </div>
         <div id="mars" class="planet">
             <img class="planetimage" src="{% static 'media/mars.png' %}">
-            <a href="{% url 'space_trip:mars' %}" style="text-decoration: none;" target="_self"><div class="planetname">MARTE</div></a>
+            <a href="{% url 'space_trip:mars' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">MARTE</div>
+            </a>
         </div>
         <div id="moon" class="planet">
             <img class="planetimage" src="{% static 'media/moon.png' %}">
-            <a href="{% url 'space_trip:moon' %}" style="text-decoration: none;" target="_self"><div class="planetname">LUA</div></a>
+            <a href="{% url 'space_trip:moon' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">LUA</div>
+            </a>
         </div>
         <div id="jupiter" class="planet">
             <img class="planetimage" src="{% static 'media/jupiter.png' %}">
-            <a href="{% url 'space_trip:jupiter' %}" style="text-decoration: none;" target="_self"><div class="planetname">JÚPITER</div></a>
+            <a href="{% url 'space_trip:jupiter' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">JÚPITER</div>
+            </a>
         </div>
         <div id="saturn" class="planet">
             <img class="planetimage" src="{% static 'media/saturn.png' %}">
-            <a href="{% url 'space_trip:saturn' %}" style="text-decoration: none;" target="_self"><div class="planetname">SATURNO</div></a>
+            <a href="{% url 'space_trip:saturn' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">SATURNO</div>
+            </a>
         </div>
         <div id="uranus" class="planet">
             <img class="planetimage" src="{% static 'media/uranus.png' %}">
-            <a href="{% url 'space_trip:uranus' %}" style="text-decoration: none;" target="_self"><div class="planetname">URANO</div></a>
+            <a href="{% url 'space_trip:uranus' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">URANO</div>
+            </a>
         </div>
         <div id="neptune" class="planet">
             <img class="planetimage" src="{% static 'media/neptune.png' %}">
-            <a href="{% url 'space_trip:neptune' %}" style="text-decoration: none;" target="_self"><div class="planetname">NEPTUNO</div></a>
+            <a href="{% url 'space_trip:neptune' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">NEPTUNO</div>
+            </a>
         </div>
     </div>
 
+    <!-- slideshow Planetas -->
 {% endblock %}
 
 <script>
@@ -258,5 +369,4 @@
     })
 </script>
 
-</body>
 </html>
