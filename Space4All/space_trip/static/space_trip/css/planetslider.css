@@ -12,7 +12,7 @@ body {
     background: #01010f;
 }
 
-.container {
+.slider {
     width: 70vw;
     max-width: 300px;
     text-align: center;
@@ -28,7 +28,7 @@ body {
     align-items: center;
 }
 
-img {
+.planetimage {
     width: 300px;
     cursor: pointer;
     filter: brightness(120%);
@@ -36,7 +36,10 @@ img {
     filter: drop-shadow(10px 10px 10px black);
 }
 
-h3 {
+.planetname {
+    display: block;
+    font-size: 1.17em;
+    font-weight: bold;
     color: #fbdcb9;
     font-family: 'Titillium Web', sans-serif;
     letter-spacing: 2px;
