@@ -26,3 +26,121 @@
   </form>
 </div>
 {% endblock %}
+
+{% block planetSlider %}
+
+    <!-- slideshow Planetas -->
+
+    <div id="planetSlider" class="slider">
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+            *, *:before, *:after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                width: 100%;
+                height: 100vh;
+            }
+
+            .slider {
+                width: 70vw;
+                max-width: 300px;
+                text-align: center;
+                top: 129px;
+                left: 60%;
+                height: 100vh;
+                position: relative;
+                perspective: 1000px;
+                transform: translate3d(-50%, -50%, 600px);
+                /* ^^^ 600px for safari hack */
+                transform-style: preserve-3d;
+                display: flex;
+                align-items: center;
+            }
+
+            .planetimage {
+                width: 300px;
+                cursor: pointer;
+                filter: brightness(120%);
+                filter: contrast(120%);
+                filter: drop-shadow(10px 10px 10px black);
+            }
+
+            .planetname {
+                display: block;
+                font-size: 1.17em;
+                font-weight: bold;
+                color: #fbdcb9;
+                font-family: 'Titillium Web', sans-serif;
+                letter-spacing: 2px;
+            }
+
+            .planet {
+                margin: auto;
+                width: 100%;
+                position: absolute;
+                cursor: pointer;
+            }
+        </style>
+        <div id="mercury" class="planet">
+            <img class="planetimage" src="{% static 'media/mercury.png' %}">
+            <a href="{% url 'space_trip:mercury' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">MERCÚRIO</div>
+            </a>
+        </div>
+        <div id="venus" class="planet">
+            <img class="planetimage" src="{% static 'media/venus.png' %}">
+            <a href="{% url 'space_trip:venus' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">VÉNUS</div>
+            </a>
+        </div>
+        <div id="earth" class="planet">
+            <img class="planetimage" src="{% static 'media/earth.png' %}">
+            <a href="{% url 'space_trip:earth' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">TERRA</div>
+            </a>
+        </div>
+        <div id="mars" class="planet">
+            <img class="planetimage" src="{% static 'media/mars.png' %}">
+            <a href="{% url 'space_trip:mars' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">MARTE</div>
+            </a>
+        </div>
+        <div id="moon" class="planet">
+            <img class="planetimage" src="{% static 'media/moon.png' %}">
+            <a href="{% url 'space_trip:moon' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">LUA</div>
+            </a>
+        </div>
+        <div id="jupiter" class="planet">
+            <img class="planetimage" src="{% static 'media/jupiter.png' %}">
+            <a href="{% url 'space_trip:jupiter' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">JÚPITER</div>
+            </a>
+        </div>
+        <div id="saturn" class="planet">
+            <img class="planetimage" src="{% static 'media/saturn.png' %}">
+            <a href="{% url 'space_trip:saturn' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">SATURNO</div>
+            </a>
+        </div>
+        <div id="uranus" class="planet">
+            <img class="planetimage" src="{% static 'media/uranus.png' %}">
+            <a href="{% url 'space_trip:uranus' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">URANO</div>
+            </a>
+        </div>
+        <div id="neptune" class="planet">
+            <img class="planetimage" src="{% static 'media/neptune.png' %}">
+            <a href="{% url 'space_trip:neptune' %}" style="text-decoration: none;" target="_self">
+                <div class="planetname">NEPTUNO</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- slideshow Planetas -->
+{% endblock %}
