@@ -52,7 +52,7 @@
                         <a class="nav-link" href="#">Galeria</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Informações</a>
+                        <a class="nav-link" href="{% url 'space_trip:about-us' %}">Sobre nós</a>
                     </li>
                 </ul>
             </div>
@@ -77,7 +77,7 @@
                     <a class="nav-link active">Ida e volta</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{% url 'space_trip:onewaytrip' %}">Só ida</a>
+                    <a class="nav-link" href="{% url 'space_trip:onewaytrip' %}">Só ida</a>
                 </li>
             </ul>
         </div>
