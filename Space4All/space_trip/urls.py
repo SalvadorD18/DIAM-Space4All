@@ -35,6 +35,8 @@ urlpatterns = [path("", views.index, name="index"),
                path("travelplanner", views.travelplanner, name="travelplanner"),
                path("payment", views.payment, name="payment"),
                path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('spicy space/favicon.ico'))),
+               path("gallery", views.gallery, name="gallery"),
+               path("promotions", views.promotions, name="promotions"),
                path("about-us", views.aboutUs, name="about-us"),
                path("onewaytrip", views.onewaytrip, name="onewaytrip")
                ]

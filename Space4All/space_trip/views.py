@@ -170,6 +170,12 @@ def uranus(request):
 def neptune(request):
     return render(request, 'space_trip/neptune.html')
 
+def gallery(request):
+    return render(request, 'space_trip/gallery.html')
+
+def promotions(request):
+    return render(request, 'space_trip/promotions.html')
+
 def travelplanner(request):
     try:
         username = request.POST['username']
