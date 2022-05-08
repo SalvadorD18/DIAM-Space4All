@@ -90,9 +90,8 @@ def apagaropcao(request, questao_id):
 def register(request):
     try:
         username = request.POST['username']
-        password = request.POST['password']
         email = request.POST['email']
-        course = request.POST['course']
+        password = request.POST['password']
         u = User.objects.create_user(username, password=password, email=email)
         a = Aluno(user=u, course=course)
         a.save()
