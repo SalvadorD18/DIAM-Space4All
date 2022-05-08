@@ -84,7 +84,7 @@
         </section>
 
     <div>
-        <center><form id="userInfo" action="{% url 'space_trip:logoutview' %}" style="display:none;">
+        <form id="userInfo" action="{% url 'space_trip:logoutview' %}" style="display:none;">
             <label for="username">Nome de utilizador:</label>
             <input type="text" id="username" name="username" value="{{request.user.username}}" readonly>
             <br><br>
@@ -95,9 +95,8 @@
             <input type="text" id="curso" name="curso" value="{{request.user.aluno.course}}" readonly>
             <br><br>
         </form>
-        </center>
     </div>
-        
+
     {% endif %}
 
 {% endblock %}
