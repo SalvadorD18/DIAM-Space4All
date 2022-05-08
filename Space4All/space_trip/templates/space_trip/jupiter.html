@@ -6,8 +6,47 @@
 
 {% block body %}
 
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <br>
-    <p class="lead"><img src="{% static "media/jupiter.png" %}" alt="Júpiter" class="rounded mx-auto d-block"></p>
+        <div id="aSide">
+        <model-viewer src="{% static "media/3D/jupiter.glb" %}" alt="Júpiter" auto-rotate camera-controls ar ios-src="{% static "media/3D/jupiter.glb" %}"></model-viewer>
+        <style>
+            /* This styles the aside container */
+            #aSide {
+                height: 600px;
+                width: 600px;
+                position: fixed;
+                top: calc(50% - 250px);
+                right: 50%;
+            }
+
+            /* This styles the 3D object inserted in the aside container */
+            #aSide model-viewer {
+                height: 600px;
+                width: 600px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border: none;
+            }
+        </style>
+    </div>
+    <br>
+    <div style="float: right; width: 50%">
+            <style>
+                @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+                .planetname {
+                    display: block;
+                    font-size: 1.80em;
+                    font-weight: bold;
+                    color: #fbdcb9;
+                    font-family: 'Titillium Web', sans-serif;
+                    letter-spacing: 2px;
+                    text-align: center;
+                }
+            </style>
+        <h2 class="planetname">Júpiter</h2>
     <br>
     <figure class="text-center" style="margin: 30px 20px 10px 20px">
     <p class="lead" style="color: white">Júpiter dista, em média, 778,3 milhões de quilómetros do Sol (5,20 U.A.), mas devido à sua grande excentricidade (e = 0,0484) esta distância varia bastante. A distância mínima em relação à Terra é de 591 milhões de quilómetros e a máxima é de 967 milhões de quilómetros, sendo o seu diâmetro aparente, visto da Terra, de 50'' e 31''(arcos de segundo), respetivamente. Assim, Júpiter aparece sempre maior do que Marte e (não obstante a sua distância ser muito maior) em certas ocasiões, maior do que Vénus. O período de revolução em torno do Sol é de 4330,6 dias. A sua velocidade média orbital é de 13,07 m/s e a inclinação do plano da sua órbita em relação à eclíptica é de 1º 18´ e 28´´. A massa de Júpiter, conhecida com bastante precisão a partir das órbitas dos seus satélites naturais, é de 1,899 x1027 kg, isto é, cerca de 317,82 vezes a da Terra e cerca de 2,5 vezes a soma das massas de todos os outros planetas do Sistema Solar. Pelo facto de a sua superfície se encontrar coberta de camadas de nuvens, só muito recentemente, graças às sondas espaciais, foi possível determinar com precisão o valor das suas dimensões. O diâmetro equatorial médio de Júpiter é de 142 984 km, ou seja, 11,2 vezes o da Terra. A densidade média deste planeta é de 1,33 g/cm3, o que implica que o seu volume seja 1316 vezes maior do que o da Terra.</p>

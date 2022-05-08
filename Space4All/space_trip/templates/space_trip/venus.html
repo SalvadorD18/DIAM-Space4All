@@ -6,38 +6,55 @@
 
 {% block body %}
 
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <br>
-    <p class="lead"><img src="{% static "media/venus.png" %}" alt="Vénus" class="rounded mx-auto d-block"></p>
+        <div id="aSide">
+        <model-viewer src="{% static "media/3D/venus.glb" %}" alt="Vénus" auto-rotate camera-controls ar ios-src="{% static "media/3D/venus.glb" %}"></model-viewer>
+        <style>
+            /* This styles the aside container */
+            #aSide {
+                height: 600px;
+                width: 600px;
+                position: fixed;
+                top: calc(50% - 250px);
+                right: 50%;
+            }
+
+            /* This styles the 3D object inserted in the aside container */
+            #aSide model-viewer {
+                height: 600px;
+                width: 600px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border: none;
+            }
+        </style>
+    </div>
+    <br>
+    <div style="float: right; width: 50%">
+            <style>
+                @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+                .planetname {
+                    display: block;
+                    font-size: 1.80em;
+                    font-weight: bold;
+                    color: #fbdcb9;
+                    font-family: 'Titillium Web', sans-serif;
+                    letter-spacing: 2px;
+                    text-align: center;
+                }
+            </style>
+        <h2 class="planetname">Vénus</h2>
     <br>
     <figure class="text-center" style="margin: 30px 20px 10px 20px">
-    <p class="lead" style="color: white">Vénus, o segundo planeta do sistema solar na ordem das distâncias ao Sol, descreve uma órbita em torno deste em
-        224,7 dias, a uma distância média de 0,723 U.A. (1 U.A. - Unidade Astronómica - equivale a 1,496 x 108 km). A
-        sua trajetória é aproximadamente circular (e = 0,0086) e é a mais baixa de todos os planetas. O plano da órbita
-        faz um ângulo de 3º com a eclíptica. Este planeta é apelidado de "estrela da manhã" ou "estrela da tarde", por
-        ser visível antes do nascer do Sol e após o ocaso, respetivamente. Tem um brilho aparente que é 10 vezes o de
-        Sírio, o que o torna no astro mais brilhante a seguir ao Sol. O seu movimento de rotação tem um período de 243
-        dias no sentido inverso ao da Terra (sentido retrógrado).</p>
-    <p class="lead" style="color: white">A sua atmosfera muito densa é constituída por uma grande percentagem de dióxido de carbono (CO2) e algumas
-        moléculas de azoto (N2). Contém, ainda, pequenas quantidades de água que permitem a formação de ácidos, como o
-        ácido clorídrico (HCl) e o ácido sulfúrico (H2SO4), que formam nuvens corrosivas e espessas, que impedem a
-        visibilidade da superfície do planeta. A pressão à sua superfície é a que encontramos a 1000 metros de
-        profundidade nos oceanos terrestres.</p>
-    <p class="lead" style="color: white">Uma atmosfera assim densa concentra os raios solares, criando um efeito de estufa que origina temperaturas de
-        cerca de 470 ºC à superfície, e, simultaneamente, reflete cerca de 98% da radiação solar incidente no planeta.
-        Ventos fortes e tempestades são fenómenos correntes neste planeta. Vénus apresenta muitas semelhanças com a
-        Terra, os dois planetas possuem: massa idêntica, volume aproximado, diâmetro igualmente próximo, densidades
-        médias e campos gravíticos à superfície aproximados (embora ambos os valores sejam ligeiramente inferiores no
-        caso de Vénus).</p>
-    <p class="lead" style="color: white">Com intervalos sucessivos de 121,5 e 105,5 anos, alternados com um período de 8 anos (...121,5 - 8 - 105,5 - 8 -
-        121,5 - 8 - ...), o planeta passa em frente ao Sol e dá-se aquilo a que se chama "trânsito": o planeta aparece
-        projetado como uma mancha negra sobre o disco solar e, quando entra ou quando sai dele, a porção de Vénus
-        exterior ao Sol vem rodeada por um halo produzido pela refração da luz solar nas camadas atmosféricas do
-        planeta. Os trânsitos de Vénus ocorrem sempre em junho e dezembro, épocas em que os planos das órbitas da Terra
-        e de Vénus se intersetam. O último ocorreu a 8 de junho de 2004, tendo sido visível em Portugal. O próximo a
-        acontecer será a 5 de junho de 2012, mas não poderá ser visto no nosso país (irá ocorrer durante a noite).
-        Prevê-se que o próximo trânsito visível em Portugal aconteça somente em 2117.</p>
+        <p class="lead" style="color: white">Vénus, o segundo planeta do sistema solar na ordem das distâncias ao Sol, descreve uma órbita em torno deste em 224,7 dias, a uma distância média de 0,723 U.A. (1 U.A. - Unidade Astronómica - equivale a 1,496 x 108 km). A sua trajetória é aproximadamente circular (e = 0,0086) e é a mais baixa de todos os planetas. O plano da órbita faz um ângulo de 3º com a eclíptica. Este planeta é apelidado de "estrela da manhã" ou "estrela da tarde", por ser visível antes do nascer do Sol e após o ocaso, respetivamente. Tem um brilho aparente que é 10 vezes o de Sírio, o que o torna no astro mais brilhante a seguir ao Sol. O seu movimento de rotação tem um período de 243 dias no sentido inverso ao da Terra (sentido retrógrado).</p>
+        <p class="lead" style="color: white">A sua atmosfera muito densa é constituída por uma grande percentagem de dióxido de carbono (CO2) e algumas moléculas de azoto (N2). Contém, ainda, pequenas quantidades de água que permitem a formação de ácidos, como o ácido clorídrico (HCl) e o ácido sulfúrico (H2SO4), que formam nuvens corrosivas e espessas, que impedem a visibilidade da superfície do planeta. A pressão à sua superfície é a que encontramos a 1000 metros de profundidade nos oceanos terrestres.</p>
+        <p class="lead" style="color: white">Uma atmosfera assim densa concentra os raios solares, criando um efeito de estufa que origina temperaturas de cerca de 470 ºC à superfície, e, simultaneamente, reflete cerca de 98% da radiação solar incidente no planeta. Ventos fortes e tempestades são fenómenos correntes neste planeta. Vénus apresenta muitas semelhanças com a Terra, os dois planetas possuem: massa idêntica, volume aproximado, diâmetro igualmente próximo, densidades médias e campos gravíticos à superfície aproximados (embora ambos os valores sejam ligeiramente inferiores no caso de Vénus).</p>
+        <p class="lead" style="color: white">Com intervalos sucessivos de 121,5 e 105,5 anos, alternados com um período de 8 anos (...121,5 - 8 - 105,5 - 8 - 121,5 - 8 - ...), o planeta passa em frente ao Sol e dá-se aquilo a que se chama "trânsito": o planeta aparece projetado como uma mancha negra sobre o disco solar e, quando entra ou quando sai dele, a porção de Vénus exterior ao Sol vem rodeada por um halo produzido pela refração da luz solar nas camadas atmosféricas do planeta. Os trânsitos de Vénus ocorrem sempre em junho e dezembro, épocas em que os planos das órbitas da Terra e de Vénus se intersetam. O último ocorreu a 8 de junho de 2004, tendo sido visível em Portugal. O próximo a acontecer será a 5 de junho de 2012, mas não poderá ser visto no nosso país (irá ocorrer durante a noite). Prevê-se que o próximo trânsito visível em Portugal aconteça somente em 2117.</p>
     </figure>
-    
+
 {% endblock %}
 
 {% block planetSlider %}

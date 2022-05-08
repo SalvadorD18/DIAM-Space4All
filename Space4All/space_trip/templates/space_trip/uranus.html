@@ -6,15 +6,54 @@
 
 {% block body %}
 
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <br>
-    <p class="lead"><img src="{% static "media/uranus.png" %}" alt="Urano" class="rounded mx-auto d-block"></p>
+        <div id="aSide">
+        <model-viewer src="{% static "media/3D/uranus.glb" %}" alt="Urano" auto-rotate camera-controls ar ios-src="{% static "media/3D/uranus.glb" %}"></model-viewer>
+        <style>
+            /* This styles the aside container */
+            #aSide {
+                height: 600px;
+                width: 600px;
+                position: fixed;
+                top: calc(50% - 250px);
+                right: 50%;
+            }
+
+            /* This styles the 3D object inserted in the aside container */
+            #aSide model-viewer {
+                height: 600px;
+                width: 600px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border: none;
+            }
+        </style>
+    </div>
+    <br>
+    <div style="float: right; width: 50%">
+            <style>
+                @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+                .planetname {
+                    display: block;
+                    font-size: 1.80em;
+                    font-weight: bold;
+                    color: #fbdcb9;
+                    font-family: 'Titillium Web', sans-serif;
+                    letter-spacing: 2px;
+                    text-align: center;
+                }
+            </style>
+        <h2 class="planetname">Urano</h2>
     <br>
     <figure class="text-center" style="margin: 30px 20px 10px 20px">
-    <p class="lead" style="color: white">É o sétimo planeta do Sistema Solar na ordem das distâncias ao Sol. Com uma órbita muito próxima do plano da eclíptica (46'), ao telescópio apresenta a forma de um disco bastante achatado e com uma coloração verde-azulada e um diâmetro angular médio de 3,75'' (arcos de segundo), o que corresponde a 50 000 km (4 vezes o da Terra).</p>
-    <p class="lead" style="color: white">Encontra-se a uma distância média do Sol de 19,19 U.A. (1 U.A. = 1,496 x 108 km), o seu período de translação é de 84,02 anos terrestres, enquanto a sua rotação completa é efetuada em 17 h 14 min 24 s, em sentido retrógrado. Tem uma massa de 14,37 vezes a da Terra e um volume 63,1 vezes superior. A sua densidade média é de 1,30 g/cm3, que é um valor baixo. O pronunciado achatamento que o planeta apresenta deve-se à sua elevada velocidade de rotação. O plano equatorial faz um ângulo de 98º com o plano da órbita o que faz com que Urano pareça estar "deitado".</p>
-    <p class="lead" style="color: white">Tem uma atmosfera muito espessa, com grandes quantidades de hidrogénio e de hélio e, contrariamente a Júpiter e Saturno, tem grandes concentrações de metano e vestígios de amoníaco. Tem uma temperatura à superfície de cerca de -190 ºC.</p>
-    <p class="lead" style="color: white">Até hoje foram descobertos 27 satélites de Urano, cujo plano das órbitas quase coincide com o seu plano equatorial, logo, é quase perpendicular à eclíptica. Todos os satélites deste planeta têm nomes de personagens de obras de Shakespeare e de Alexander Pope e, de todos eles, Oberon e Titania são os maiores. A translação dos satélites é retrógrada.</p>
-    <p class="lead" style="color: white">Urano possui um sistema de anéis idêntico ao de Saturno.</p>
+        <p class="lead" style="color: white">É o sétimo planeta do Sistema Solar na ordem das distâncias ao Sol. Com uma órbita muito próxima do plano da eclíptica (46'), ao telescópio apresenta a forma de um disco bastante achatado e com uma coloração verde-azulada e um diâmetro angular médio de 3,75'' (arcos de segundo), o que corresponde a 50 000 km (4 vezes o da Terra).</p>
+        <p class="lead" style="color: white">Encontra-se a uma distância média do Sol de 19,19 U.A. (1 U.A. = 1,496 x 108 km), o seu período de translação é de 84,02 anos terrestres, enquanto a sua rotação completa é efetuada em 17 h 14 min 24 s, em sentido retrógrado. Tem uma massa de 14,37 vezes a da Terra e um volume 63,1 vezes superior. A sua densidade média é de 1,30 g/cm3, que é um valor baixo. O pronunciado achatamento que o planeta apresenta deve-se à sua elevada velocidade de rotação. O plano equatorial faz um ângulo de 98º com o plano da órbita o que faz com que Urano pareça estar "deitado".</p>
+        <p class="lead" style="color: white">Tem uma atmosfera muito espessa, com grandes quantidades de hidrogénio e de hélio e, contrariamente a Júpiter e Saturno, tem grandes concentrações de metano e vestígios de amoníaco. Tem uma temperatura à superfície de cerca de -190 ºC.</p>
+        <p class="lead" style="color: white">Até hoje foram descobertos 27 satélites de Urano, cujo plano das órbitas quase coincide com o seu plano equatorial, logo, é quase perpendicular à eclíptica. Todos os satélites deste planeta têm nomes de personagens de obras de Shakespeare e de Alexander Pope e, de todos eles, Oberon e Titania são os maiores. A translação dos satélites é retrógrada.</p>
+        <p class="lead" style="color: white">Urano possui um sistema de anéis idêntico ao de Saturno.</p>
     </figure>
 
 {% endblock %}

@@ -5,20 +5,58 @@
 {% load static %}
 
 {% block body %}
-
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <br>
-    <p class="lead"><img src="{% static "media/neptune.png" %}" alt="Neptuno" class="rounded mx-auto d-block"></p>
+        <div id="aSide">
+        <model-viewer src="{% static "media/3D/neptune.glb" %}" alt="Neptuno" auto-rotate camera-controls ar ios-src="{% static "media/3D/neptune.glb" %}"></model-viewer>
+        <style>
+            /* This styles the aside container */
+            #aSide {
+                height: 600px;
+                width: 600px;
+                position: fixed;
+                top: calc(50% - 250px);
+                right: 50%;
+            }
+
+            /* This styles the 3D object inserted in the aside container */
+            #aSide model-viewer {
+                height: 600px;
+                width: 600px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border: none;
+            }
+        </style>
+    </div>
+    <br>
+    <div style="float: right; width: 50%">
+            <style>
+                @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+                .planetname {
+                    display: block;
+                    font-size: 1.80em;
+                    font-weight: bold;
+                    color: #fbdcb9;
+                    font-family: 'Titillium Web', sans-serif;
+                    letter-spacing: 2px;
+                    text-align: center;
+                }
+            </style>
+        <h2 class="planetname">Neptuno</h2>
     <br>
     <figure class="text-center" style="margin: 30px 20px 10px 20px">
-    <p class="lead" style="color: white">Neptuno, planeta do sistema solar, situado entre Úrano e Plutão, descreve, em torno do Sol, uma imensa órbita quase circular (e = 0,0427), com cerca de 4500 milhões de quilómetros de raio (30 U.A.) e com uma inclinação de 1º 47´ em relação ao plano da eclíptica.</p>
-    <p class="lead" style="color: white">Demora cerca de 164 anos e 280 dias terrestres a descrever uma volta em torno do Sol. Só no ano 2011 descreveu uma volta completa em relação à altura em que foi descoberto.</p>
-    <p class="lead" style="color: white">Embora invisível à vista desarmada, Neptuno pode ser observado no telescópio se for ampliado pelo menos 300 vezes. Vê-se, então, um disco azul-esverdeado cujo diâmetro aparente nunca ultrapassa 2,9´´(arcos de segundo).</p>
-    <p class="lead" style="color: white">Este planeta tem um diâmetro equatorial de 49 528 km (um pouco inferior ao de Urano), uma massa que corresponde a 17,15 vezes a da Terra e uma densidade média de 1,67 g/cm3, que é a maior das densidades dos planetas gigantes do Sistema Solar. O seu período de rotação é de 16 h 3 min e o plano equatorial faz um ângulo de 29,58º com o plano da órbita.</p>
-    <p class="lead" style="color: white">Neptuno possui uma atmosfera redutora, rica em hidrogénio (contrariamente à da Terra que é oxidante, rica em oxigénio), à semelhança de Urano. Foi, ainda, detetada a presença de metano e de hélio. Admite-se, também, a existência de uma camada de nuvens de amoníaco na parte mais baixa da atmosfera, bem como algumas nuvens de árgon a elevada altitude.</p>
-    <p class="lead" style="color: white">Estima-se que a temperatura na região central de Neptuno seja da ordem dos 7000 ºC, com uma pressão de 20 milhões de atmosferas. O núcleo rochoso de Neptuno, essencialmente formado por silicatos de ferro, poderá ser sólido ou líquido e tem cerca de 8000 km de raio. Ao núcleo segue-se um manto, com uma espessura de cerca de 10 000 km, constituído por água, metano e amoníaco congelados. Finalmente, surge uma espessa camada exterior constituída por hidrogénio e hélio.</p>
-    <p class="lead" style="color: white">O valor médio da temperatura à superfície de Neptuno é de cerca de -214 ºC. Pensa-se que, à semelhança de Júpiter e Saturno, Neptuno possua um importante campo magnético.</p>
-    <p class="lead" style="color: white">Neptuno possui treze satélites. Tritão, o maior de todos, descreve uma órbita quase circular, no sentido retrógrado, em 5 dias e 21 h, em torno de Neptuno. Nereida, um satélite bastante mais pequeno, desloca-se no sentido direto, descrevendo a órbita mais excêntrica de todo o Sistema Solar (e = 0,75) em 360 dias.</p>
-    <p class="lead" style="color: white">A sonda Voyager II detetou, em 1989, a existência de um sistema de anéis finos e de forma irregular em torno de Neptuno.</p>
+        <p class="lead" style="color: white">Neptuno, planeta do sistema solar, situado entre Úrano e Plutão, descreve, em torno do Sol, uma imensa órbita quase circular (e = 0,0427), com cerca de 4500 milhões de quilómetros de raio (30 U.A.) e com uma inclinação de 1º 47´ em relação ao plano da eclíptica.</p>
+        <p class="lead" style="color: white">Demora cerca de 164 anos e 280 dias terrestres a descrever uma volta em torno do Sol. Só no ano 2011 descreveu uma volta completa em relação à altura em que foi descoberto.</p>
+        <p class="lead" style="color: white">Embora invisível à vista desarmada, Neptuno pode ser observado no telescópio se for ampliado pelo menos 300 vezes. Vê-se, então, um disco azul-esverdeado cujo diâmetro aparente nunca ultrapassa 2,9´´(arcos de segundo).</p>
+        <p class="lead" style="color: white">Este planeta tem um diâmetro equatorial de 49 528 km (um pouco inferior ao de Urano), uma massa que corresponde a 17,15 vezes a da Terra e uma densidade média de 1,67 g/cm3, que é a maior das densidades dos planetas gigantes do Sistema Solar. O seu período de rotação é de 16 h 3 min e o plano equatorial faz um ângulo de 29,58º com o plano da órbita.</p>
+        <p class="lead" style="color: white">Neptuno possui uma atmosfera redutora, rica em hidrogénio (contrariamente à da Terra que é oxidante, rica em oxigénio), à semelhança de Urano. Foi, ainda, detetada a presença de metano e de hélio. Admite-se, também, a existência de uma camada de nuvens de amoníaco na parte mais baixa da atmosfera, bem como algumas nuvens de árgon a elevada altitude.</p>
+        <p class="lead" style="color: white">Estima-se que a temperatura na região central de Neptuno seja da ordem dos 7000 ºC, com uma pressão de 20 milhões de atmosferas. O núcleo rochoso de Neptuno, essencialmente formado por silicatos de ferro, poderá ser sólido ou líquido e tem cerca de 8000 km de raio. Ao núcleo segue-se um manto, com uma espessura de cerca de 10 000 km, constituído por água, metano e amoníaco congelados. Finalmente, surge uma espessa camada exterior constituída por hidrogénio e hélio.</p>
+        <p class="lead" style="color: white">O valor médio da temperatura à superfície de Neptuno é de cerca de -214 ºC. Pensa-se que, à semelhança de Júpiter e Saturno, Neptuno possua um importante campo magnético.</p>
+        <p class="lead" style="color: white">Neptuno possui treze satélites. Tritão, o maior de todos, descreve uma órbita quase circular, no sentido retrógrado, em 5 dias e 21 h, em torno de Neptuno. Nereida, um satélite bastante mais pequeno, desloca-se no sentido direto, descrevendo a órbita mais excêntrica de todo o Sistema Solar (e = 0,75) em 360 dias.</p>
+        <p class="lead" style="color: white">A sonda Voyager II detetou, em 1989, a existência de um sistema de anéis finos e de forma irregular em torno de Neptuno.</p>
     </figure>
 
 {% endblock %}

@@ -6,8 +6,47 @@
 
 {% block body %}
 
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <br>
-    <p class="lead"><img src="{% static "media/mercury.png" %}" alt="Mercúrio" class="rounded mx-auto d-block"></p>
+        <div id="aSide">
+        <model-viewer src="{% static "media/3D/mercury.glb" %}" alt="Mercúrio" auto-rotate camera-controls ar ios-src="{% static "media/3D/mercury.glb" %}"></model-viewer>
+        <style>
+            /* This styles the aside container */
+            #aSide {
+                height: 600px;
+                width: 600px;
+                position: fixed;
+                top: calc(50% - 250px);
+                right: 50%;
+            }
+
+            /* This styles the 3D object inserted in the aside container */
+            #aSide model-viewer {
+                height: 600px;
+                width: 600px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border: none;
+            }
+        </style>
+    </div>
+    <br>
+    <div style="float: right; width: 50%">
+            <style>
+                @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+                .planetname {
+                    display: block;
+                    font-size: 1.80em;
+                    font-weight: bold;
+                    color: #fbdcb9;
+                    font-family: 'Titillium Web', sans-serif;
+                    letter-spacing: 2px;
+                    text-align: center;
+                }
+            </style>
+        <h2 class="planetname">Mercúrio</h2>
     <br>
     <figure class="text-center" style="margin: 30px 20px 10px 20px">
     <p class="lead" style="color: white">Mercúrio é o planeta do Sistema Solar mais próximo do Sol.</p>
