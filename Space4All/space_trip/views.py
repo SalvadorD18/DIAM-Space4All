@@ -16,7 +16,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
-from .models import Questao, Opcao, Aluno, Foto, TwoWayTrip, OneWayTrip,  Trip, Purchase, Payment
+from .models import Questao, Opcao, Aluno, Foto, TwoWayTrip, OneWayTrip, Trip, Purchase, Payment
 
 
 def index(request):
@@ -188,6 +188,7 @@ def travelplanner(request):
             return_date = request.POST['return_date']
             price = request.POST['price']
             spaceship = request.POST['spaceship']
+            number_of_passengers = request.POST['number_of_passengers']
             trip = Trip(destination=destination, origin=origin, departure_date=departure_date, return_date=return_date, price=price, spaceship=spaceship)
             trip.save()
     except MultiValueDictKeyError:
@@ -195,7 +196,7 @@ def travelplanner(request):
 
 def checkIfInputExists(request):
     try:
-        trip = Trip.objects.get(destination = request.POST['destination'], origin = request.POST['origin'], departure_date = request.POST['departure_date'], return_date = request.POST['return_date'],price = request.POST['price'], spaceship = request.POST['spaceship'])
+        trip = Trip.objects.get(destination = request.POST['destination'], origin = request.POST['origin'], departure_date = request.POST['departure_date'], return_date = request.POST['return_date'],price = request.POST['price'], spaceship = request.POST['spaceship'], number_of_passengers = request.POST['number_of_passengers'])
         if trip is not None:
             username = request.POST['username']
             password = request.POST['password']
@@ -211,6 +212,17 @@ def checkIfInputExists(request):
 
 
 def payment(request):
+    return render(request, 'space_trip/payment.html')
+
+def purchase(request):
+    trip = Trip.objects.get(destination = request.POST['destination'], origin = request.POST['origin'], departure_date = request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'])
+    total_price = trip.price * trip.number_of_passengers
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    purchase = Purchase(trip, user, total_price)
+    purchase.save()
+
     return render(request, 'space_trip/payment.html')
 
 def aboutUs(request):

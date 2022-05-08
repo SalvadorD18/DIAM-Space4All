@@ -58,7 +58,7 @@ class Trip(models.Model):
 class Purchase(models.Model):
  trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
  user = models.OneToOneField(User, on_delete=models.CASCADE)
- total_price = trip.price * trip.number_of_passengers
+ total_price = models.IntegerField(default=0)
 
 class Payment(models.Model):
  purchase = models.ForeignKey(Purchase, on_delete=models.CASCADE)
