@@ -128,6 +128,8 @@ def profile(request):
     except ObjectDoesNotExist:
         return render(request, 'space_trip/profile.html')
 
+def editProfile(request):
+    return render(request, 'space_trip/edit-profile.html')
 
 def logoutview(request):
     logout(request)

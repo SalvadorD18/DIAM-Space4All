@@ -39,5 +39,6 @@ urlpatterns = [path("", views.index, name="index"),
                path("promotions", views.promotions, name="promotions"),
                path("about-us", views.aboutUs, name="about-us"),
                path("onewaytrip", views.onewaytrip, name="onewaytrip"),
-               path("checkIfInputExists", views.checkIfInputExists, name="checkIfInputExists")
+               path("checkIfInputExists", views.checkIfInputExists, name="checkIfInputExists"),
+               path("edit-profile", views.editProfile, name="edit-profile")
                ]
