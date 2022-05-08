@@ -23,9 +23,13 @@ class Opcao(models.Model):
  def __str__(self):
   return self.opcao_texto
 
-class Aluno(models.Model):
+class Client(models.Model):
  user = models.OneToOneField(User, on_delete=models.CASCADE)
- course = models.CharField(max_length=50)
+ firstname = models.CharField(max_length=50)
+ surname = models.CharField(max_length=50)
+ birthday = models.DateTimeField('data de nascimento')
+ gender = models.CharField(max_length=50)
+ planetionality = models.CharField(max_length=50)
 
 class Foto(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

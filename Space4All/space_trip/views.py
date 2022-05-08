@@ -16,7 +16,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
-from .models import Questao, Opcao, Aluno, Foto, TwoWayTrip, OneWayTrip, Trip, Purchase, Payment
+from .models import Questao, Opcao, Client, Foto, TwoWayTrip, OneWayTrip, Trip, Purchase, Payment
 
 
 def index(request):
@@ -93,18 +93,23 @@ def register(request):
         email = request.POST['email']
         password = request.POST['password']
         u = User.objects.create_user(username, password=password, email=email)
-        a = Aluno(user=u, course=course)
-        a.save()
-        user = authenticate(username=username, password=password)
+        firstname = request.POST['firstname']
+        surname = request.POST['surname']
+        birthday = request.POST['birthday']
+        gender = request.POST['gender']
+        planetionality = request.POST['planetionality']
+        c = Client(user=u, firstname=firstname, surname=surname, birthday=birthday, gender=gender, planetionality=planetionality)
+        c.save()
+        user = authenticate(email=email, password=password)
         return render(request, 'space_trip/login.html')
     except MultiValueDictKeyError:
         return render(request, 'space_trip/register.html')
 
 def login(request):
     try:
-        username = request.POST['username']
+        email = request.POST['username']
         password = request.POST['password']
-        user = authenticate(username=username, password=password)
+        user = authenticate(email=email, password=password)
 
         if user is not None:
             login(request, user)
