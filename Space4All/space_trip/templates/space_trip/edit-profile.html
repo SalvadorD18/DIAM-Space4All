@@ -40,9 +40,10 @@
             </script>
             <body onload="setup()">
                 <form id='formid' action="form.php" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <input id='fileid' type='file' name='filename' hidden/>
                     <input id='buttonid' type='button' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1" value='Atualizar foto'/>
-                    <input type='submit' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1" value='Submeter' />
+                    <input type='submit' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1" value='Submeter' hidden/>
                 </form>
             </body>
                     <div class="d-flex justify-content-end text-center py-1">
