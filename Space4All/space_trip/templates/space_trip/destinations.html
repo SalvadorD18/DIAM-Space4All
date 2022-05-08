@@ -6,8 +6,25 @@
 
 {% block body %}
 
-    <br>
-    <h2 style="color: white; text-align: center; font-family: 'Arial Black'">Destinos</h2>
+    <br><br>
+    <style>
+        .glow {
+          color: #fff;
+          text-align: left;
+          animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        @-webkit-keyframes glow {
+          from {
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #8d8d8d, 0 0 40px #8d8d8d, 0 0 50px #8d8d8d, 0 0 60px #8d8d8d, 0 0 70px #8d8d8d;
+          }
+
+          to {
+            text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #8d8d8d, 0 0 50px #8d8d8d, 0 0 60px #8d8d8d, 0 0 70px #8d8d8d, 0 0 80px #8d8d8d;
+          }
+        }
+    </style>
+    <h2 class="glow" style="text-align: center; font-family: 'Arial Black'">Destinos</h2>
 
 {% endblock %}
 
