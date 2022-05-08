@@ -22,7 +22,7 @@
                             <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" style="z-index: 1;" onclick="window.location.href='{% url 'space_trip:edit-profile' %}';">Editar perfil</button>
                     </div>
                     <div class="ms-3" style="margin-top: 130px;">
-                      <h5>{{request.user.c.firstname}}</h5>
+                      <h5>{{request.user.username}}</h5>
                       <p>{{request.user.c.planetionality}}</p>
                     </div>
                   </div>
