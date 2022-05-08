@@ -38,7 +38,8 @@
                         }
                     }
                 </script>
-                <form id='formid' action="{% url 'space_trip:uploadPhoto' %}" method="POST" enctype="multipart/form-data" onload="setup()">
+              <body onload="setup()">
+                <form id='formid' action="{% url 'space_trip:uploadPhoto' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input id='fileid' type='file' name='filename' hidden/>
                     <input id='buttonid' type='button' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1" value='Atualizar foto'/>
@@ -109,20 +110,19 @@
 								<div class="col-sm-9 text-secondary">
 									<submit type='submit' class="btn btn-outline-danger"/>Guardar alterações
 								</div>
-							</div>
 						</div>
 					</div>
 			</div>
 		</div>
 	</div>
-
-            </form>
                   </div>
                   </div>
                 </div>
               </div>
             </div>
         </section>
+            </form>
+      </body>
 
     {% endif %}
 
