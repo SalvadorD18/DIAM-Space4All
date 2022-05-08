@@ -136,7 +136,7 @@ def logoutview(request):
     return HttpResponseRedirect(reverse('space_trip:index'))
 
 @login_required(login_url='space_trip/register.html')
-def fazer_upload(request):
+def uploadPhoto(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
         fs = FileSystemStorage()
