@@ -140,7 +140,7 @@ def fazer_upload(request):
         return render(request,'space_trip/profile.html', {'uploaded_file_url': uploaded_file_url})
     return render(request, 'space_trip/profile.html')
 
-def planets(request):
+def destinations(request):
     return render(request, 'space_trip/destinations.html')
 
 def moon(request):
