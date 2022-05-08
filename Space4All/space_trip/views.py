@@ -90,26 +90,26 @@ def apagaropcao(request, questao_id):
 def register(request):
     try:
         username = request.POST['username']
-        email = request.POST['email']
         password = request.POST['password']
-        u = User.objects.create_user(username, password=password, email=email)
+        email = request.POST['email']
         firstname = request.POST['firstname']
         surname = request.POST['surname']
         birthday = request.POST['birthday']
         gender = request.POST['gender']
         planetionality = request.POST['planetionality']
+        u = User.objects.create_user(username, password=password, email=email)
         c = Client(user=u, firstname=firstname, surname=surname, birthday=birthday, gender=gender, planetionality=planetionality)
         c.save()
-        user = authenticate(email=email, password=password)
+        user = authenticate(username=username, password=password)
         return render(request, 'space_trip/login.html')
     except MultiValueDictKeyError:
         return render(request, 'space_trip/register.html')
 
-def login(request):
+def user_login(request):
     try:
-        email = request.POST['username']
+        username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(email=email, password=password)
+        user = authenticate(username=username, password=password)
 
         if user is not None:
             login(request, user)

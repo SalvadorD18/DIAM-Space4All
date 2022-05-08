@@ -10,7 +10,7 @@
         <p>
             <img src="{{ uploaded_file_url }}" alt="Imagem do utilizador" onmouseover="showUserInfo()" id="u" onmouseout="hideUserInfo()">
         </p>
-        <center><form id="userInfo" action="{% url 'votacao:logoutview' %}" style="display:none;">
+        <center><form id="userInfo" action="{% url 'space_trip:logoutview' %}" style="display:none;">
             <label for="username">Nome de utilizador:</label>
             <input type="text" id="username" name="username" value="{{request.user.username}}" readonly>
             <br><br>
@@ -24,7 +24,7 @@
         </center>
             <br>
             <br>
-            <form method="post" enctype="multipart/form-data" action="{% url 'votacao:fazer_upload' %}">
+            <form method="post" enctype="multipart/form-data" action="{% url 'space_trip:fazer_upload' %}">
                 {% csrf_token %}
                 <input type="file" name="myfile">
                 <br>

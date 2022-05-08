@@ -22,13 +22,13 @@
                       <h4 class="mt-1 mb-5 pb-1">We have Space4All</h4>
                     </div>
 
-                    <form id="form1" action="{% url 'space_trip:login' %}" method="post">
+                    <form id="form1" action="{% url 'space_trip:user_login' %}" method="post">
                       {% csrf_token %}
                       <p>Por favor, inicie sessão:</p>
 
                       <div class="form-outline mb-4">
-                        <label for="email" class="form-label" for="form2Example11">E-mail:</label>
-                        <input name="email" type="text" id="form2Example11" class="form-control" placeholder="Introduzir E-mail" />
+                        <label for="username" class="form-label" for="form2Example11">Nome de Utilizador:</label>
+                        <input name="username" type="text" id="form2Example11" class="form-control" placeholder="Introduzir Nome de Utilizador" />
                       </div>
 
                       <div class="form-outline mb-4">
@@ -37,7 +37,7 @@
                       </div>
 
                       <div class="text-center pt-1 mb-5 pb-1">
-                        <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Iniciar Sessão</button>
+                        <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Iniciar Sessão</button>
                       </div>
 
                       <div class="d-flex align-items-center justify-content-center pb-4">
