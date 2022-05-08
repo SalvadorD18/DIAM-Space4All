@@ -6,47 +6,71 @@
 
 {% block body %}
 
-<form id="form1" action="{% url 'space_trip:travelplanner' %}" method="post">
-        {% csrf_token %}
-        <div>
-            <input list="destination" name="destination" placeholder="Destino">
-            <datalist id="destination">
-                <option value="Terra">
-                <option value="Jupiter">
-                <option value="Marte">
-                <option value="Mercúrio">
-                <option value="Lua">
-                <option value="Neptuno">
-                <option value="Saturno">
-                <option value="Úrano">
-                <option value="Vênus">
-            </datalist>
-            <br><br>
-            <input list="origin" name="origin" placeholder="Origem">
-            <datalist id="origin">
-                <option value="Terra">
-                <option value="Jupiter">
-                <option value="Marte">
-                <option value="Mercúrio">
-                <option value="Lua">
-                <option value="Neptuno">
-                <option value="Saturno">
-                <option value="Úrano">
-                <option value="Vênus">
-            </datalist>
-            <br><br>
-            <label for="departure_date"><strong>Data de Partida:</strong></label><br>
-            <input type="date" name="departure_date" placeholder="Data de Partida" required>
-            <br><br>
-            <label for="return_date"><strong>Data de Regresso:</strong></label><br>
-            <input type="date" name="return_date" placeholder="Data de Regresso" required>
-            <br><br>
-            <label for="number_of_passengers">Número de Passageiros:</label><br>
-            <input type="number" id="number_of_passengers" name="number_of_passengers">
-            <br><br>
-          </div>
-          <button type="submit"><strong>Confirmar</strong></button>
-    </form>
+    <section class="h-100 gradient-form">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="card-body p-md-5 mx-md-4">
+
+                                    <div class="text-center">
+                                        <img src="{% static 'spicy space/SPACE4ALL_02 transparent.png' %}" style="width: 40%;" alt="logo">
+                                        <h4 class="mt-1 mb-5 pb-1">We have Space4All</h4>
+                                    </div>
+
+                                    <form id="form1" action="{% url 'space_trip:travelplanner' %}" method="post">
+                                        {% csrf_token %}
+
+                                        <div class="form-outline mb-4">
+                                            <label for="origin" class="form-label" for="form2Example22">Origem:</label>
+                                            <select id="origin" class="form-control">
+                                                <option selected>- Por favor, selecione o planeta de origem -</option>
+                                                <option value="ME">Mercúrio</option><option value="VE">Vénus</option><option value="TE">Terra</option><option value="LU">Lua</option><option value="MA">Marte</option><option value="JU">Júpiter</option><option value="SA">Saturno</option><option value="UR">Urano</option><option value="NE">Neptuno</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label for="destination" class="form-label" for="form2Example22">Destino:</label>
+                                            <select id="destination" class="form-control">
+                                                <option selected>- Por favor, selecione o planeta de destino -</option>
+                                                <option value="ME">Mercúrio</option><option value="VE">Vénus</option><option value="TE">Terra</option><option value="LU">Lua</option><option value="MA">Marte</option><option value="JU">Júpiter</option><option value="SA">Saturno</option><option value="UR">Urano</option><option value="NE">Neptuno</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label for="departure_date" class="form-label" for="form2Example22">Data de Partida:</label>
+                                            <input name="departure_date" type="date" id="form2Example22" class="form-control"/>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label for="return_date" class="form-label" for="form2Example22">Data de Regresso:</label>
+                                            <input name="return_date" type="date" id="form2Example22" class="form-control"/>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label for="number_of_passengers" class="form-label" for="form2Example22">N.º de Passageiros:</label>
+                                            <input name="number_of_passengers" type="number" id="form2Example22" class="form-control"/>
+                                        </div>
+
+                                        <div class="text-center pt-1 mb-5 pb-1">
+                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Confirmar</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-center" style="background: url('{% static 'spicy space/European-astronauts-bg.jpg' %}') 90% 0 no-repeat fixed">
+                                <div class="px-3 py-4 p-md-5 mx-md-4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
 
