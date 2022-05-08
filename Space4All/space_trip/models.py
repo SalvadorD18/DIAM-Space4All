@@ -45,3 +45,21 @@ class OneWayTrip(models.Model):
  origin = models.CharField(max_length=50)
  departure_date = models.DateTimeField('Departure Date')
  number_of_passengers = models.IntegerField(default=1)
+
+class Trip(models.Model):
+ destination = models.CharField(max_length=50)
+ origin = models.CharField(max_length=50)
+ departure_date = models.DateTimeField('Departure Date')
+ return_date = models.DateTimeField('Return Date')
+ price = models.IntegerField(default=600)
+ spaceship = models.CharField(max_length=50)
+ number_of_passengers = models.IntegerField(default=1)
+
+class Purchase(models.Model):
+ trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
+ user = models.OneToOneField(User, on_delete=models.CASCADE)
+ total_price = trip.price * trip.number_of_passengers
+
+class Payment(models.Model):
+ purchase = models.ForeignKey(Purchase, on_delete=models.CASCADE)
+ payment_method = models.CharField(max_length=50)
