@@ -82,22 +82,25 @@
                             </div>
                             <div class="col-lg-6 d-flex align-items-center" style="background: url('{% static 'spicy space/start.jpg' %}') 90% 0 no-repeat fixed">
                                 <div class="px-3 py-4 p-md-5 mx-md-4">
-                                    <style>
-                                        .neonText {
+                                  <style>
+                                        .glow {
                                           color: #fff;
-                                          text-shadow:
-                                              0 0 7px #fff,
-                                              0 0 10px #fff,
-                                              0 0 21px #fff,
-                                              0 0 42px #fff,
-                                              0 0 82px #fff,
-                                              0 0 92px #fff,
-                                              0 0 102px #fff,
-                                              0 0 151px #fff;
+                                          text-align: left;
+                                          animation: glow 1s ease-in-out infinite alternate;
+                                        }
+
+                                        @-webkit-keyframes glow {
+                                          from {
+                                            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff;
+                                          }
+
+                                          to {
+                                            text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff, 0 0 80px #fff;
+                                          }
                                         }
                                     </style>
                                     <br><br><br>
-                                    <h4 style="color: white" class="neonText mb-4">Comece esta viagem connosco!</h4>
+                                    <h4 style="color: white" class="glow mb-4">Comece esta viagem connosco!</h4>
                                     <br>
                                     <p style="color: white" class="small mb-0">A nossa empresa trabalha diariamente para garantir o acesso das viagens espaciais a qualquer um, assegurando uma experiência de qualidade e segurança. O nosso objetivo passa por dar a conhecer o resto da galáxia a toda a gente. Venha ver as estrelas connosco!</p>
                                 </div>
