@@ -10,7 +10,7 @@
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <br>
         <div id="aSide">
-        <model-viewer src="{% static "media/3D/jupiter.glb" %}" alt="Júpiter" auto-rotate camera-controls ar ios-src="{% static "media/3D/jupiter.glb" %}"></model-viewer>
+        <model-viewer loading="eager" src="{% static "media/3D/jupiter.glb" %}" alt="Júpiter" auto-rotate camera-controls ar ios-src="{% static "media/3D/jupiter.glb" %}"></model-viewer>
         <style>
             /* This styles the aside container */
             #aSide {
@@ -29,6 +29,7 @@
                 top: 0;
                 left: 0;
                 border: none;
+                --poster-color: transparent;
             }
         </style>
     </div>
