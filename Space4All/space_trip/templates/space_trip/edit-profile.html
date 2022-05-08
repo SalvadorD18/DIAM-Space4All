@@ -50,42 +50,58 @@
 						<div class="card-body">
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Full Name</h6>
+									<h6 class="mb-0">Primeiro Nome:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="John Doe">
+									<input type="text" class="form-control" value="{{request.user.c.firstname}}" readonly>
+								</div>
+							</div>
+                            <div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Apelido:</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="text" class="form-control" value="{{request.user.c.surname}}" readonly>
+								</div>
+							</div>
+                            <div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Nome de utilizador:</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="text" class="form-control" value="{{request.user.username}}" readonly>
 								</div>
 							</div>
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Email</h6>
+									<h6 class="mb-0">E-mail:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="john@example.com">
+									<input type="text" class="form-control" value="{{request.user.email}}">
+								</div>
+							</div>
+                            <div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Data de Nascimento:</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input type="date" class="form-control" value="{{request.user.c.birthday}}" readonly>
 								</div>
 							</div>
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Phone</h6>
+									<h6 class="mb-0">Género:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="(239) 816-9029">
+									<input type="text" class="form-control" value="{{request.user.c.birthday}}" readonly>
 								</div>
 							</div>
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Mobile</h6>
+									<h6 class="mb-0">Planetalidade:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="(320) 380-4539">
-								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Address</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="Bay Area, San Francisco, CA">
+									<input type="text" class="form-control" value="{{request.user.c.planetionality}}">
 								</div>
 							</div>
 							<div class="row">
