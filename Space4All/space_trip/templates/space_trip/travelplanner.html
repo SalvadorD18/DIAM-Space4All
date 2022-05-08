@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <title>Travel Planner</title>
-</head>
-<body>
+{% extends "./index.html" %}
+
+{% block title %} Space4All | Planear viagem {% endblock %}
+
+{% load static %}
+
+{% block body %}
+
 <form id="form1" action="{% url 'space_trip:travelplanner' %}" method="post">
         {% csrf_token %}
         <div>
@@ -46,6 +47,8 @@
           </div>
           <button type="submit"><strong>Confirmar</strong></button>
     </form>
+
+{% endblock %}
 
 {% block planetSlider %}
 
