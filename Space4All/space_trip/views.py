@@ -108,9 +108,9 @@ def register(request):
 
 def user_login(request):
     try:
-        username = request.POST['username']
+        email = request.POST['email']
         password = request.POST['password']
-        user = authenticate(username=username, password=password)
+        user = authenticate(email=email, password=password)
 
         if user is not None:
             login(request, user)
