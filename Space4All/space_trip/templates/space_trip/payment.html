@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <title>Payment</title>
-</head>
-<body>
+{% extends "./index.html" %}
+
+{% block title %} Space4All | Pagamento {% endblock %}
+
+{% load static %}
+
+{% block body %}
 
 <form action="{% url 'space_trip:payment' %}" method="post">
     {% csrf_token %}
@@ -22,6 +22,8 @@
     <input type="number" id="cvv" name="cvv" min="100" max="999">
     <br><br>
 </form>
+
+{% endblock %}
 
 {% block planetSlider %}
 

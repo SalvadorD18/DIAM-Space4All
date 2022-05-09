@@ -1,3 +1,2 @@
--{{request.user.client.firstname}} - não aparece os dados do Client, apenas do User;
 -Os planetas com anéis estão a atrofiar a apresentação do ciclo (o Alex ficou de me resolver esta questão);
 -Possibilidade de o utilizador atualizar dados e foto;

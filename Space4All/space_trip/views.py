@@ -88,7 +88,7 @@ def apagaropcao(request, questao_id):
         return HttpResponseRedirect(reverse('space_trip:detalhe', args=(questao.id,)))
 
 def register(request):
-    try:
+    if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         email = request.POST['email']
@@ -100,10 +100,12 @@ def register(request):
         u = User.objects.create_user(username, password=password, email=email)
         c = Client(user=u, firstname=firstname, surname=surname, birthday=birthday, gender=gender, planetionality=planetionality)
         c.save()
+        print("Criei o cliente")
         user = authenticate(username=username, password=password)
         return render(request, 'space_trip/login.html')
-    except MultiValueDictKeyError:
+    else:
         return render(request, 'space_trip/register.html')
+
 
 def user_login(request):
     try:

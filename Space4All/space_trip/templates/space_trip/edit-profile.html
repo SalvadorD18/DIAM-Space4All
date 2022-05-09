@@ -21,8 +21,8 @@
                         {% endif %}
                     </div>
                     <div class="ms-3" style="margin-top: 130px;">
-                      <h5>{{request.user.username}}</h5>
-                      <p>{{request.user.client.firstname}}</p>
+                      <h5>{{request.user.client.firstname}} {{request.user.client.surname}}</h5>
+                      <p>{{request.user.client.planetionality}}</p>
                     </div>
                   </div>
                   <div class="p-4 text-black" style="background-color: #f8f9fa;">
@@ -94,7 +94,7 @@
 									<h6 class="mb-0">Género:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="{{request.user.client.birthday}}" readonly>
+									<input type="date" class="form-control" value="{{request.user.client.birthday}}" readonly>
 								</div>
 							</div>
 							<div class="row mb-3">
