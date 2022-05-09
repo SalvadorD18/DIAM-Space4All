@@ -100,8 +100,7 @@ def register(request):
         u = User.objects.create_user(username, password=password, email=email)
         c = Client(user=u, firstname=firstname, surname=surname, birthday=birthday, gender=gender, planetionality=planetionality)
         c.save()
-        print("Criei o cliente")
-        user = authenticate(username=username, password=password)
+        user = authenticate(email=email, password=password)
         return render(request, 'space_trip/login.html')
     else:
         return render(request, 'space_trip/register.html')
