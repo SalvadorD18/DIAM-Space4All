@@ -50,6 +50,7 @@ class OneWayTrip(models.Model):
  departure_date = models.DateTimeField('Departure Date')
  number_of_passengers = models.IntegerField(default=1)
 
+
 class Trip(models.Model):
  destination = models.CharField(max_length=50)
  origin = models.CharField(max_length=50)
@@ -61,8 +62,9 @@ class Trip(models.Model):
 
 class Purchase(models.Model):
  trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
- user = models.ForeignKey(User, on_delete=models.CASCADE)
+ user = models.OneToOneField(User, on_delete=models.CASCADE)
  total_price = models.IntegerField(default=0)
+ is_payed = models.BooleanField(default=False)
 
 class Payment(models.Model):
  purchase = models.ForeignKey(Purchase, on_delete=models.CASCADE)
