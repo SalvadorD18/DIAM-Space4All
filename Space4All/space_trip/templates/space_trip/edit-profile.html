@@ -39,7 +39,7 @@
                     }
                 </script>
               <body onload="setup()">
-                <form id='formid' action="{% url 'space_trip:uploadPhoto' %}" method="POST" enctype="multipart/form-data">
+                <form id='formid' action="{% url 'space_trip:editUserData' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input id='fileid' type='file' name='filename' hidden/>
                     <input id='buttonid' type='button' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1" value='Atualizar foto'/>
@@ -70,7 +70,7 @@
 									<h6 class="mb-0">Nome de utilizador:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="{{request.user.username}}" readonly>
+									<input name="username" type="text" class="form-control" value="{{request.user.username}}" readonly>
 								</div>
 							</div>
 							<div class="row mb-3">
@@ -78,7 +78,15 @@
 									<h6 class="mb-0">E-mail:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="{{request.user.email}}">
+									<input name="email" type="text" class="form-control" value="{{request.user.email}}">
+								</div>
+							</div>
+                            <div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Palavra-passe:</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input name="password" type="password" class="form-control" value="{{request.user.password}}">
 								</div>
 							</div>
                             <div class="row mb-3">
@@ -86,7 +94,7 @@
 									<h6 class="mb-0">Data de Nascimento:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="date" class="form-control" value="{{request.user.client.birthday}}" readonly>
+									<input name="birthday" type="date" class="form-control" value="{{request.user.client.birthday}}" readonly>
 								</div>
 							</div>
 							<div class="row mb-3">
@@ -94,7 +102,7 @@
 									<h6 class="mb-0">Género:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="{{request.user.client.gender}}" readonly>
+									<input name="gender" type="text" class="form-control" value="{{request.user.client.gender}}" readonly>
 								</div>
 							</div>
 							<div class="row mb-3">
@@ -102,13 +110,13 @@
 									<h6 class="mb-0">Planetalidade:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="{{request.user.client.planetionality}}" readonly>
+									<input name="planetionality" type="text" class="form-control" value="{{request.user.client.planetionality}}" readonly>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-3"></div>
 								<div class="col-sm-9 text-secondary">
-									<submit type='submit' class="btn btn-outline-danger"/>Guardar alterações
+									<button type="submit" class="btn btn-outline-danger"/>Guardar alterações
 								</div>
 						</div>
 					</div>

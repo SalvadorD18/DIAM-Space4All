@@ -211,7 +211,7 @@ def planTrip(request):
         # else:
         desti = request.POST['destination']
         ori = request.POST['origin']
-        trip = Trip.objects.get(destination = desti, origin = ori, departure_date = request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'] )
+        trip = Trip.objects.get(destination=desti, origin=ori, departure_date=request.POST['departure_date'], return_date=request.POST['return_date'], price=request.POST['price'], spaceship=request.POST['spaceship'],  number_of_passengers=request.POST['number_of_passengers'])
         if trip is not None:
             username = request.POST['username']
             password = request.POST['password']
@@ -226,8 +226,13 @@ def planTrip(request):
     except MultiValueDictKeyError:
         return render(request, 'space_trip/plan-trip.html')
 
-
-
+def editUserData(request):
+    user = request.user
+    user.email = request.POST['email']
+    user.password = request.POST['password']
+    user.save()
+    user.client.save()
+    return render(request, 'space_trip/profile.html')
 
 def payment(request):
     return render(request, 'space_trip/payment.html')
