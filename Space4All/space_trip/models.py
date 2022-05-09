@@ -67,5 +67,9 @@ class Purchase(models.Model):
  is_payed = models.BooleanField(default=False)
 
 class Payment(models.Model):
+ user = models.OneToOneField(User, on_delete=models.CASCADE)
  purchase = models.ForeignKey(Purchase, on_delete=models.CASCADE)
- payment_method = models.CharField(max_length=50)
+ cardName = models.CharField(max_length=50)
+ cardNumber = models.CharField(max_length=16)
+ expirationDate = models.DateTimeField('Expiration Date')
+ cvv = models.CharField(max_length=3)

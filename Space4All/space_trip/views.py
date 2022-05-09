@@ -203,6 +203,7 @@ def admincreatetrip(request):
         return render(request, 'space_trip/admincreatetrip.html')
 
 def planTrip(request):
+    print("dddddd")
     try:
         # if request.session['destination'] is not None:
         #     desti = request.session.get('destination')
@@ -212,7 +213,9 @@ def planTrip(request):
         desti = request.POST['destination']
         ori = request.POST['origin']
         trip = Trip.objects.get(destination=desti, origin=ori, departure_date=request.POST['departure_date'], return_date=request.POST['return_date'], price=request.POST['price'], spaceship=request.POST['spaceship'],  number_of_passengers=request.POST['number_of_passengers'])
+        print("cccccccc")
         if trip is not None:
+            print("bbbbbbbbb")
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username, password=password)
@@ -220,9 +223,9 @@ def planTrip(request):
             purchase.save()
             return render(request, 'space_trip/payment.html')
         else:
+            print("aaaaa")
             messages.error(request, "Não há viagens disponíveis com estes dados.")
             return redirect('space_trip/plan-trip.html')
-
     except MultiValueDictKeyError:
         return render(request, 'space_trip/plan-trip.html')
 
