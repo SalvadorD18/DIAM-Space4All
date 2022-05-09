@@ -20,10 +20,10 @@ from .models import Questao, Opcao, Client, Foto, TwoWayTrip, OneWayTrip, Trip, 
 
 
 def index(request):
-    request.session['destination'] = request.POST['destination']
-    request.session['origin'] = request.POST['origin']
+    #request.session['destination'] = request.POST['destination']
+    #request.session['origin'] = request.POST['origin']
     # latest_question_list = Questao.objects.all()
-    # return render(request, 'space_trip/index.html', {'latest_question_list': latest_question_list})
+    return render(request, 'space_trip/index.html')
 
 def detalhe(request, questao_id):
     questao = get_object_or_404(Questao, pk=questao_id)
