@@ -20,8 +20,10 @@ from .models import Questao, Opcao, Client, Foto, TwoWayTrip, OneWayTrip, Trip, 
 
 
 def index(request):
-        latest_question_list = Questao.objects.all()
-        return render(request, 'space_trip/index.html', {'latest_question_list': latest_question_list})
+    request.session['destination'] = request.POST['destination']
+    request.session['origin'] = request.POST['origin']
+    # latest_question_list = Questao.objects.all()
+    # return render(request, 'space_trip/index.html', {'latest_question_list': latest_question_list})
 
 def detalhe(request, questao_id):
     questao = get_object_or_404(Questao, pk=questao_id)
@@ -185,7 +187,6 @@ def gallery(request):
 def promotions(request):
     return render(request, 'space_trip/promotions.html')
 
-
 def travelplanner(request):
     try:
         if request.user.is_authenticated and request.user.is_superuser:
@@ -203,7 +204,14 @@ def travelplanner(request):
 
 def checkIfInputExists(request):
     try:
-        trip = Trip.objects.get(destination = request.POST['destination'], origin = request.POST['origin'], departure_date = request.POST['departure_date'], return_date = request.POST['return_date'],price = request.POST['price'], spaceship = request.POST['spaceship'], number_of_passengers = request.POST['number_of_passengers'])
+        if request.session['destination'] is not None:
+            desti = request.session.get('destination')
+            ori = request.session['origin']
+            request.session.flush()
+        else:
+            desti = request.POST['destination']
+            ori = request.POST['origin']
+        trip = Trip.objects.get(destination = desti, origin = ori, departure_date = request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'] )
         if trip is not None:
             username = request.POST['username']
             password = request.POST['password']
@@ -214,12 +222,17 @@ def checkIfInputExists(request):
         else:
             messages.error(request, "Não há viagens disponíveis com estes dados.")
             return redirect('space_trip/travelplanner.html')
+
     except MultiValueDictKeyError:
         return render(request, 'space_trip/travelplanner.html')
 
 
+
+
 def payment(request):
     return render(request, 'space_trip/payment.html')
+
+
 
 def purchase(request):
     trip = Trip.objects.get(destination = request.POST['destination'], origin = request.POST['origin'], departure_date = request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'])
@@ -230,6 +243,7 @@ def purchase(request):
     purchase = Purchase(trip, user, total_price)
     purchase.save()
 
+def payment(request):
     return render(request, 'space_trip/payment.html')
 
 def aboutUs(request):
