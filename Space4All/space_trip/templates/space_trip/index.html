@@ -58,6 +58,11 @@
             <!-- Links -->
             <div class="mx-5">
                 <ul class="navbar-nav" style="position: relative;">
+                    {% if request.user.is_authenticated and request.user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'space_trip:admin' %}">Administração</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'space_trip:promotions' %}">Promoções</a>
                     </li>
@@ -70,6 +75,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'space_trip:about-us' %}">Sobre nós</a>
                     </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item glow">
+                        <a class="nav-link">Bem-vindo, {{request.user.username}}</a>
+                    </li>
+                    {% endif %}
+
                 </ul>
             </div>
             <div class="d-flex align-items-center">
@@ -90,11 +101,28 @@
                 {% endif %}
             </div>
         <!-- Collapsible wrapper -->
+        </div>
     </div>
     <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+<style>
+        .glow {
+          color: #fff;
+          text-align: left;
+          animation: glow 1s ease-in-out infinite alternate;
+        }
 
+        @-webkit-keyframes glow {
+          from {
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #8d8d8d, 0 0 40px #8d8d8d, 0 0 50px #8d8d8d, 0 0 60px #8d8d8d, 0 0 70px #8d8d8d;
+          }
+
+          to {
+            text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #8d8d8d, 0 0 50px #8d8d8d, 0 0 60px #8d8d8d, 0 0 70px #8d8d8d, 0 0 80px #8d8d8d;
+          }
+        }
+</style>
 {% block body %}
     <!-- Sidebar -->
     <div class="card mb-3" style="width: 18rem; left: 5%; top: 8%; position: relative;">

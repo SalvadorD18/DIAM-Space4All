@@ -237,3 +237,6 @@ def aboutUs(request):
 
 def onewaytrip(request):
     return render(request, 'space_trip/onewaytrip.html')
+
+def admin(request):
+    return render(request, 'space_trip/admin.html')
