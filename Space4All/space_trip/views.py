@@ -16,7 +16,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
-from .models import Questao, Opcao, Client, Foto, TwoWayTrip, OneWayTrip, Trip, Purchase, Payment
+from .models import Questao, Opcao, Client, Photo, TwoWayTrip, OneWayTrip, Trip, Purchase, Payment
 
 
 def index(request):
@@ -126,7 +126,7 @@ def user_login(request):
 
 def profile(request):
     try:
-        uploaded_file_url = request.user.foto.foto_url
+        uploaded_file_url = request.user.photo.photo_url
         return render(request, 'space_trip/profile.html', {'uploaded_file_url': uploaded_file_url})
     except ObjectDoesNotExist:
         return render(request, 'space_trip/profile.html')
@@ -146,8 +146,8 @@ def uploadPhoto(request):
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
         u = request.user
-        foto = Foto(user=u, foto_url=uploaded_file_url)
-        foto.save()
+        photo = Photo(user=u, foto_url=uploaded_file_url)
+        photo.save()
         return render(request,'space_trip/profile.html', {'uploaded_file_url': uploaded_file_url})
     return render(request, 'space_trip/profile.html')
 

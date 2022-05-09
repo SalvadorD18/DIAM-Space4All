@@ -31,9 +31,9 @@ class Client(models.Model):
  gender = models.CharField(max_length=50)
  planetionality = models.CharField(max_length=50)
 
-class Foto(models.Model):
+class Photo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    foto_url = models.URLField(max_length=100)
+    photo_url = models.URLField(max_length=100)
 
 class TwoWayTrip(models.Model):
  user = models.OneToOneField(User, on_delete=models.CASCADE)
