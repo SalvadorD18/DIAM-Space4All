@@ -187,7 +187,7 @@ def gallery(request):
 def promotions(request):
     return render(request, 'space_trip/promotions.html')
 
-def travelplanner(request):
+def admincreatetrip(request):
     try:
         if request.user.is_authenticated and request.user.is_superuser:
             destination = request.POST['destination']
@@ -200,17 +200,17 @@ def travelplanner(request):
             trip = Trip(destination=destination, origin=origin, departure_date=departure_date, return_date=return_date, price=price, spaceship=spaceship)
             trip.save()
     except MultiValueDictKeyError:
-        return render(request, 'space_trip/travelplanner.html')
+        return render(request, 'space_trip/admincreatetrip.html')
 
-def checkIfInputExists(request):
+def planTrip(request):
     try:
-        if request.session['destination'] is not None:
-            desti = request.session.get('destination')
-            ori = request.session['origin']
-            request.session.flush()
-        else:
-            desti = request.POST['destination']
-            ori = request.POST['origin']
+        # if request.session['destination'] is not None:
+        #     desti = request.session.get('destination')
+        #     ori = request.session['origin']
+        #     request.session.flush()
+        # else:
+        desti = request.POST['destination']
+        ori = request.POST['origin']
         trip = Trip.objects.get(destination = desti, origin = ori, departure_date = request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'] )
         if trip is not None:
             username = request.POST['username']
@@ -221,10 +221,10 @@ def checkIfInputExists(request):
             return render(request, 'space_trip/payment.html')
         else:
             messages.error(request, "Não há viagens disponíveis com estes dados.")
-            return redirect('space_trip/travelplanner.html')
+            return redirect('space_trip/plan-trip.html')
 
     except MultiValueDictKeyError:
-        return render(request, 'space_trip/travelplanner.html')
+        return render(request, 'space_trip/plan-trip.html')
 
 
 
