@@ -41,5 +41,6 @@ urlpatterns = [path("", views.index, name="index"),
                path("onewaytrip", views.onewaytrip, name="onewaytrip"),
                path("plan-trip", views.planTrip, name="planTrip"),
                path("edit-profile", views.editProfile, name="edit-profile"),
-               path("editUserData", views.editUserData, name="editUserData")
+               path("editUserData", views.editUserData, name="editUserData"),
+               path("admin", views.admin, name="admin")
                ]
