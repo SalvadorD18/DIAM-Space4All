@@ -27,7 +27,7 @@ class Client(models.Model):
  user = models.OneToOneField(User, on_delete=models.CASCADE)
  firstname = models.CharField(max_length=50)
  surname = models.CharField(max_length=50)
- birthday = models.DateTimeField('data de nascimento')
+ birthday = models.DateTimeField('birthday')
  gender = models.CharField(max_length=50)
  planetionality = models.CharField(max_length=50)
 
