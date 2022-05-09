@@ -22,7 +22,7 @@
                     </div>
                     <div class="ms-3" style="margin-top: 130px;">
                       <h5>{{request.user.username}}</h5>
-                      <p>{{request.user.c.planetionality}}</p>
+                      <p>{{request.user.client.firstname}}</p>
                     </div>
                   </div>
                   <div class="p-4 text-black" style="background-color: #f8f9fa;">
@@ -54,7 +54,7 @@
 									<h6 class="mb-0">Primeiro Nome:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="{{request.user.c.firstname}}" readonly>
+									<input type="text" class="form-control" value="{{request.user.client.firstname}}" readonly>
 								</div>
 							</div>
                             <div class="row mb-3">
@@ -62,7 +62,7 @@
 									<h6 class="mb-0">Apelido:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="{{request.user.c.surname}}" readonly>
+									<input type="text" class="form-control" value="{{request.user.client.surname}}" readonly>
 								</div>
 							</div>
                             <div class="row mb-3">
@@ -86,7 +86,7 @@
 									<h6 class="mb-0">Data de Nascimento:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="date" class="form-control" value="{{request.user.c.birthday}}" readonly>
+									<input type="date" class="form-control" value="{{request.user.client.birthday}}" readonly>
 								</div>
 							</div>
 							<div class="row mb-3">
@@ -94,7 +94,7 @@
 									<h6 class="mb-0">Género:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="{{request.user.c.birthday}}" readonly>
+									<input type="text" class="form-control" value="{{request.user.client.birthday}}" readonly>
 								</div>
 							</div>
 							<div class="row mb-3">
@@ -102,7 +102,7 @@
 									<h6 class="mb-0">Planetalidade:</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="{{request.user.c.planetionality}}" readonly>
+									<input type="text" class="form-control" value="{{request.user.client.planetionality}}" readonly>
 								</div>
 							</div>
 							<div class="row">
