@@ -32,14 +32,14 @@ urlpatterns = [path("", views.index, name="index"),
                path("saturn", views.saturn, name="saturn"),
                path("uranus", views.uranus, name="uranus"),
                path("neptune", views.neptune, name="neptune"),
-               path("travelplanner", views.travelplanner, name="travelplanner"),
+               path("admincreatetrip", views.admincreatetrip, name="admincreatetrip"),
                path("payment", views.payment, name="payment"),
                path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('spicy space/favicon.ico'))),
                path("gallery", views.gallery, name="gallery"),
                path("promotions", views.promotions, name="promotions"),
                path("about-us", views.aboutUs, name="about-us"),
                path("onewaytrip", views.onewaytrip, name="onewaytrip"),
-               path("checkIfInputExists", views.checkIfInputExists, name="checkIfInputExists"),
+               path("plan-trip", views.planTrip, name="planTrip"),
                path("edit-profile", views.editProfile, name="edit-profile"),
-                path("admin", views.admin, name="admin")
+               path("editUserData", views.editUserData, name="editUserData")
                ]

@@ -22,33 +22,15 @@
                             <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" style="z-index: 1;" onclick="window.location.href='{% url 'space_trip:edit-profile' %}';">Editar perfil</button>
                     </div>
                     <div class="ms-3" style="margin-top: 130px;">
-                      <h5>{{request.user.username}}</h5>
-                      <p>{{request.user.c.planetionality}}</p>
-                    </div>
-                  </div>
-                  <div class="p-4 text-black" style="background-color: #f8f9fa;">
-                    <div class="d-flex justify-content-end text-center py-1">
-                      <div>
-                        <p class="mb-1 h5">253</p>
-                        <p class="small text-muted mb-0">Photos</p>
-                      </div>
-                      <div class="px-3">
-                        <p class="mb-1 h5">1026</p>
-                        <p class="small text-muted mb-0">Followers</p>
-                      </div>
-                      <div>
-                        <p class="mb-1 h5">478</p>
-                        <p class="small text-muted mb-0">Following</p>
-                      </div>
+                      <h5>{{request.user.client.firstname}} {{request.user.client.surname}}</h5>
+                      <p>{{request.user.client.planetionality}}</p>
                     </div>
                   </div>
                   <div class="card-body p-4 text-black">
                     <div class="mb-5">
                       <p class="lead fw-normal mb-1">About</p>
                       <div class="p-4" style="background-color: #f8f9fa;">
-                        <p class="font-italic mb-1">Web Developer</p>
-                        <p class="font-italic mb-1">Lives in New York</p>
-                        <p class="font-italic mb-0">Photographer</p>
+
                       </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -90,9 +72,6 @@
             <br><br>
             <label for="email">E-mail:</label>
             <input type="text" id="email" name="email" value="{{request.user.email}}" readonly>
-            <br><br>
-            <label for="curso">Curso:</label>
-            <input type="text" id="curso" name="curso" value="{{request.user.aluno.course}}" readonly>
             <br><br>
         </form>
     </div>

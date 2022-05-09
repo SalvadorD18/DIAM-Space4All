@@ -57,16 +57,22 @@
 
                                         <div class="form-outline mb-4">
                                             <label for="gender" class="form-label" for="form2Example22">Género:</label>
-                                            <select id="gender" name="gender" class="form-control">
-                                                <option selected>- Por favor, selecione o seu Género -</option>
-                                                <option value="Feminino">Feminino</option><option value="Masculino">Masculino</option></select>
+                                            <br>
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="feminine">
+                                              <label class="form-check-label" for="inlineRadio1">Feminino</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="masculine">
+                                              <label class="form-check-label" for="inlineRadio2">Masculino</label>
+                                            </div>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label for="planetionality" class="form-label" for="form2Example22">Planetalidade:</label>
                                             <select name="planetionality" id="planetionality" class="form-control">
-                                                <option selected>- Por favor, selecione o seu Planeta -</option>
-                                                <option value="Mercúrio">Mercúrio</option><option value="Vénus">Vénus</option><option value="Terra">Terra</option><option value="Lua">Lua</option><option value="Marte">Marte</option><option value="Júpiter">Júpiter</option><option value="Saturno">Saturno</option><option value="Urano">Urano</option><option value="Neptuno">Neptuno</option>
+                                                <option value="" selected disabled>- Por favor, selecione o seu Planeta -</option>
+                                                <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
                                             </select>
                                         </div>
 

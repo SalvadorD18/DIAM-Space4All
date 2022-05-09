@@ -10,6 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.8.1/css/all.css"></script>
 
 </head>
 
@@ -125,30 +129,67 @@
 </style>
 {% block body %}
     <!-- Sidebar -->
-    <div class="card mb-3" style="width: 18rem; left: 5%; top: 8%; position: relative;">
-        <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active">Ida e volta</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'space_trip:onewaytrip' %}">Só ida</a>
-                </li>
-            </ul>
+<br>
+    <div class="row">
+        <div class="col-lg-6 ">
+            <div class="card" style="width: 18rem; left: 10%; top: 5%; position: relative;">
+                <div class="card-header">
+                    <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+                        <!-- Trip form tabs -->
+                        <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                            <li class="nav-item"> <a data-toggle="pill" href="#normaltrip" class="nav-link active "> <i class="fas fa-credit-card mr-2"></i> Ida e volta </a> </li>
+                            <li class="nav-item"> <a data-toggle="pill" href="#onewaytrip" class="nav-link "> <i class="fab fa-paypal mr-2"></i> Só ida </a> </li>
+                        </ul>
+                    </div> <!-- End -->
+                    <!-- Viagem de ida e volta form content -->
+                    <div class="tab-content">
+                        <!-- Viagem de ida e volta -->
+                        <div id="normaltrip" class="tab-pane fade show active pt-3">
+                            <form role="form" onsubmit="event.preventDefault()">
+                                <div class="form-group "> <label for="origin">
+                                <h6>Origem:</h6>
+                            </label> <select class="form-control" id="ccmonth">
+                                <option value="" selected disabled>- Por favor, selecione a origem -</option>
+                                <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
+                            </select>
+                                </div>
+                                <br>
+                                <div class="form-group ">
+                                    <label for="destination"><h6>Destino:</h6></label> <select class="form-control" id="ccmonth">
+                                <option value="" selected disabled>- Por favor, selecione o destino -</option>
+                                <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
+                            </select>
+                                </div>
+                                <br>
+                                <div class="card-footer">
+                                    <a href="{% url 'space_trip:planTrip' %}" class="btn btn-primary">Pesquisar</a>
+                            </form>
+                        </div>
+                    </div> <!-- End -->
+                    <!-- Viagem só de ida -->
+                    <div id="onewaytrip" class="tab-pane fade pt-3">
+                            <form role="form" onsubmit="event.preventDefault()">
+                                <div class="form-group ">
+                                    <label for="destination"><h6>Destino:</h6></label> <select class="form-control" id="ccmonth">
+                                <option value="" selected disabled>- Por favor, selecione o destino -</option>
+                                <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
+                            </select>
+                                </div>
+                                <br>
+                                <div class="card-footer">
+                                    <a href="{% url 'space_trip:planTrip' %}" class="btn btn-primary">Pesquisar</a>
+                            </form>
+                    </div> <!-- End -->
+                    <!-- End -->
+                </div>
+            </div>
         </div>
-        <form>
-            <div class="card-body">
-                <label for="exampleInputOrigem">Origem:</label>
-                <input type="text" class="form-control" id="exampleInputOrigem" placeholder="Exemplo: Lua">
-            </div>
-            <div class="card-body">
-                <label for="exampleInputDestino">Destino:</label>
-                <input type="text" class="form-control" id="exampleInputDestino" placeholder="Exemplo: Marte">
-                <br>
-                <a href="{% url 'space_trip:checkIfInputExists' %}" class="btn btn-primary">Pesquisar</a>
-            </div>
-        </form>
     </div>
+    <script>
+        $(function() {
+          $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
     <!-- Sidebar -->
 {% endblock %}
 
@@ -175,10 +216,10 @@
                 width: 70vw;
                 max-width: 300px;
                 text-align: center;
-                top: 5%;
-                left: 60%;
+                top: 57%;
+                left: 57%;
                 height: 100vh;
-                position: relative;
+                position: fixed;
                 perspective: 1000px;
                 transform: translate3d(-50%, -50%, 600px);
                 /* ^^^ 600px for safari hack */

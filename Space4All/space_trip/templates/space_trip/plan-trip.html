@@ -20,21 +20,21 @@
                                         <h4 class="mt-1 mb-5 pb-1">We have Space4All</h4>
                                     </div>
 
-                                    <form id="form1" action="{% url 'space_trip:travelplanner' %}" method="post">
+                                    <form action="{% url 'space_trip:planTrip' %}" method="post">
                                         {% csrf_token %}
 
                                         <div class="form-outline mb-4">
                                             <label for="origin" class="form-label" for="form2Example22">Origem:</label>
                                             <select id="origin" class="form-control">
-                                                <option selected>- Por favor, selecione o planeta de origem -</option>
-                                                <option value="ME">Mercúrio</option><option value="VE">Vénus</option><option value="TE">Terra</option><option value="LU">Lua</option><option value="MA">Marte</option><option value="JU">Júpiter</option><option value="SA">Saturno</option><option value="UR">Urano</option><option value="NE">Neptuno</option>
+                                                <option value="" selected disabled>- Por favor, selecione a origem -</option>
+                                                <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
                                             </select>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label for="destination" class="form-label" for="form2Example22">Destino:</label>
                                             <select id="destination" class="form-control">
-                                                <option selected>- Por favor, selecione o planeta de destino -</option>
+                                                <option value="" selected disabled>- Por favor, selecione o destino -</option>
                                                 <option value="ME">Mercúrio</option><option value="VE">Vénus</option><option value="TE">Terra</option><option value="LU">Lua</option><option value="MA">Marte</option><option value="JU">Júpiter</option><option value="SA">Saturno</option><option value="UR">Urano</option><option value="NE">Neptuno</option>
                                             </select>
                                         </div>
@@ -55,7 +55,7 @@
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Confirmar</button>
+                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Confirmar</button>
                                         </div>
 
                                     </form>

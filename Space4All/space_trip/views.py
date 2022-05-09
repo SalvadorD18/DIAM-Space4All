@@ -16,12 +16,14 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
-from .models import Questao, Opcao, Client, Foto, TwoWayTrip, OneWayTrip, Trip, Purchase, Payment
+from .models import Questao, Opcao, Client, Photo, TwoWayTrip, OneWayTrip, Trip, Purchase, Payment
 
 
 def index(request):
-        latest_question_list = Questao.objects.all()
-        return render(request, 'space_trip/index.html', {'latest_question_list': latest_question_list})
+    #request.session['destination'] = request.POST['destination']
+    #request.session['origin'] = request.POST['origin']
+    # latest_question_list = Questao.objects.all()
+    return render(request, 'space_trip/index.html')
 
 def detalhe(request, questao_id):
     questao = get_object_or_404(Questao, pk=questao_id)
@@ -124,7 +126,7 @@ def user_login(request):
 
 def profile(request):
     try:
-        uploaded_file_url = request.user.foto.foto_url
+        uploaded_file_url = request.user.photo.photo_url
         return render(request, 'space_trip/profile.html', {'uploaded_file_url': uploaded_file_url})
     except ObjectDoesNotExist:
         return render(request, 'space_trip/profile.html')
@@ -144,8 +146,8 @@ def uploadPhoto(request):
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
         u = request.user
-        foto = Foto(user=u, foto_url=uploaded_file_url)
-        foto.save()
+        photo = Photo(user=u, foto_url=uploaded_file_url)
+        photo.save()
         return render(request,'space_trip/profile.html', {'uploaded_file_url': uploaded_file_url})
     return render(request, 'space_trip/profile.html')
 
@@ -185,8 +187,7 @@ def gallery(request):
 def promotions(request):
     return render(request, 'space_trip/promotions.html')
 
-
-def travelplanner(request):
+def admincreatetrip(request):
     try:
         if request.user.is_authenticated and request.user.is_superuser:
             destination = request.POST['destination']
@@ -199,12 +200,22 @@ def travelplanner(request):
             trip = Trip(destination=destination, origin=origin, departure_date=departure_date, return_date=return_date, price=price, spaceship=spaceship)
             trip.save()
     except MultiValueDictKeyError:
-        return render(request, 'space_trip/travelplanner.html')
+        return render(request, 'space_trip/admincreatetrip.html')
 
-def checkIfInputExists(request):
+def planTrip(request):
+    print("dddddd")
     try:
-        trip = Trip.objects.get(destination = request.POST['destination'], origin = request.POST['origin'], departure_date = request.POST['departure_date'], return_date = request.POST['return_date'],price = request.POST['price'], spaceship = request.POST['spaceship'], number_of_passengers = request.POST['number_of_passengers'])
+        # if request.session['destination'] is not None:
+        #     desti = request.session.get('destination')
+        #     ori = request.session['origin']
+        #     request.session.flush()
+        # else:
+        desti = request.POST['destination']
+        ori = request.POST['origin']
+        trip = Trip.objects.get(destination=desti, origin=ori, departure_date=request.POST['departure_date'], return_date=request.POST['return_date'], price=request.POST['price'], spaceship=request.POST['spaceship'],  number_of_passengers=request.POST['number_of_passengers'])
+        print("cccccccc")
         if trip is not None:
+            print("bbbbbbbbb")
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username, password=password)
@@ -212,14 +223,24 @@ def checkIfInputExists(request):
             purchase.save()
             return render(request, 'space_trip/payment.html')
         else:
+            print("aaaaa")
             messages.error(request, "Não há viagens disponíveis com estes dados.")
-            return redirect('space_trip/travelplanner.html')
+            return redirect('space_trip/plan-trip.html')
     except MultiValueDictKeyError:
-        return render(request, 'space_trip/travelplanner.html')
+        return render(request, 'space_trip/plan-trip.html')
 
+def editUserData(request):
+    user = request.user
+    user.email = request.POST['email']
+    user.password = request.POST['password']
+    user.save()
+    user.client.save()
+    return render(request, 'space_trip/profile.html')
 
 def payment(request):
     return render(request, 'space_trip/payment.html')
+
+
 
 def purchase(request):
     trip = Trip.objects.get(destination = request.POST['destination'], origin = request.POST['origin'], departure_date = request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'])
@@ -230,6 +251,7 @@ def purchase(request):
     purchase = Purchase(trip, user, total_price)
     purchase.save()
 
+def payment(request):
     return render(request, 'space_trip/payment.html')
 
 def aboutUs(request):
