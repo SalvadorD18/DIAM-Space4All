@@ -100,7 +100,7 @@ def register(request):
         u = User.objects.create_user(username, password=password, email=email)
         c = Client(user=u, firstname=firstname, surname=surname, birthday=birthday, gender=gender, planetionality=planetionality)
         c.save()
-        user = authenticate(email=email, password=password)
+        user = authenticate(username=username, password=password)
         return render(request, 'space_trip/login.html')
     else:
         return render(request, 'space_trip/register.html')
@@ -108,9 +108,9 @@ def register(request):
 
 def user_login(request):
     try:
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(email=email, password=password)
+        user = authenticate(username=username, password=password)
 
         if user is not None:
             login(request, user)
