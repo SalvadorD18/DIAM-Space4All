@@ -12,4 +12,90 @@
     <br><br>
     <h2 class="glow" style="text-align: center; font-family: 'Arial Black'">Gestão de Viagens</h2>
 
+    <section class="h-100 gradient-form">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="card-body p-md-5 mx-md-4">
+
+                                    <div class="text-center">
+                                        <img src="{% static 'spicy space/SPACE4ALL_02 transparent.png' %}" style="width: 40%;" alt="logo">
+                                        <h4 class="mt-1 mb-5 pb-1">We have Space4All</h4>
+                                    </div>
+
+                                    <form action="{% url 'space_trip:planTrip' %}" method="post">
+                                        {% csrf_token %}
+
+                                        <div class="form-outline mb-4">
+                                            <label for="origin" class="form-label">Origem:</label>
+                                            <select name="origin" id="origin" class="form-control">
+                                                <option value="" selected disabled>- Por favor, selecione a Origem -</option>
+                                                <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label for="destination" class="form-label">Destino:</label>
+                                            <select name="destination" id="destination" class="form-control">
+                                                <option value="" selected disabled>- Por favor, selecione o Destino -</option>
+                                                <option value="Mercúrio">Mercúrio</option><option value="Vénus">Vénus</option><option value="Terra">Terra</option><option value="Lua">Lua</option><option value="Marte">Marte</option><option value="Júpiter">Júpiter</option><option value="Saturno">Saturno</option><option value="Urano">Urano</option><option value="Neptuno">Neptuno</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label for="departure_date" class="form-label">Data de Partida:</label>
+                                            <input name="departure_date" type="date" id="departure_date" class="form-control"/>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label for="return_date" class="form-label">Data de Regresso:</label>
+                                            <input name="return_date" type="date" id="return_date" class="form-control"/>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label for="price" class="form-label">Preço:</label>
+                                            <div class="input-group mb-3">
+                                              <input name="price" id="price" class="form-control" aria-label="Preço">
+                                              <div class="input-group-append">
+                                                <span class="input-group-text">€</span>
+                                              </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label for="spaceship" class="form-label">Nave Espacial:</label>
+                                            <select name="spaceship" id="spaceship" class="form-control">
+                                                <option value="" selected disabled>- Por favor, selecione a Nave Espacial -</option>
+                                                <option value="nave1">nave1</option><option value="nave2">nave2</option><option value="nave3">nave3</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label for="number_of_passengers" class="form-label">Número de Passageiros:</label>
+                                            <div class="input-group mb-3">
+                                              <input name="number_of_passengers" id="number_of_passengers" class="form-control" type="number">
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center pt-1 mb-5 pb-1">
+                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" formaction="{% url 'space_trip:trip-management' %}" formmethod="post" type="submit">Criar</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-center" style="background: url('{% static 'spicy space/European-astronauts-bg.jpg' %}') 100% 0 no-repeat fixed">
+                                <div class="px-3 py-4 p-md-5 mx-md-4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 {% endblock %}

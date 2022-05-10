@@ -87,7 +87,7 @@
                         <a class="nav-link" href="{% url 'space_trip:about-us' %}">Sobre nós</a>
                     </li>
                     {% if request.user.is_authenticated %}
-                    <li class="nav-item glow">
+                    <li class="ms-4 nav-item glow">
                         <a class="nav-link">Bem-vindo, {{request.user.username}}</a>
                     </li>
                     {% endif %}

@@ -8,8 +8,67 @@
 {% endblock %}
 
 {% block body %}
+<div>
+  <style>
+      table.dataTable thead .sorting:after,
+      table.dataTable thead .sorting:before,
+      table.dataTable thead .sorting_asc:after,
+      table.dataTable thead .sorting_asc:before,
+      table.dataTable thead .sorting_asc_disabled:after,
+      table.dataTable thead .sorting_asc_disabled:before,
+      table.dataTable thead .sorting_desc:after,
+      table.dataTable thead .sorting_desc:before,
+      table.dataTable thead .sorting_desc_disabled:after,
+      table.dataTable thead .sorting_desc_disabled:before {
+      bottom: .5em;
+  }
+  </style>
+  <script>
+      $(document).ready(function () {
+      $('#dtBasicExample').DataTable();
+      $('.dataTables_length').addClass('bs-select');
+  });
+  </script>
 
-    <br><br>
-    <h2 class="glow" style="text-align: center; font-family: 'Arial Black'">Gestão de Clientes</h2>
+      <br><br>
+      <h2 class="glow" style="text-align: center; font-family: 'Arial Black'">Gestão de Clientes</h2>
+      <br><br>
 
+      <table id="dtBasicExample" class="h-100 table table-striped table-bordered table-sm" cellspacing="0" width="70%">
+        <thead>
+          <tr>
+            <th class="th-sm">Name
+            </th>
+            <th class="th-sm">Position
+            </th>
+            <th class="th-sm">Office
+            </th>
+            <th class="th-sm">Age
+            </th>
+            <th class="th-sm">Start date
+            </th>
+            <th class="th-sm">Salary
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tiger Nixon</td>
+            <td>System Architect</td>
+            <td>Edinburgh</td>
+            <td>61</td>
+            <td>2011/04/25</td>
+            <td>$320,800</td>
+          </tr>
+          <tr>
+            <td>Garrett Winters</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>63</td>
+            <td>2011/07/25</td>
+            <td>$170,750</td>
+          </tr>
+        </tbody>
+  </table>
+</div>
 {% endblock %}
