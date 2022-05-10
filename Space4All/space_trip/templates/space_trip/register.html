@@ -51,6 +51,18 @@
                                         </div>
 
                                         <div class="form-outline mb-4">
+                                            <script type='text/javascript' src='http://code.jquery.com/jquery-1.9.1.js'></script>
+                                            <script type="text/javascript">
+                                            $(window).load(function(){
+                                            var dt= document.getElementById('birthday');
+                                            if (dt) {
+                                            dt.onchange = function () {
+                                               dt.setAttribute('type', 'text');
+                                               dt.setAttribute('type', 'date');
+                                            }
+                                            }
+                                            });
+                                            </script>
                                             <label for="birthday" class="form-label" for="form2Example22">Data de Nascimento:</label>
                                             <input name="birthday" type="date" id="form2Example22" class="form-control"/>
                                         </div>
