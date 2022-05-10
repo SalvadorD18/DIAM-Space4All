@@ -244,7 +244,6 @@ def planTrip(request):
 def editUserData(request):
     user = request.user
     user.email = request.POST['email']
-    user.password = request.POST['password']
     user.save()
     user.client.save()
     return render(request, 'space_trip/profile.html')
