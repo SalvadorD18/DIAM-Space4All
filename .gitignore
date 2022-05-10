@@ -1,2 +1,8 @@
 
 *.pyc
+<<<<<<< Updated upstream
+=======
+*.pyc
+*.pyc
+>>>>>>> Stashed changes
+*.pyc

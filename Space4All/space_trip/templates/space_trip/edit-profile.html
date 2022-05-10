@@ -26,29 +26,25 @@
                     </div>
                   </div>
                   <div class="p-4 text-black" style="background-color: #f8f9fa;">
-                  <script>
-                    function setup() {
-                        document.getElementById('buttonid').addEventListener('click', openDialog);
-                        function openDialog() {
-                            document.getElementById('fileid').click();
-                        }
-                        document.getElementById('fileid').addEventListener('change', submitForm);
-                        function submitForm() {
-                            document.getElementById('formid').submit();
-                        }
-                    }
-                </script>
-              <body onload="setup()">
+              <body>
+                <form id='formid' action="{% url 'space_trip:uploadPhoto' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <br>
+                    <h6 class="mb-0">Alterar foto de perfil:</h6>
+                    <br>
+                    <input type="file" name="myfile" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1">
+                    <input type='submit' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1" value='Atualizar foto'/>
+                </form>
+                    <br>
                 <form id='formid' action="{% url 'space_trip:editUserData' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <input id='fileid' type='file' name='filename' hidden/>
-                    <input id='buttonid' type='button' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1" value='Atualizar foto'/>
-                    <br>
     <div class="container">
 		<div class="main-body">
 			<div class="row">
 					<div class="card">
 						<div class="card-body">
+                            <h6 class="mb-0">Alterar dados:</h6>
+                            <br>
 							<div class="row mb-3">
 								<div class="col-sm-3">
 									<h6 class="mb-0">Primeiro Nome:</h6>
@@ -124,12 +120,14 @@
 		</div>
 	</div>
                   </div>
+                    </form>
+              </body>
                   </div>
                 </div>
               </div>
             </div>
         </section>
-            </form>
+
       </body>
 
     {% endif %}

@@ -132,7 +132,11 @@ def profile(request):
         return render(request, 'space_trip/profile.html')
 
 def editProfile(request):
-    return render(request, 'space_trip/edit-profile.html')
+    try:
+        uploaded_file_url = request.user.photo.photo_url
+        return render(request, 'space_trip/edit-profile.html', {'uploaded_file_url': uploaded_file_url})
+    except ObjectDoesNotExist:
+        return render(request, 'space_trip/edit-profile.html')
 
 def logoutview(request):
     logout(request)
@@ -140,13 +144,21 @@ def logoutview(request):
 
 @login_required(login_url='space_trip/register.html')
 def uploadPhoto(request):
-    if request.method == 'POST' and request.FILES['myfile']:
+    print("aaaaaa")
+    if request.method == 'POST' and request.FILES.get('myfile') is not None:
+        print("bbbbb")
         myfile = request.FILES['myfile']
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
         u = request.user
-        photo = Photo(user=u, foto_url=uploaded_file_url)
+        try:
+            photo = Photo.objects.get(user=u)
+            photo.photo_url = uploaded_file_url
+            print("ccccc")
+        except Photo.DoesNotExist:
+            print("ddddd")
+            photo = Photo(user=u, photo_url=uploaded_file_url)
         photo.save()
         return render(request,'space_trip/profile.html', {'uploaded_file_url': uploaded_file_url})
     return render(request, 'space_trip/profile.html')
@@ -204,7 +216,7 @@ def admincreatetrip(request):
 
 def planTrip(request):
     print("dddddd")
-    try:
+    if request.method == 'POST':
         # if request.session['destination'] is not None:
         #     desti = request.session.get('destination')
         #     ori = request.session['origin']
@@ -212,9 +224,9 @@ def planTrip(request):
         # else:
         desti = request.POST['destination']
         ori = request.POST['origin']
-        trip = Trip.objects.get(destination=desti, origin=ori, departure_date=request.POST['departure_date'], return_date=request.POST['return_date'], price=request.POST['price'], spaceship=request.POST['spaceship'],  number_of_passengers=request.POST['number_of_passengers'])
-        print("cccccccc")
-        if trip is not None:
+        try:
+            trip = Trip.objects.get(destination=desti, origin=ori, departure_date=request.POST['departure_date'], return_date=request.POST['return_date'])
+            print("cccccccc")
             print("bbbbbbbbb")
             username = request.POST['username']
             password = request.POST['password']
@@ -222,11 +234,11 @@ def planTrip(request):
             purchase = Purchase(trip, user)
             purchase.save()
             return render(request, 'space_trip/payment.html')
-        else:
+        except Trip.DoesNotExist:
             print("aaaaa")
             messages.error(request, "Não há viagens disponíveis com estes dados.")
-            return redirect('space_trip/plan-trip.html')
-    except MultiValueDictKeyError:
+            return render(request, 'space_trip/plan-trip.html')
+    else:
         return render(request, 'space_trip/plan-trip.html')
 
 def editUserData(request):
