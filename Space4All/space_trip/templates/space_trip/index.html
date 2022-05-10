@@ -325,15 +325,15 @@
 
     $(".planet").click(function () {
         $('.slider').attr("planet-center", this.id);
-        if (this.id == "mercury") centermercury();
-        if (this.id == "venus") centervenus();
-        if (this.id == "earth") centerearth();
-        if (this.id == "moon") centermoon();
-        if (this.id == "mars") centermars();
-        if (this.id == "jupiter") centerjupiter();
-        if (this.id == "saturn") centersaturn();
-        if (this.id == "uranus") centeruranus();
-        if (this.id == "neptune") centerneptune();
+        if (this.id === "mercury") centermercury();
+        if (this.id === "venus") centervenus();
+        if (this.id === "earth") centerearth();
+        if (this.id === "moon") centermoon();
+        if (this.id === "mars") centermars();
+        if (this.id === "jupiter") centerjupiter();
+        if (this.id === "saturn") centersaturn();
+        if (this.id === "uranus") centeruranus();
+        if (this.id === "neptune") centerneptune();
     });
 
     function centermercury() {
