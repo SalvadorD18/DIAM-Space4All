@@ -32,8 +32,8 @@
                     <br>
                     <h6 class="mb-0">Alterar foto de perfil:</h6>
                     <br>
-                    <input type="file" name="myfile" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1">
-                    <input type='submit' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1" value='Atualizar foto'/>
+                    <input id="formFileDisabled" type="file" name="myfile" class="form-control-lg btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1">
+                    <input type='submit' class="form-control-lg btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="z-index: 1" value='Atualizar foto'/>
                 </form>
                     <br>
                 <form id='formid' action="{% url 'space_trip:editUserData' %}" method="POST" enctype="multipart/form-data">
@@ -78,14 +78,18 @@
 								</div>
 							</div>
                             <div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Palavra-passe:</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input name="password" type="password" class="form-control">
-								</div>
-							</div>
-                            <div class="row mb-3">
+                                <script type='text/javascript' src='http://code.jquery.com/jquery-1.9.1.js'></script>
+                                <script type="text/javascript">
+                                $(window).load(function(){
+                                var dt= document.getElementById('birthday');
+                                if (dt) {
+                                dt.onchange = function () {
+                                   dt.setAttribute('type', 'text');
+                                   dt.setAttribute('type', 'date');
+                                }
+                                }
+                                });
+                                </script>
 								<div class="col-sm-3">
 									<h6 class="mb-0">Data de Nascimento:</h6>
 								</div>
