@@ -260,5 +260,8 @@ def aboutUs(request):
 def onewaytrip(request):
     return render(request, 'space_trip/onewaytrip.html')
 
-def admin(request):
-    return render(request, 'space_trip/admin.html')
+def clientManagement(request):
+    return render(request, 'space_trip/client-management.html')
+
+def tripManagement(request):
+    return render(request, 'space_trip/trip-management.html')

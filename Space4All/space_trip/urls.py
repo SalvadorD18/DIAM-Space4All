@@ -42,5 +42,6 @@ urlpatterns = [path("", views.index, name="index"),
                path("plan-trip", views.planTrip, name="planTrip"),
                path("edit-profile", views.editProfile, name="edit-profile"),
                path("editUserData", views.editUserData, name="editUserData"),
-               path("admin", views.admin, name="admin")
+               path("client-management", views.clientManagement, name="client-management"),
+               path("trip-management", views.tripManagement, name="trip-management")
                ]
