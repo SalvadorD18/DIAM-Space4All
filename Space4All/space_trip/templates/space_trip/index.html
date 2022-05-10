@@ -19,6 +19,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+{% block navbar %}
 <!-- Navbar -->
 <script>
     document.addEventListener("DOMContentLoaded", function(){
@@ -127,9 +128,11 @@
           }
         }
 </style>
+{% endblock %}
+
 {% block body %}
     <!-- Sidebar -->
-<br>
+    <br>
     <div class="row">
         <div class="col-lg-6 ">
             <div class="card" style="width: 18rem; left: 10%; top: 5%; position: relative;">
@@ -190,7 +193,7 @@
           $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
-    <!-- Sidebar -->
+<!-- Sidebar -->
 {% endblock %}
 
 {% block planetSlider %}
