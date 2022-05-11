@@ -221,13 +221,14 @@ def catchDataFromIndex(request):
 def planTrip(request):
     trips = Trip.objects.filter(destination=request.POST['destination'], origin=request.POST['origin'], departure_date=request.POST['departure_date'], return_date=request.POST['return_date'])
     if trips.count() > 0:
-        destination = request.POST['destination']
-        origin = request.POST['origin']
-        departure_date = request.POST['departure_date']
-        return_date = request.POST['return_date']
-        return render(request, 'space_trip/available-trips.html', {'destination': destination,'origin':origin, 'departure_date':departure_date, 'return_date':return_date})
+        request.session['destination'] = request.POST['destination']
+        request.session['origin'] = request.POST['origin']
+        request.session['departure_date'] = request.POST['departure_date']
+        request.session['return_date'] = request.POST['return_date']
+        return render(request, 'space_trip/available-trips.html')
+
     else:
-        messages.error(request, 'Não existem viagens com estes atrinutos.')
+        messages.error(request, 'Não existem viagens com estes atributos.')
         return render(request, 'space_trip/plan-trip.html')
 
 #def displayTrips(request):
@@ -245,9 +246,7 @@ def payment(request):
 def purchase(request):
     trip = Trip.objects.get(destination=request.POST['destination'], origin=request.POST['origin'], departure_date=request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'])
     total_price = trip.price * trip.number_of_passengers
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(username=username, password=password)
+    user = request.user
     purchase = Purchase(trip, user, total_price)
     purchase.save()
 
@@ -264,8 +263,17 @@ def clientManagement(request):
     return render(request, 'space_trip/client-management.html')
 
 def tripList(request):
-    trip_list = Trip.objects.all()
-    return render(request, 'space_trip/trip-list.html', {'trip_list': trip_list})
+    if request.session.get('destination') is not None and request.session.get('origin') is not None and request.session.get('departure_date') is not None and request.session.get('return_date') is not None:
+        destination = request.session.get('destination')
+        origin = request.session.get('origin')
+        departure_date = request.session.get('departure_date')
+        return_date = request.session.get('return_date')
+        trips = Trip.objects.filter(destination=destination, origin=origin, departure_date=departure_date, return_date=return_date)
+        return render(request, 'space_trip/available-trips.html', {'trips': trips})
+    else:
+        messages.error(request, 'Não sei o que escrever aqui,mas faz sentido dar erro')
+        return render(request, 'space_trip/plan-trip.html')
+    return render(request, 'space_trip/trip-list.html')
 
 @permission_required('space_trip.trip-management', login_url=reverse_lazy('space_trip:login'))
 def deleteTrip(request, trip_id):
