@@ -136,6 +136,15 @@
 </style>
 {% endblock %}
 
+{% for message in messages %}
+<div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+    {{ message }}
+
+</div>
+{% endfor %}
+
+
+
 {% block body %}
     <!-- Sidebar -->
     <br>
