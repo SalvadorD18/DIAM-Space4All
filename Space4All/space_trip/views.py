@@ -199,20 +199,21 @@ def gallery(request):
 def promotions(request):
     return render(request, 'space_trip/promotions.html')
 
-def admincreatetrip(request):
-    try:
-        if request.user.is_authenticated and request.user.is_superuser:
-            destination = request.POST['destination']
-            origin = request.POST['origin']
-            departure_date = request.POST['departure_date']
-            return_date = request.POST['return_date']
-            price = request.POST['price']
-            spaceship = request.POST['spaceship']
-            number_of_passengers = request.POST['number_of_passengers']
-            trip = Trip(destination=destination, origin=origin, departure_date=departure_date, return_date=return_date, price=price, spaceship=spaceship)
-            trip.save()
-    except MultiValueDictKeyError:
-        return render(request, 'space_trip/admincreatetrip.html')
+def tripManagement(request):
+    if request.method == 'POST' and request.user.is_authenticated and request.user.is_superuser:
+        destination = request.POST['destination']
+        origin = request.POST['origin']
+        departure_date = request.POST['departure_date']
+        return_date = request.POST['return_date']
+        price = request.POST['price']
+        spaceship = request.POST['spaceship']
+        number_of_passengers = request.POST['number_of_passengers']
+        trip = Trip(origin=origin, destination=destination, departure_date=departure_date, return_date=return_date, price=price, spaceship=spaceship, number_of_passengers=number_of_passengers)
+        trip.save()
+        return render(request, 'space_trip/index.html')
+    else:
+        return render(request, 'space_trip/trip-management.html')
+
 
 def catchDataFromIndex(request):
     if request.POST.get('destination') is not None and request.POST.get('origin') is not None:
@@ -225,10 +226,13 @@ def catchDataFromIndex(request):
 def planTrip(request):
     try:
         trips = Trip.objects.get(destination=request.POST['destination'], origin=request.POST['origin'], departure_date=request.POST['departure_date'], return_date=request.POST['return_date'])
-        return render(request, 'space_trip/payment.html', {'trip': trips})
+        return render(request, 'space_trip/payment.html', {'trip':trips})
     except Trip.DoesNotExist:
-        return render(request, 'space_trip/plan-trip.html', {'trip': trips, 'error_message': "Não há viagens disponíveis com estes dados."})
+        return render(request, 'space_trip/plan-trip.html',{'trip': trips, 'error_message': "Não há viagens disponíveis com estes dados."})
     return render(request, 'space_trip/plan-trip.html')
+
+#def displayTrips(request):
+
 
 def editUserData(request):
     user = request.user
@@ -239,6 +243,8 @@ def editUserData(request):
 
 def payment(request):
     return render(request, 'space_trip/payment.html')
+
+
 
 def purchase(request):
     trip = Trip.objects.get(destination = request.POST['destination'], origin = request.POST['origin'], departure_date = request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'])
@@ -260,6 +266,3 @@ def onewaytrip(request):
 
 def clientManagement(request):
     return render(request, 'space_trip/client-management.html')
-
-def tripManagement(request):
-    return render(request, 'space_trip/trip-management.html')
