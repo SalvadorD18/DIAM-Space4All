@@ -155,6 +155,7 @@
                         <!-- Viagem de ida e volta -->
                         <div id="normaltrip" class="tab-pane fade show active pt-3">
                             <form role="form">
+                                {% csrf_token %}
                                 <div class="form-group "> <label for="origin">
                                 <h6>Origem:</h6>
                             </label>
@@ -180,6 +181,7 @@
                     <!-- Viagem só de ida -->
                     <div id="onewaytrip" class="tab-pane fade pt-3">
                             <form role="form" onsubmit="event.preventDefault()">
+                                {% csrf_token %}
                                 <div class="form-group ">
                                     <label for="destination"><h6>Destino:</h6></label> <select class="form-control" id="ccmonth">
                                 <option value="" selected disabled>- Por favor, selecione o destino -</option>
