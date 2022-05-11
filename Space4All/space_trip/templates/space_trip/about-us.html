@@ -28,6 +28,12 @@
 }
 </style>
 
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <br>
+
+    <br>
+
 <div>
   <div class="container py-5">
     <div class="row h-100 align-items-center py-5">
@@ -38,7 +44,30 @@
                     <u>Bootstrapious</u></a>
         </p>
       </div>
-      <div class="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png" alt="" class="img-fluid"></div>
+      <div class="col-lg-6 d-none d-lg-block"><div id="aSide">
+        <model-viewer loading="eager" src="{% static "media/3D/astronaut.glb" %}" alt="Astronauta" auto-rotate camera-controls ar ios-src="{% static "media/3D/astronaut.glb" %}"></model-viewer>
+        <style>
+            /* This styles the aside container */
+            #aSide {
+                height: 600px;
+                width: 600px;
+                position: fixed;
+                top: calc(50% - 250px);
+                left: 50%;
+            }
+
+            /* This styles the 3D object inserted in the aside container */
+            #aSide model-viewer {
+                height: 600px;
+                width: 600px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border: none;
+                --poster-color: transparent;
+            }
+        </style>
+    </div></div>
     </div>
   </div>
 </div>
