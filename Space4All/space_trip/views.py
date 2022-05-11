@@ -144,9 +144,7 @@ def logoutview(request):
 
 @login_required(login_url='space_trip/register.html')
 def uploadPhoto(request):
-    print("aaaaaa")
     if request.method == 'POST' and request.FILES.get('myfile') is not None:
-        print("bbbbb")
         myfile = request.FILES['myfile']
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
@@ -155,12 +153,10 @@ def uploadPhoto(request):
         try:
             photo = Photo.objects.get(user=u)
             photo.photo_url = uploaded_file_url
-            print("ccccc")
         except Photo.DoesNotExist:
-            print("ddddd")
             photo = Photo(user=u, photo_url=uploaded_file_url)
         photo.save()
-        return render(request,'space_trip/profile.html', {'uploaded_file_url': uploaded_file_url})
+        return render(request, 'space_trip/profile.html', {'uploaded_file_url': uploaded_file_url})
     return render(request, 'space_trip/profile.html')
 
 def destinations(request):
@@ -229,7 +225,7 @@ def planTrip(request):
         origin = request.POST['origin']
         departure_date = request.POST['departure_date']
         return_date = request.POST['return_date']
-        return render(request, 'space_trip/payment.html', {'destination': destination,'origin':origin, 'departure_date':departure_date, 'return_date':return_date})
+        return render(request, 'space_trip/available-trips.html', {'destination': destination,'origin':origin, 'departure_date':departure_date, 'return_date':return_date})
     else:
         messages.error(request, 'Não existem viagens com estes atrinutos.')
         return render(request, 'space_trip/plan-trip.html')
@@ -247,7 +243,7 @@ def payment(request):
     return render(request, 'space_trip/payment.html')
 
 def purchase(request):
-    trip = Trip.objects.get(destination = request.POST['destination'], origin = request.POST['origin'], departure_date = request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'])
+    trip = Trip.objects.get(destination=request.POST['destination'], origin=request.POST['origin'], departure_date=request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'])
     total_price = trip.price * trip.number_of_passengers
     username = request.POST['username']
     password = request.POST['password']
@@ -276,3 +272,7 @@ def deleteTrip(request, trip_id):
     trip = Trip.objects.get(id=trip_id)
     trip.delete()
     return HttpResponseRedirect(reverse('space_trip:trip-list'))
+
+def availableTrips(request):
+
+    return render(request, 'space_trip/available-trips.html')

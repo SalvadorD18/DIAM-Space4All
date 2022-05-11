@@ -45,5 +45,6 @@ urlpatterns = [path("", views.index, name="index"),
                path("trip-management", views.tripManagement, name="trip-management"),
                path("catchDataFromIndex", views.catchDataFromIndex, name="catchDataFromIndex"),
                path("trip-list", views.tripList, name="trip-list"),
-               path("<int:trip_id>/deleteTrip", views.deleteTrip, name="deleteTrip")
+               path("<int:trip_id>/deleteTrip", views.deleteTrip, name="deleteTrip"),
+               path("available-trips", views.availableTrips, name="available-trips")
                ]
