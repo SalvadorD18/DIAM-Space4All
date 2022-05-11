@@ -225,11 +225,12 @@ def catchDataFromIndex(request):
 def planTrip(request):
     try:
         trips = Trip.objects.get(destination=request.POST['destination'], origin=request.POST['origin'], departure_date=request.POST['departure_date'], return_date=request.POST['return_date'])
-        return render(request, 'space_trip/payment.html')
+        return render(request, 'space_trip/payment.html', {'trip':trips})
     except Trip.DoesNotExist:
-        messages.error(request, "Não há viagens disponíveis com estes dados.")
-        return render(request, 'space_trip/plan-trip.html')
+        return render(request, 'space_trip/plan-trip.html',{'trip': trips, 'error_message': "Não há viagens disponíveis com estes dados."})
     return render(request, 'space_trip/plan-trip.html')
+
+def displayTrips(request):
 
 
 def editUserData(request):
