@@ -43,6 +43,5 @@ urlpatterns = [path("", views.index, name="index"),
                path("edit-profile", views.editProfile, name="edit-profile"),
                path("editUserData", views.editUserData, name="editUserData"),
                path("client-management", views.clientManagement, name="client-management"),
-               path("trip-management", views.tripManagement, name="trip-management"),
-               path("catchDataFromIndex", views.catchDataFromIndex, name="catchDataFromIndex")
+               path("trip-management", views.tripManagement, name="trip-management")
                ]
