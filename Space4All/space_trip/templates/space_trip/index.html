@@ -173,7 +173,7 @@
                                 </div>
                                 <br>
                                 <div class="card-footer">
-                                    <a href="{% url 'space_trip:planTrip' %}" class="btn btn-primary">Pesquisar</a>
+                                   <button formaction="{% url 'space_trip:catchDataFromIndex' %}" formmethod="post" type="submit" class="btn btn-primary">Pesquisar</button>
                             </form>
                         </div>
                     </div> <!-- End -->
@@ -188,7 +188,7 @@
                                 </div>
                                 <br>
                                 <div class="card-footer">
-                                    <a href="{% url 'space_trip:planTrip' %}" class="btn btn-primary">Pesquisar</a>
+                                    <button formaction="{% url 'space_trip:catchDataFromIndex' %}" formmethod="post" type="submit" class="btn btn-primary">Pesquisar</button>
                             </form>
                     </div> <!-- End -->
                     <!-- End -->
