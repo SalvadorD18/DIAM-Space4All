@@ -150,31 +150,30 @@
                             <li class="nav-item"> <a data-toggle="pill" href="#onewaytrip" class="nav-link "> <i class="fab fa-paypal mr-2"></i> Só ida </a> </li>
                         </ul>
                     </div> <!-- End -->
-                    <!-- Viagem de ida e volta form content -->
-                    <div class="tab-content">
-                        <!-- Viagem de ida e volta -->
+                    <!-- Viagem de ida e volta -->
                         <div id="normaltrip" class="tab-pane fade show active pt-3">
-                            <form role="form" onsubmit="event.preventDefault()">
+                            <form role="form">
+                                {%csrf_token%}
                                 <div class="form-group "> <label for="origin">
                                 <h6>Origem:</h6>
-                            </label> <select id="origin" name="origin" class="form-control" id="ccmonth">
+                            </label> <select id="origin" name="origin" class="form-control">
                                 <option value="" selected disabled>- Por favor, selecione a origem -</option>
                                 <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
                             </select>
                                 </div>
                                 <br>
                                 <div class="form-group ">
-                                    <label for="destination"><h6>Destino:</h6></label> <select id="destination" name="destination" class="form-control" id="ccmonth">
+                                    <label for="destination"><h6>Destino:</h6></label> <select id="destination" name="destination" class="form-control">
                                 <option value="" selected disabled>- Por favor, selecione o destino -</option>
                                 <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
                             </select>
                                 </div>
                                 <br>
                                 <div class="card-footer">
-                                    <a href="{% url 'space_trip:planTrip' %}" class="btn btn-primary">Pesquisar</a>
+                                    <button formaction="{% url 'space_trip:catchDataFromIndex' %}" formmethod="post" type="submit" class="btn btn-primary">Pesquisar</button>
+                                </div>
                             </form>
-                        </div>
-                    </div> <!-- End -->
+                        </div> <!-- End -->
                     <!-- Viagem só de ida -->
                     <div id="onewaytrip" class="tab-pane fade pt-3">
                             <form role="form" onsubmit="event.preventDefault()">
@@ -187,6 +186,7 @@
                                 <br>
                                 <div class="card-footer">
                                     <a href="{% url 'space_trip:planTrip' %}" class="btn btn-primary">Pesquisar</a>
+                                </div>
                             </form>
                     </div> <!-- End -->
                     <!-- End -->

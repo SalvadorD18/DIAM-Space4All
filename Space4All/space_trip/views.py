@@ -214,32 +214,24 @@ def admincreatetrip(request):
     except MultiValueDictKeyError:
         return render(request, 'space_trip/admincreatetrip.html')
 
+
+def catchDataFromIndex(request):
+    if request.POST.get('destination') is not None and  request.POST.get('origin') is not None:
+        destination= request.POST['destination']
+        origin= request.POST['origin']
+        return render(request, 'space_trip/plan-trip.html',{'destination':destination,'origin':origin})
+    return render(request, 'space_trip/index.html')
+
 def planTrip(request):
-    print("dddddd")
-    if request.method == 'POST':
-        # if request.session['destination'] is not None:
-        #     desti = request.session.get('destination')
-        #     ori = request.session['origin']
-        #     request.session.flush()
-        # else:
-        desti = request.POST['destination']
-        ori = request.POST['origin']
-        try:
-            trip = Trip.objects.get(destination=desti, origin=ori, departure_date=request.POST['departure_date'], return_date=request.POST['return_date'])
-            print("cccccccc")
-            print("bbbbbbbbb")
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(username=username, password=password)
-            purchase = Purchase(trip, user)
-            purchase.save()
-            return render(request, 'space_trip/payment.html')
-        except Trip.DoesNotExist:
-            print("aaaaa")
-            messages.error(request, "Não há viagens disponíveis com estes dados.")
-            return render(request, 'space_trip/plan-trip.html')
-    else:
-        return render(request, 'space_trip/plan-trip.html')
+    try:
+        trips = Trip.objects.get(destination=request.POST['destination'], origin=request.POST['origin'], departure_date=request.POST['departure_date'], return_date=request.POST['return_date'])
+        return render(request, 'space_trip/payment.html', {'trip':trips})
+    except Trip.DoesNotExist:
+        return render(request, 'space_trip/plan-trip.html',{'trip': trips, 'error_message': "Não há viagens disponíveis com estes dados."})
+    return render(request, 'space_trip/plan-trip.html')
+
+def displayTrips(request):
+
 
 def editUserData(request):
     user = request.user
