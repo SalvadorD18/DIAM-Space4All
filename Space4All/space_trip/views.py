@@ -223,12 +223,16 @@ def catchDataFromIndex(request):
     return render(request, 'space_trip/index.html')
 
 def planTrip(request):
-    try:
-        trips = Trip.objects.get(destination=request.POST['destination'], origin=request.POST['origin'], departure_date=request.POST['departure_date'], return_date=request.POST['return_date'])
-        return render(request, 'space_trip/payment.html', {'trip': trips})
-    except Trip.DoesNotExist:
-        return render(request, 'space_trip/plan-trip.html',{'trip': trips, 'error_message': "Não há viagens disponíveis com estes dados."})
-    return render(request, 'space_trip/plan-trip.html')
+    trips = Trip.objects.filter(destination=request.POST['destination'], origin=request.POST['origin'], departure_date=request.POST['departure_date'], return_date=request.POST['return_date'])
+    if trips.count() > 0:
+        destination = request.POST['destination']
+        origin = request.POST['origin']
+        departure_date = request.POST['departure_date']
+        return_date = request.POST['return_date']
+        return render(request, 'space_trip/payment.html', {'destination': destination,'origin':origin, 'departure_date':departure_date, 'return_date':return_date})
+    else:
+        messages.error(request, 'Não existem viagens com estes atrinutos.')
+        return render(request, 'space_trip/plan-trip.html')
 
 #def displayTrips(request):
 

@@ -24,34 +24,34 @@
                                         {% csrf_token %}
 
                                         <div class="form-outline mb-4">
-                                            <label for="origin" class="form-label" for="form2Example22">Origem:</label>
+                                            <label for="origin" class="form-label">Origem:</label>
                                             <select name="origin" id="origin" class="form-control">
-                                                <option value="{{ origin }}" selected disabled>{{ origin }}</option>
+                                                <option value="{{ origin }}" selected >{{ origin }}</option>
                                                 <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
                                             </select>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <label for="destination" class="form-label" for="form2Example22">Destino:</label>
+                                            <label for="destination" class="form-label">Destino:</label>
                                             <select name="destination" id="destination" class="form-control">
-                                                <option value="{{ destination }}" selected disabled>{{ destination }}</option>
+                                                <option value="{{ destination }}" selected >{{ destination }}</option>
                                                 <option value="Mercúrio">Mercúrio</option><option value="Vénus">Vénus</option><option value="Terra">Terra</option><option value="Lua">Lua</option><option value="Marte">Marte</option><option value="Júpiter">Júpiter</option><option value="Saturno">Saturno</option><option value="Urano">Urano</option><option value="Neptuno">Neptuno</option>
                                             </select>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <label for="departure_date" class="form-label" for="form2Example22">Data de Partida:</label>
-                                            <input name="departure_date" type="date" id="form2Example22" class="form-control"/>
+                                            <label for="departure_date" class="form-label">Data de Partida:</label>
+                                            <input name="departure_date" type="date" id="departure_date" class="form-control"/>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <label for="return_date" class="form-label" for="form2Example22">Data de Regresso:</label>
-                                            <input name="return_date" type="date" id="form2Example22" class="form-control"/>
+                                            <label for="return_date" class="form-label">Data de Regresso:</label>
+                                            <input name="return_date" type="date" id="return_date" class="form-control"/>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <label for="number_of_passengers" class="form-label" for="form2Example22">N.º de Passageiros:</label>
-                                            <input name="number_of_passengers" type="number" id="form2Example22" class="form-control"/>
+                                            <label for="number_of_passengers" class="form-label">N.º de Passageiros:</label>
+                                            <input name="number_of_passengers" type="number" id="number_of_passengers" class="form-control"/>
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
