@@ -210,10 +210,9 @@ def tripManagement(request):
         number_of_passengers = request.POST['number_of_passengers']
         trip = Trip(origin=origin, destination=destination, departure_date=departure_date, return_date=return_date, price=price, spaceship=spaceship, number_of_passengers=number_of_passengers)
         trip.save()
-        return render(request, 'space_trip/index.html')
+        return HttpResponseRedirect(reverse('space_trip:trip-list'))
     else:
         return render(request, 'space_trip/trip-management.html')
-
 
 def catchDataFromIndex(request):
     if request.POST.get('destination') is not None and request.POST.get('origin') is not None:
@@ -233,7 +232,6 @@ def planTrip(request):
 
 #def displayTrips(request):
 
-
 def editUserData(request):
     user = request.user
     user.email = request.POST['email']
@@ -243,8 +241,6 @@ def editUserData(request):
 
 def payment(request):
     return render(request, 'space_trip/payment.html')
-
-
 
 def purchase(request):
     trip = Trip.objects.get(destination = request.POST['destination'], origin = request.POST['origin'], departure_date = request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'])
@@ -266,3 +262,13 @@ def onewaytrip(request):
 
 def clientManagement(request):
     return render(request, 'space_trip/client-management.html')
+
+def tripList(request):
+    trip_list = Trip.objects.all()
+    return render(request, 'space_trip/trip-list.html', {'trip_list': trip_list})
+
+@permission_required('space_trip.trip-management', login_url=reverse_lazy('space_trip:login'))
+def deleteTrip(request, trip_id):
+    trip = Trip.objects.get(id=trip_id)
+    trip.delete()
+    return HttpResponseRedirect(reverse('space_trip:trip-list'))
