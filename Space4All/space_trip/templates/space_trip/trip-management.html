@@ -26,7 +26,7 @@
                                         <h4 class="mt-1 mb-5 pb-1">We have Space4All</h4>
                                     </div>
 
-                                    <form action="{% url 'space_trip:planTrip' %}" method="post">
+                                    <form action="{% url 'space_trip:trip-management' %}" method="post">
                                         {% csrf_token %}
 
                                         <div class="form-outline mb-4">
@@ -81,7 +81,7 @@
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" formaction="{% url 'space_trip:trip-management' %}" formmethod="post" type="submit">Criar</button>
+                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" formmethod="post" type="submit">Criar</button>
                                         </div>
 
                                     </form>
