@@ -215,10 +215,11 @@ def admincreatetrip(request):
         return render(request, 'space_trip/admincreatetrip.html')
 
 def catchDataFromIndex(request):
-    if request.POST.get('destination') is not None and  request.POST.get('origin') is not None:
-        destination= request.POST['destination']
-        origin= request.POST['origin']
-        return render(request, 'space_trip/plan-trip.html',{'destination':destination,'origin':origin})
+    if request.POST.get('destination') is not None and request.POST.get('origin') is not None:
+        print(request.POST['destination'])
+        destination = request.POST['destination']
+        origin = request.POST['origin']
+        return render(request, 'space_trip/plan-trip.html', {'destination':destination,'origin':origin})
     return render(request, 'space_trip/index.html')
 
 def planTrip(request):
