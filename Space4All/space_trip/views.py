@@ -212,7 +212,6 @@ def tripManagement(request):
 
 def catchDataFromIndex(request):
     if request.POST.get('destination') is not None and request.POST.get('origin') is not None:
-        print(request.POST['destination'])
         destination = request.POST['destination']
         origin = request.POST['origin']
         return render(request, 'space_trip/plan-trip.html', {'destination':destination,'origin':origin})
@@ -263,13 +262,14 @@ def clientManagement(request):
     return render(request, 'space_trip/client-management.html')
 
 def tripList(request):
+    print("AAAAAAAAAAAAA")
     if request.session.get('destination') is not None and request.session.get('origin') is not None and request.session.get('departure_date') is not None and request.session.get('return_date') is not None:
         destination = request.session.get('destination')
         origin = request.session.get('origin')
         departure_date = request.session.get('departure_date')
         return_date = request.session.get('return_date')
         trips = Trip.objects.filter(destination=destination, origin=origin, departure_date=departure_date, return_date=return_date)
-        return render(request, 'space_trip/available-trips.html', {'trips': trips})
+        return render(request, 'space_trip/trip-list.html', {'trips': trips})
     else:
         messages.error(request, 'Não sei o que escrever aqui,mas faz sentido dar erro')
         return render(request, 'space_trip/plan-trip.html')
