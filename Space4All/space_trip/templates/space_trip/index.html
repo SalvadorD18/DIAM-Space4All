@@ -154,17 +154,19 @@
                     <div class="tab-content">
                         <!-- Viagem de ida e volta -->
                         <div id="normaltrip" class="tab-pane fade show active pt-3">
-                            <form role="form" onsubmit="event.preventDefault()">
+                            <form role="form">
                                 <div class="form-group "> <label for="origin">
                                 <h6>Origem:</h6>
-                            </label> <select id="origin" name="origin" class="form-control" id="ccmonth">
+                            </label>
+                            <select id="origin" name="origin" class="form-control">
                                 <option value="" selected disabled>- Por favor, selecione a origem -</option>
                                 <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
                             </select>
                                 </div>
                                 <br>
                                 <div class="form-group ">
-                                    <label for="destination"><h6>Destino:</h6></label> <select id="destination" name="destination" class="form-control" id="ccmonth">
+                                    <label for="destination"><h6>Destino:</h6></label>
+                            <select id="destination" name="destination" class="form-control">
                                 <option value="" selected disabled>- Por favor, selecione o destino -</option>
                                 <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
                             </select>
