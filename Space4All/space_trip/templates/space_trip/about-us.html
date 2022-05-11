@@ -6,52 +6,19 @@
 
 {% block body %}
 
-<style>
-    .social-link {
-  width: 30px;
-  height: 30px;
-  border: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #666;
-  border-radius: 50%;
-  transition: all 0.3s;
-  font-size: 0.9rem;
-}
-
-.social-link:hover,
-.social-link:focus {
-  background: #ddd;
-  text-decoration: none;
-  color: #555;
-}
-</style>
-
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <br>
-
-    <br>
-
-<div>
-  <div class="container py-5">
-    <div class="row h-100 align-items-center py-5">
-      <div class="col-lg-6">
-        <h1 style="color: white" class="display-4">Sobre nós</h1>
-        <p style="color: #fafafa" class="lead text-muted mb-0">A Space4All nasceu da emergente necessidade de se realizarem viagens comerciais ao espaço, uma vez que os materiais provenientes doutros planetas vieram contribuir positivamente para a sustentabilidade da Terra.</p>
-      </div>
-      <div class="col-lg-6 d-none d-lg-block">
-          <div id="aSide">
-        <model-viewer loading="eager" src="{% static "media/3D/astronaut.glb" %}" alt="Astronauta" auto-rotate camera-controls ar ios-src="{% static "media/3D/astronaut.glb" %}"></model-viewer>
+        <div id="aSide">
+        <model-viewer loading="eager" src="{% static "media/3D/astronaut.glb" %}" alt="Urano" auto-rotate camera-controls ar ios-src="{% static "media/3D/astronaut.glb" %}"></model-viewer>
         <style>
             /* This styles the aside container */
             #aSide {
                 height: 600px;
                 width: 600px;
-                position: relative;
-                top: 10%;
-                left: 0%;
+                position: fixed;
+                top: calc(50% - 220px);
+                left: 50%;
             }
 
             /* This styles the 3D object inserted in the aside container */
@@ -66,93 +33,21 @@
             }
         </style>
     </div>
-                <div class="col-lg-6 d-none d-lg-block">
-                    <div id="aSidenav">
-        <model-viewer loading="eager" src="{% static "media/3D/spaceshift.glb" %}" alt="Nave Espacial" auto-rotate camera-controls ar ios-src="{% static "media/3D/spaceshift.glb" %}"></model-viewer>
-        <style>
-            /* This styles the aside container */
-            #aSidenav {
-                height: 600px;
-                width: 600px;
-                position: relative;
-                top: 10%;
-                left: 100%;
-            }
-
-            /* This styles the 3D object inserted in the aside container */
-            #aSidenav model-viewer {
-                height: 600px;
-                width: 600px;
-                position: absolute;
-                top: 0;
-                left: 0;
-                border: none;
-                --poster-color: transparent;
-            }
-        </style>
-    </div>
-      </div>
-    </div>
-  </div>
-</div>
-      <!-- Team item-->
-      <div class="col-xl-3 col-sm-6 mb-5">
-        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-3.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-          <h5 class="mb-0">Samuel Hardy</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
-          <ul class="social mb-0 list-inline mt-3">
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- End-->
-
-      <!-- Team item-->
-      <div class="col-xl-3 col-sm-6 mb-5">
-        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-2.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-          <h5 class="mb-0">Tom Sunderland</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
-          <ul class="social mb-0 list-inline mt-3">
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- End-->
-
-      <!-- Team item-->
-      <div class="col-xl-3 col-sm-6 mb-5">
-        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-1.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-          <h5 class="mb-0">John Tarly</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
-          <ul class="social mb-0 list-inline mt-3">
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- End-->
-
-    </div>
-  </div>
-</div>
-
-
-<footer class="bg-light pb-5">
-  <div class="container text-center">
-    <p class="font-italic text-muted mb-0">&copy; Copyrights Company.com All rights reserved.</p>
-  </div>
-</footer>
-
-    <h2 class="glow" style="text-align: center; font-family: 'Arial Black'">Sobre nós</h2>
-
+    <br>
+    <div style="float: left; width: 90%">
     <figure class="text-center" style="margin: 30px 20px 10px 20px">
-        <p class="lead" style="color: white">A Space4All nasceu da emergente necessidade de se realizarem viagens comerciais ao espaço, uma vez que os materiais provenientes doutros planetas vieram contribuir positivamente para a sustentabilidade da Terra.</p>
-        <p class="lead" style="color: white">A empresa cresceu de tal forma, que a população começou a ganhar interesse no que esta tinha para oferecer, tendo por isso evoluído de ser uma empresa dedicada a viagens comerciais, para também dar a oportunidade do início de viagens turísticas aos outros planetas do nosso sistema, sendo por isso pioneira neste sector.</p>
+        <div>
+          <div class="container py-5">
+            <div class="row h-100 align-items-center py-5">
+              <div class="col-lg-6" style="margin: 30px 20px 10px 20px">
+                <h1 style="color: white; text-align: center;" class="display-4">Sobre nós</h1>
+                <p style="color: #ffffff" class="lead">A Space4All nasceu da emergente necessidade de se realizarem viagens comerciais ao espaço, uma vez que os materiais provenientes doutros planetas vieram contribuir positivamente para a sustentabilidade da Terra.</p>
+                <br>
+                <p style="color: #ffffff" class="lead">A empresa cresceu de tal forma, que a população começou a ganhar interesse no que esta tinha para oferecer, tendo por isso evoluído de ser uma empresa dedicada a viagens comerciais, para também dar a oportunidade do início de viagens turísticas aos outros planetas do nosso sistema, sendo por isso pioneira neste sector.</p>
+              </div>
+            </div>
+          </div>
+        </div>
     </figure>
 
 {% endblock %}
