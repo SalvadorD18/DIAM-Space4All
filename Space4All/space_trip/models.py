@@ -73,3 +73,8 @@ class Payment(models.Model):
  cardNumber = models.CharField(max_length=16)
  expirationDate = models.DateTimeField('Expiration Date')
  cvv = models.CharField(max_length=3)
+
+ class Planets(models.Model):
+     name = models.CharField(max_length=50)
+     name_pt = models.CharField(max_length=50)
+     details = models.CharField(max_length=3000000000)
