@@ -10,178 +10,57 @@
 {% block body %}
 <div>
       <br><br>
-      <h2 class="glow" style="text-align: center; font-family: 'Arial Black'">Gestão de Clientes</h2>
+      <h2 class="glow" style="text-align: center; font-family: 'Arial Black'">Gestão de Utilizadores</h2>
       <br><br>
 
       <table class="table align-middle mb-0 bg-white w-75" style="border-radius: 10px; margin-left: auto; margin-right: auto;">
         <thead class="bg-light">
           <tr>
-            <th>Nome de Utilizador</th>
             <th>Nome</th>
             <th>Data de nascimento</th>
             <th>Género</th>
             <th>Planetalidade</th>
+            <th>Apagar</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div class="d-flex align-items-center">
-                {% if uploaded_file_url %}
-                    <img src="{{ uploaded_file_url }}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
-                {% else %}
-                    <img src="{% static 'media/astronaut-user.png' %}" alt="Imagem do utilizador" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1" onmouseover="showUserInfo()" id="u" onmouseout="hideUserInfo()">
-                {% endif %}
-                <div class="ms-3">
-                  <p class="fw-bold mb-1">John Doe</p>
-                  <p class="text-muted mb-0">john.doe@gmail.com</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <p class="fw-normal mb-1">Software engineer</p>
-              <p class="text-muted mb-0">IT department</p>
-            </td>
-            <td>
-              <span class="badge badge-success rounded-pill d-inline">Active</span>
-            </td>
-            <td>Senior</td>
-            <td>
-              <button type="button" class="btn btn-link btn-sm btn-rounded">
-                Edit
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="d-flex align-items-center">
-                <img
-                    src="https://mdbootstrap.com/img/new/avatars/6.jpg"
-                    class="rounded-circle"
-                    alt=""
-                    style="width: 45px; height: 45px"
-                    />
-                <div class="ms-3">
-                  <p class="fw-bold mb-1">Alex Ray</p>
-                  <p class="text-muted mb-0">alex.ray@gmail.com</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <p class="fw-normal mb-1">Consultant</p>
-              <p class="text-muted mb-0">Finance</p>
-            </td>
-            <td>
-              <span class="badge badge-primary rounded-pill d-inline"
-                    >Onboarding</span
-                >
-            </td>
-            <td>Junior</td>
-            <td>
-              <button
-                      type="button"
-                      class="btn btn-link btn-rounded btn-sm fw-bold"
-                      data-mdb-ripple-color="dark"
-                      >
-                Edit
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="d-flex align-items-center">
-                <img
-                    src="https://mdbootstrap.com/img/new/avatars/7.jpg"
-                    class="rounded-circle"
-                    alt=""
-                    style="width: 45px; height: 45px"
-                    />
-                <div class="ms-3">
-                  <p class="fw-bold mb-1">Kate Hunington</p>
-                  <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <p class="fw-normal mb-1">Designer</p>
-              <p class="text-muted mb-0">UI/UX</p>
-            </td>
-            <td>
-              <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-            </td>
-            <td>Senior</td>
-            <td>
-              <button
-                      type="button"
-                      class="btn btn-link btn-rounded btn-sm fw-bold"
-                      data-mdb-ripple-color="dark"
-                      >
-                Edit
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-</div>
-
-<div>
-      <br><br>
-       <h1 style="color: white; text-align: center;" class="glow display-4">Lista de Viagens</h1>
-      <br>
-      <a href="{% url 'space_trip:trip-management' %}"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="position: relative; left: 78.5%">Criar Viagem</button></a>
-      <br>
-      <table class="table align-middle mb-0 bg-white w-75" style="border-radius: 10px; margin-left: auto; margin-right: auto;">
-        <thead class="bg-light">
-          <tr>
-            <th>Origem</th>
-            <th>Destino</th>
-            <th>Data de Partida</th>
-            <th>Data de Chegada</th>
-            <th>Preço/Viagem</th>
-            <th>Nave Espacial</th>
-            <th>Número de Passageiros</th>
-            <th>Apagar Viagem</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% if trip_list %}
-            {% for trip in trip_list %}
+          {% if client_list %}
+            {% for client in client_list %}
               <tr>
                 <td>
-                    {{ trip.origin }}
+                  <div class="d-flex align-items-center">
+                    {% if uploaded_file_url %}
+                        <img src="{{ uploaded_file_url }}" alt="Imagem do utilizador" style="width: 45px; height: 45px" class="rounded-circle">
+                    {% else %}
+                        <img src="{% static 'media/astronaut-user.png' %}" alt="Imagem do utilizador" style="width: 45px; height: 45px" class="rounded-circle">
+                    {% endif %}
+                    <div class="ms-3">
+                      {{ client.firstname }} {{ client.surname }}
+                    </div>
+                  </div>
                 </td>
                 <td>
-                    {{ trip.destination }}
+                    {{ client.birthday }}
+                </td>
+                  <td>
+                    {{ client.gender }}
                 </td>
                 <td>
-                    {{ trip.departure_date }}
+                    {{ client.planetionality }}
                 </td>
                 <td>
-                    {{ trip.return_date }}
-                </td>
-                <td>
-                    {{ trip.price }},00 €
-                </td>
-                <td>
-                    {{ trip.spaceship }}
-                </td>
-                <td>
-                    {{ trip.number_of_passengers }}
-                </td>
-                <td>
-                    <form action="{% url 'space_trip:deleteTrip' trip.id %}" method="get">
+                    <form action="{% url 'space_trip:deleteClient' client.id %}" method="get">
                         {% csrf_token %}
-                        <input onclick="myFunction()" class="btn btn-primary btn-block fa-lg gradient-custom-2" type="submit" value="Apagar" />
+                        <input class="btn btn-primary btn-block fa-lg gradient-custom-2" type="submit" value="Apagar" />
                     </form>
-
                 </td>
               </tr>
             {% endfor %}
-          {% else %}
-            <p>Não existem viagens disponíveis.</p>
-          {% endif %}
         </tbody>
       </table>
+      {% else %}
+          <h1 style="color: white; text-align: center;" class="glow display-4">Não existem viagens disponíveis</h1>
+      {% endif %}
 </div>
 
 {% endblock %}

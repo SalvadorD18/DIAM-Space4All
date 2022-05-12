@@ -271,5 +271,11 @@ def deleteTrip(request, trip_id):
     trip.delete()
     return HttpResponseRedirect(reverse('space_trip:trip-list'))
 
+@permission_required('space_trip.trip-management', login_url=reverse_lazy('space_trip:login'))
+def deleteClient(request, client_id):
+    client = Client.objects.get(id=client_id)
+    client.delete()
+    return HttpResponseRedirect(reverse('space_trip:client-management'))
+
 def availableTrips(request):
     return render(request, 'space_trip/available-trips.html')
