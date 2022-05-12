@@ -4,25 +4,6 @@ import datetime
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 
-class Questao(models.Model):
- questao_texto = models.CharField(max_length=200)
- pub_data = models.DateTimeField('data de publicacao')
-
- def __str__(self):
-  return self.questao_texto
-
-
- def foi_publicada_recentemente(self):
-  return self.pub_data >= timezone.now() - datetime.timedelta(days=1)
-
-class Opcao(models.Model):
- questao = models.ForeignKey(Questao, on_delete=models.CASCADE)
- opcao_texto = models.CharField(max_length=200)
- votos = models.IntegerField(default=0)
-
- def __str__(self):
-  return self.opcao_texto
-
 class Client(models.Model):
  user = models.OneToOneField(User, on_delete=models.CASCADE)
  firstname = models.CharField(max_length=50)
@@ -59,7 +40,7 @@ class Trip(models.Model):
  price = models.IntegerField(default=600)
  spaceship = models.CharField(max_length=50)
  number_of_passengers = models.IntegerField(default=1)
- available_seats = models.IntegerField(default=60)
+ #available_seats = models.IntegerField(default=60)
 
 
 class Purchase(models.Model):
