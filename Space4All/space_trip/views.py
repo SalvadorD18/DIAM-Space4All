@@ -179,12 +179,6 @@ def editUserData(request):
 def payment(request):
     return render(request, 'space_trip/payment.html')
 
-def purchase(request):
-    trip = Trip.objects.get(destination=request.POST['destination'], origin=request.POST['origin'], departure_date=request.POST['departure_date'], return_date = request.POST['return_date'], price = request.POST['price'], spaceship = request.POST['spaceship'],  number_of_passengers = request.POST['number_of_passengers'])
-    total_price = trip.price * trip.number_of_passengers
-    user = request.user
-    purchase = Purchase(trip, user, total_price)
-    purchase.save()
 
 def payment(request):
     return render(request, 'space_trip/payment.html')
@@ -227,3 +221,18 @@ def availableTrips(request):
         messages.error(request, 'Não sei o que escrever aqui,mas faz sentido dar erro')
         return render(request, 'space_trip/plan-trip.html')
     return render(request, 'space_trip/available-trips.html')
+
+def purchase(request,trip_id):
+    trip = get_object_or_404(Trip, pk=trip_id)
+    try:
+        selected_trip = Trip.objects.get(pk=request.POST['trip'])
+
+    except (KeyError, Trip.DoesNotExist):
+        return render(request, 'space_trip/available-trips.html', {'trip':trip, 'error_message': 'Não foi selecionada nenhuma viagem.'})
+
+    selected_trip.available_seats -= selected_trip.number_of_passengers
+    total_price = selected_trip.price * selected_trip.number_of_passengers
+    user = request.user
+    purchase = Purchase(selected_trip, user, total_price)
+    purchase.save()
+    return HttpResponseRedirect(reverse('space_trip:payment', args=(trip.id,)))
