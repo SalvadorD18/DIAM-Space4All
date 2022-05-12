@@ -52,8 +52,8 @@ class OneWayTrip(models.Model):
 
 
 class Trip(models.Model):
- destination = models.CharField(max_length=50)
  origin = models.CharField(max_length=50)
+ destination = models.CharField(max_length=50)
  departure_date = models.DateTimeField('Departure Date')
  return_date = models.DateTimeField('Return Date')
  price = models.IntegerField(default=600)
@@ -74,7 +74,7 @@ class Payment(models.Model):
  expirationDate = models.DateTimeField('Expiration Date')
  cvv = models.CharField(max_length=3)
 
- class Planets(models.Model):
-     name = models.CharField(max_length=50)
-     name_pt = models.CharField(max_length=50)
-     details = models.CharField(max_length=3000000000)
+class Planets(models.Model):
+ name = models.CharField(max_length=50)
+ name_pt = models.CharField(max_length=50)
+ details = models.CharField(max_length=3000000000)
