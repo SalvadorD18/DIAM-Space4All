@@ -26,7 +26,6 @@
         <tbody>
             {% for trip in trips %}
               <tr>
-                <input class="form-check-input" type="radio" name="selected_trip" id="selected_trip{{ forloop.counter }}" value="{{ trip.id }}"/>
                 <td>
                     {{ trip.origin }}
                 </td>
@@ -49,7 +48,7 @@
                     {{ trip.number_of_passengers }}
                 </td>
                 <td>
-
+                <input class="form-check-input" type="radio" name="selected_trip" id="selected_trip{{ forloop.counter }}" value="{{ trip.id }}"/>
                 </td>
               </tr>
             {% endfor %}
