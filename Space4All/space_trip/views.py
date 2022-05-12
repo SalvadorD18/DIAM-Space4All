@@ -278,4 +278,14 @@ def deleteUser(request, user_id):
     return HttpResponseRedirect(reverse('space_trip:client-management'))
 
 def availableTrips(request):
+    if request.session.get('destination') is not None and request.session.get('origin') is not None and request.session.get('departure_date') is not None and request.session.get('return_date') is not None:
+        destination = request.session.get('destination')
+        origin = request.session.get('origin')
+        departure_date = request.session.get('departure_date')
+        return_date = request.session.get('return_date')
+        trips = Trip.objects.filter(origin=origin, destination=destination, departure_date=departure_date, return_date=return_date)
+        return render(request, 'space_trip/available-trips.html', {'trips': trips})
+    else:
+        messages.error(request, 'Não sei o que escrever aqui,mas faz sentido dar erro')
+        return render(request, 'space_trip/plan-trip.html')
     return render(request, 'space_trip/available-trips.html')
