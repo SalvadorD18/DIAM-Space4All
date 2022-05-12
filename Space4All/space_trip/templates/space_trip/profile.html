@@ -15,9 +15,9 @@
                   <div class="rounded-top text-white d-flex flex-row" style="background-color: #6c6d71; height:200px;">
                     <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                         {% if uploaded_file_url %}
-                            <img src="{{ uploaded_file_url }}" alt="Imagem do utilizador" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1" onmouseover="showUserInfo()" id="u" onmouseout="hideUserInfo()">
+                            <img src="{{ uploaded_file_url }}" alt="Imagem do utilizador" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1" onmouseover="showUserInfo()" onmouseout="hideUserInfo()">
                         {% else %}
-                            <img src="{% static 'media/astronaut-user.png' %}" alt="Imagem do utilizador" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1" onmouseover="showUserInfo()" id="u" onmouseout="hideUserInfo()">
+                            <img src="{% static 'media/astronaut-user.png' %}" alt="Imagem do utilizador" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1" onmouseover="showUserInfo()" onmouseout="hideUserInfo()">
                         {% endif %}
                             <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" style="z-index: 1;" onclick="window.location.href='{% url 'space_trip:edit-profile' %}';">Editar perfil</button>
                     </div>
