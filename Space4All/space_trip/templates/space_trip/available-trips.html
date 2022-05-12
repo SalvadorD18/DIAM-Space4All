@@ -10,6 +10,7 @@
       <br><br>
        <h1 style="color: white; text-align: center;" class="glow display-4">Viagens disponíveis</h1>
         <br><br>
+    {% if trips %}
       <table class="table align-middle mb-0 bg-white w-75" style="border-radius: 10px; margin-left: auto; margin-right: auto;">
         <thead class="bg-light">
           <tr>
@@ -23,11 +24,10 @@
           </tr>
         </thead>
         <tbody>
-          {% if trips %}
             {% for trip in trips %}
               <tr>
+                <input class="form-check-input" type="radio" name="selected_trip" id="selected_trip{{ forloop.counter }}" value="{{ trip.id }}"/>
                 <td>
-                  <input class="form-check-input" type="radio" name="selected_trip" id="selected_trip{{ forloop.counter }}" value="{{ trip.id }}"/>
                     {{ trip.origin }}
                 </td>
                 <td>
@@ -53,14 +53,14 @@
                 </td>
               </tr>
             {% endfor %}
-          {% else %}
-          {% endif %}
         </tbody>
       </table>
 <br><br>
       <a href="{% url 'space_trip:payment' %}"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="position: relative; left: 78.5%">Escolher Viagem</button></a>
 <br><br>
+    {% else %}
         <h1 style="color: white; text-align: center;" class="glow display-4">Não existem viagens disponíveis</h1>
+    {% endif %}
 </div>
 
 {% endblock %}
