@@ -35,7 +35,6 @@ def register(request):
         firstname = request.POST['firstname']
         surname = request.POST['surname']
         birthday = request.POST['birthday']
-        dateformat = strftime(birthday, '%d/%m/%Y')
         gender = request.POST['gender']
         planetionality = request.POST['planetionality']
         u = User.objects.create_user(username, password=password, email=email)
