@@ -38,7 +38,7 @@ def register(request):
         gender = request.POST['gender']
         planetionality = request.POST['planetionality']
         u = User.objects.create_user(username, password=password, email=email)
-        c = Client(user=u, firstname=firstname, surname=surname, birthday=dateformat, gender=gender, planetionality=planetionality)
+        c = Client(user=u, firstname=firstname, surname=surname, birthday=birthday, gender=gender, planetionality=planetionality)
         c.save()
         user = authenticate(username=username, password=password)
         return render(request, 'space_trip/login.html')
