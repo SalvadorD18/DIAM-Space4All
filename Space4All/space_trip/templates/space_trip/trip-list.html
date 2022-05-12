@@ -22,7 +22,7 @@
                 <th>Origem</th>
                 <th>Destino</th>
                 <th>Data de Partida</th>
-                <th>Data de Chegada</th>
+                <th>Data de Regresso</th>
                 <th>Preço/Viagem</th>
                 <th>Nave Espacial</th>
                 <th>Número de Passageiros</th>
@@ -40,10 +40,10 @@
                         {{ trip.destination }}
                     </td>
                     <td>
-                        {{ trip.departure_date }}
+                        {{ trip.departure_date|date:"d/m/Y" }}
                     </td>
                     <td>
-                        {{ trip.return_date }}
+                        {{ trip.return_date|date:"d/m/Y" }}
                     </td>
                     <td>
                         {{ trip.price }},00 €

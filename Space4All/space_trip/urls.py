@@ -10,17 +10,10 @@ from django.views.generic.base import RedirectView
 app_name = 'space_trip'
 
 urlpatterns = [path("", views.index, name="index"),
-               path("<int:questao_id>", views.detalhe, name="detalhe"),
-               path("<int:questao_id>/resultados", views.resultados, name="resultados"),
-               path("<int:questao_id>/voto", views.voto, name="voto"),
-               path("view_questao_otimizada", views.view_questao_otimizada, name="view_questao_otimizada"),
                path("register", views.register, name="register"),
                path("logoutview", views.logoutview, name="logoutview"),
                path("login", views.user_login, name="user_login"),
                path("profile", views.profile, name="profile"),
-               path("<int:questao_id>/view_opcao_otimizada", views.view_opcao_otimizada, name="view_opcao_otimizada"),
-               path("<int:questao_id>/apagarquestao", views.apagarquestao, name="apagarquestao"),
-               path("<int:questao_id>/apagaropcao", views.apagaropcao, name="apagaropcao"),
                path("uploadPhoto", views.uploadPhoto, name="uploadPhoto"),
                path("destinations", views.destinations, name="destinations"),
                path("moon", views.moon, name="moon"),

@@ -1,3 +1,5 @@
+from time import strftime
+
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -16,7 +18,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
-from .models import Questao, Opcao, Client, Photo, TwoWayTrip, OneWayTrip, Trip, Purchase, Payment
+from .models import Client, Photo, Trip, Purchase, Payment
 
 
 def index(request):
@@ -24,70 +26,6 @@ def index(request):
     #request.session['origin'] = request.POST['origin']
     # latest_question_list = Questao.objects.all()
     return render(request, 'space_trip/index.html')
-
-def detalhe(request, questao_id):
-    questao = get_object_or_404(Questao, pk=questao_id)
-    return render(request, 'space_trip/detalhe.html', {'questao': questao})
-
-@login_required(login_url='/space_trip/login')
-def voto(request, questao_id):
-    questao = get_object_or_404(Questao, pk=questao_id)
-    try:
-        opcao_seleccionada = questao.opcao_set.get(pk=request.POST['opcao'])
-    except (KeyError, Opcao.DoesNotExist):
-    # Apresenta de novo o form para votar
-        return render(request, 'space_trip/detalhe.html', {'questao': questao, 'error_message': "Não escolheu uma opção",})
-    else:
-        opcao_seleccionada.votos += 1
-        opcao_seleccionada.save()
- # Retorne sempre HttpResponseRedirect depois de
- # tratar os dados POST de um form
- # pois isso impede os dados de serem tratados
- # repetidamente se o utilizador
- # voltar para a página web anterior.
-        return HttpResponseRedirect(reverse('space_trip:resultados', args=(questao.id,)))
-
-def resultados(request, questao_id):
-    questao = get_object_or_404(Questao, pk=questao_id)
-    return render(request, 'space_trip/resultados.html', {'questao': questao})
-
-@permission_required('space_trip.add_questao', login_url=reverse_lazy('space_trip:login'))
-def view_questao_otimizada(request):
-    if request.method == 'POST':
-        questao_texto = request.POST['questao']
-        pub_data = timezone.now()
-        q = Questao(questao_texto=questao_texto, pub_data=pub_data)
-        q.save()
-        return HttpResponseRedirect(reverse('space_trip:index'))
-    else:
-        return render(request, 'space_trip/criarquestao.html')
-
-@permission_required('space_trip.add_opcao', login_url=reverse_lazy('space_trip:login'))
-def view_opcao_otimizada(request, questao_id):
-    if request.method == 'POST':
-        questao = Questao.objects.get(pk=questao_id)
-        questao.opcao_set.create(opcao_texto=request.POST['opcao'], votos=0)
-        return HttpResponseRedirect(reverse('space_trip:detalhe', args=(questao.id,)))
-    else:
-        questao = get_object_or_404(Questao, pk=questao_id)
-        return render(request, 'space_trip/novaopcao.html', {'questao': questao})
-
-@permission_required('space_trip.add_opcao', login_url=reverse_lazy('space_trip:login'))
-def apagarquestao(request, questao_id):
-    questao = get_object_or_404(Questao, pk=questao_id)
-    questao.delete()
-    return HttpResponseRedirect(reverse('space_trip:index'))
-
-@permission_required('space_trip.add_opcao', login_url=reverse_lazy('space_trip:login'))
-def apagaropcao(request, questao_id):
-    questao = get_object_or_404(Questao, pk=questao_id)
-    try:
-        opcao_seleccionada = questao.opcao_set.get(pk=request.POST['opcao'])
-    except (KeyError, Opcao.DoesNotExist):
-        return render(request, 'space_trip/detalhe.html', {'questao': questao, 'error_message': "Não escolheu uma opção",})
-    else:
-        opcao_seleccionada.delete()
-        return HttpResponseRedirect(reverse('space_trip:detalhe', args=(questao.id,)))
 
 def register(request):
     if request.method == 'POST':
@@ -97,10 +35,11 @@ def register(request):
         firstname = request.POST['firstname']
         surname = request.POST['surname']
         birthday = request.POST['birthday']
+        dateformat = strftime(birthday, '%d/%m/%Y')
         gender = request.POST['gender']
         planetionality = request.POST['planetionality']
         u = User.objects.create_user(username, password=password, email=email)
-        c = Client(user=u, firstname=firstname, surname=surname, birthday=birthday, gender=gender, planetionality=planetionality)
+        c = Client(user=u, firstname=firstname, surname=surname, birthday=dateformat, gender=gender, planetionality=planetionality)
         c.save()
         user = authenticate(username=username, password=password)
         return render(request, 'space_trip/login.html')
