@@ -184,9 +184,6 @@ def payment(request):
 def aboutUs(request):
     return render(request, 'space_trip/about-us.html')
 
-def onewaytrip(request):
-    return render(request, 'space_trip/onewaytrip.html')
-
 def tripList(request):
     trip_list = Trip.objects.all()
     return render(request, 'space_trip/trip-list.html', {'trip_list': trip_list})
