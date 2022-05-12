@@ -153,17 +153,14 @@ def catchDataFromIndex(request):
     return render(request, 'space_trip/index.html')
 
 def planTrip(request):
-    print("AAA")
     trips = Trip.objects.filter(origin=request.POST['origin'], destination=request.POST['destination'], departure_date=request.POST['departure_date'], return_date=request.POST['return_date'])
     if trips.count() > 0:
-        print("BBBB")
         request.session['origin'] = request.POST['origin']
         request.session['destination'] = request.POST['destination']
         request.session['departure_date'] = request.POST['departure_date']
         request.session['return_date'] = request.POST['return_date']
         return render(request, 'space_trip/available-trips.html')
     else:
-        print("CCCC")
         messages.error(request, 'Não existem viagens com estes atributos.')
         return render(request, 'space_trip/plan-trip.html')
 
@@ -221,8 +218,8 @@ def availableTrips(request):
         departure_date = request.session.get('departure_date')
         return_date = request.session.get('return_date')
         trips = Trip.objects.filter(origin=origin, destination=destination, departure_date=departure_date, return_date=return_date)
-        return render(request, 'space_trip/trip-list.html', {'trips': trips})
+        return render(request, 'space_trip/available-trips.html', {'trips': trips})
     else:
         messages.error(request, 'Não sei o que escrever aqui,mas faz sentido dar erro')
         return render(request, 'space_trip/plan-trip.html')
-    return render(request, 'space_trip/trip-list.html')
+    return render(request, 'space_trip/available-trips.html')
