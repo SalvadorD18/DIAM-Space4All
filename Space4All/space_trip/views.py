@@ -208,7 +208,7 @@ def deleteUser(request, user_id):
     return HttpResponseRedirect(reverse('space_trip:client-management'))
 
 def availableTrips(request):
-    if request.session.get('destination') is not None and request.session.get('origin') is not None and request.session.get('departure_date') is not None and request.session.get('return_date') is not None and (request.session.get('number_of_passengers') <= request.session.get('available_seats')):
+    if request.session.get('destination') is not None and request.session.get('origin') is not None and request.session.get('departure_date') is not None and request.session.get('return_date'):
         destination = request.session.get('destination')
         origin = request.session.get('origin')
         departure_date = request.session.get('departure_date')
