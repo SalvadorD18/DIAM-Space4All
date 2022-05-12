@@ -16,7 +16,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
-from .models import Client, Photo, TwoWayTrip, OneWayTrip, Trip, Purchase, Payment
+from .models import Client, Photo, Trip, Purchase, Payment
 
 
 def index(request):
@@ -33,6 +33,7 @@ def register(request):
         firstname = request.POST['firstname']
         surname = request.POST['surname']
         birthday = request.POST['birthday']
+        birthday.strftime('%d/%m/%Y')
         gender = request.POST['gender']
         planetionality = request.POST['planetionality']
         u = User.objects.create_user(username, password=password, email=email)

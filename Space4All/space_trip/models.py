@@ -1,3 +1,5 @@
+from time import strftime
+
 from django.db import models
 from django.utils import timezone
 import datetime
@@ -16,27 +18,11 @@ class Photo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     photo_url = models.URLField(max_length=100)
 
-class TwoWayTrip(models.Model):
- user = models.OneToOneField(User, on_delete=models.CASCADE)
- destination = models.CharField(max_length=50)
- origin = models.CharField(max_length=50)
- departure_date = models.DateTimeField('Departure Date')
- return_date = models.DateTimeField('Return Date')
- number_of_passengers = models.IntegerField(default=1)
-
-class OneWayTrip(models.Model):
- user = models.OneToOneField(User, on_delete=models.CASCADE)
- destination = models.CharField(max_length=50)
- origin = models.CharField(max_length=50)
- departure_date = models.DateTimeField('Departure Date')
- number_of_passengers = models.IntegerField(default=1)
-
-
 class Trip(models.Model):
  origin = models.CharField(max_length=50)
  destination = models.CharField(max_length=50)
- departure_date = models.DateTimeField('Departure Date')
- return_date = models.DateTimeField('Return Date')
+ departure_date = models.DateTimeField('departure_date')
+ return_date = models.DateTimeField('return_date')
  price = models.IntegerField(default=600)
  spaceship = models.CharField(max_length=50)
  number_of_passengers = models.IntegerField(default=1)
