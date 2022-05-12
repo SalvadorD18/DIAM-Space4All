@@ -225,7 +225,6 @@ def planTrip(request):
         request.session['departure_date'] = request.POST['departure_date']
         request.session['return_date'] = request.POST['return_date']
         return render(request, 'space_trip/available-trips.html')
-
     else:
         messages.error(request, 'Não existem viagens com estes atributos.')
         return render(request, 'space_trip/plan-trip.html')
@@ -258,22 +257,13 @@ def aboutUs(request):
 def onewaytrip(request):
     return render(request, 'space_trip/onewaytrip.html')
 
-def clientManagement(request):
-    return render(request, 'space_trip/client-management.html')
-
 def tripList(request):
-    print("AAAAAAAAAAAAA")
-    if request.session.get('destination') is not None and request.session.get('origin') is not None and request.session.get('departure_date') is not None and request.session.get('return_date') is not None:
-        destination = request.session.get('destination')
-        origin = request.session.get('origin')
-        departure_date = request.session.get('departure_date')
-        return_date = request.session.get('return_date')
-        trips = Trip.objects.filter(destination=destination, origin=origin, departure_date=departure_date, return_date=return_date)
-        return render(request, 'space_trip/trip-list.html', {'trips': trips})
-    else:
-        messages.error(request, 'Não sei o que escrever aqui,mas faz sentido dar erro')
-        return render(request, 'space_trip/plan-trip.html')
-    return render(request, 'space_trip/trip-list.html')
+    trip_list = Trip.objects.all()
+    return render(request, 'space_trip/trip-list.html', {'trip_list': trip_list})
+
+def clientList(request):
+    client_list = Client.objects.all()
+    return render(request, 'space_trip/client-management.html', {'client_list': client_list})
 
 @permission_required('space_trip.trip-management', login_url=reverse_lazy('space_trip:login'))
 def deleteTrip(request, trip_id):
@@ -282,5 +272,4 @@ def deleteTrip(request, trip_id):
     return HttpResponseRedirect(reverse('space_trip:trip-list'))
 
 def availableTrips(request):
-
     return render(request, 'space_trip/available-trips.html')

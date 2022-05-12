@@ -16,23 +16,22 @@
       <table class="table align-middle mb-0 bg-white w-75" style="border-radius: 10px; margin-left: auto; margin-right: auto;">
         <thead class="bg-light">
           <tr>
-            <th>Name</th>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Position</th>
-            <th>Actions</th>
+            <th>Nome de Utilizador</th>
+            <th>Nome</th>
+            <th>Data de nascimento</th>
+            <th>Género</th>
+            <th>Planetalidade</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
               <div class="d-flex align-items-center">
-                <img
-                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                    alt=""
-                    style="width: 45px; height: 45px"
-                    class="rounded-circle"
-                    />
+                {% if uploaded_file_url %}
+                    <img src="{{ uploaded_file_url }}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
+                {% else %}
+                    <img src="{% static 'media/astronaut-user.png' %}" alt="Imagem do utilizador" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1" onmouseover="showUserInfo()" id="u" onmouseout="hideUserInfo()">
+                {% endif %}
                 <div class="ms-3">
                   <p class="fw-bold mb-1">John Doe</p>
                   <p class="text-muted mb-0">john.doe@gmail.com</p>
@@ -124,4 +123,65 @@
         </tbody>
       </table>
 </div>
+
+<div>
+      <br><br>
+       <h1 style="color: white; text-align: center;" class="glow display-4">Lista de Viagens</h1>
+      <br>
+      <a href="{% url 'space_trip:trip-management' %}"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="position: relative; left: 78.5%">Criar Viagem</button></a>
+      <br>
+      <table class="table align-middle mb-0 bg-white w-75" style="border-radius: 10px; margin-left: auto; margin-right: auto;">
+        <thead class="bg-light">
+          <tr>
+            <th>Origem</th>
+            <th>Destino</th>
+            <th>Data de Partida</th>
+            <th>Data de Chegada</th>
+            <th>Preço/Viagem</th>
+            <th>Nave Espacial</th>
+            <th>Número de Passageiros</th>
+            <th>Apagar Viagem</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if trip_list %}
+            {% for trip in trip_list %}
+              <tr>
+                <td>
+                    {{ trip.origin }}
+                </td>
+                <td>
+                    {{ trip.destination }}
+                </td>
+                <td>
+                    {{ trip.departure_date }}
+                </td>
+                <td>
+                    {{ trip.return_date }}
+                </td>
+                <td>
+                    {{ trip.price }},00 €
+                </td>
+                <td>
+                    {{ trip.spaceship }}
+                </td>
+                <td>
+                    {{ trip.number_of_passengers }}
+                </td>
+                <td>
+                    <form action="{% url 'space_trip:deleteTrip' trip.id %}" method="get">
+                        {% csrf_token %}
+                        <input onclick="myFunction()" class="btn btn-primary btn-block fa-lg gradient-custom-2" type="submit" value="Apagar" />
+                    </form>
+
+                </td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <p>Não existem viagens disponíveis.</p>
+          {% endif %}
+        </tbody>
+      </table>
+</div>
+
 {% endblock %}
