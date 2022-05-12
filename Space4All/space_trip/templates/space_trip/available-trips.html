@@ -8,6 +8,7 @@
 
 <div>
       <br><br>
+    <a href="{% url 'space_trip:availableTrips' %}"></a>
        <h1 style="color: white; text-align: center;" class="glow display-4">Viagens disponíveis</h1>
       <table class="table align-middle mb-0 bg-white w-75" style="border-radius: 10px; margin-left: auto; margin-right: auto;">
         <thead class="bg-light">
@@ -22,8 +23,8 @@
           </tr>
         </thead>
         <tbody>
-          {% if trip_list %}
-            {% for trip in trip_list %}
+          {% if trips %}
+            {% for trip in trips %}
               <tr>
                 <td>
                     {{ trip.origin }}
