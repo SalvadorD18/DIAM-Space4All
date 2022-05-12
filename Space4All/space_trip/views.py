@@ -156,13 +156,13 @@ def catchDataFromIndex(request):
     return render(request, 'space_trip/index.html')
 
 def planTrip(request):
-    trips = Trip.objects.filter(destination=request.POST['destination'], origin=request.POST['origin'], departure_date=request.POST['departure_date'], return_date=request.POST['return_date'])
+    trips = Trip.objects.filter(origin=request.POST['origin'], destination=request.POST['destination'], departure_date=request.POST['departure_date'], return_date=request.POST['return_date'])
     if trips.count() > 0:
-        request.session['destination'] = request.POST['destination']
-        request.session['origin'] = request.POST['origin']
-        request.session['departure_date'] = request.POST['departure_date']
-        request.session['return_date'] = request.POST['return_date']
-        return render(request, 'space_trip/available-trips.html')
+        origin = request.POST['origin']
+        destination = request.POST['destination']
+        departure_date = request.POST['departure_date']
+        return_date = request.POST['return_date']
+        return render(request, 'space_trip/available-trips.html', {'destination': destination, 'origin': origin, 'departure_date': departure_date, 'return_date': return_date})
     else:
         messages.error(request, 'Não existem viagens com estes atributos.')
         return render(request, 'space_trip/plan-trip.html')
@@ -208,11 +208,11 @@ def deleteUser(request, user_id):
     return HttpResponseRedirect(reverse('space_trip:client-management'))
 
 def availableTrips(request):
-    if request.session.get('destination') is not None and request.session.get('origin') is not None and request.session.get('departure_date') is not None and request.session.get('return_date'):
-        destination = request.session.get('destination')
-        origin = request.session.get('origin')
-        departure_date = request.session.get('departure_date')
-        return_date = request.session.get('return_date')
+    if request.POST.get('destination') is not None and request.POST.get('origin') is not None and request.POST.get('departure_date') is not None and request.POST.get('return_date'):
+        destination = request.POST.get('destination')
+        origin = request.POST.get('origin')
+        departure_date = request.POST.get('departure_date')
+        return_date = request.POST.get('return_date')
         trips = Trip.objects.filter(origin=origin, destination=destination, departure_date=departure_date, return_date=return_date)
         return render(request, 'space_trip/available-trips.html', {'trips': trips})
     else:
@@ -226,7 +226,7 @@ def purchase(request,trip_id):
         selected_trip = Trip.objects.get(pk=request.POST['trip'])
 
     except (KeyError, Trip.DoesNotExist):
-        return render(request, 'space_trip/available-trips.html', {'trip':trip, 'error_message': 'Não foi selecionada nenhuma viagem.'})
+        return render(request, 'space_trip/available-trips.html', {'trip': trip, 'error_message': 'Não foi selecionada nenhuma viagem.'})
 
     selected_trip.available_seats -= selected_trip.number_of_passengers
     total_price = selected_trip.price * selected_trip.number_of_passengers
