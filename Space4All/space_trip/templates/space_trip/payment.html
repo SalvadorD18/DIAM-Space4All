@@ -20,15 +20,14 @@
                     <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
                         <!-- Credit card form tabs -->
                         <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
-                            <li class="nav-item"> <a data-toggle="pill" href="#credit-card" class="nav-link active "> <i class="fas fa-credit-card mr-2"></i> Credit Card </a> </li>
-                            <li class="nav-item"> <a data-toggle="pill" href="#paypal" class="nav-link "> <i class="fab fa-paypal mr-2"></i> Paypal </a> </li>
+                            <li class="nav-item"> <a data-toggle="pill" href="#credit-card" class="nav-link active "> <i class="fas fa-credit-card mr-2"></i> Cartão de Crédito </a> </li>
                         </ul>
                     </div> <!-- End -->
                     <!-- Credit card form content -->
                     <div class="tab-content">
                         <!-- credit card info-->
                         <div id="credit-card" class="tab-pane fade show active pt-3">
-                            <form role="form" onsubmit="event.preventDefault()">
+                            <form action="{% url 'space_trip:payment' %}" method="post">
                                 <div class="form-group"> <label for="cardName">
                                         <h6>Titular do cartão</h6>
                                     </label> <input type="text" name="cardName" placeholder="Nome do titular do cartão" required class="form-control "> </div>
@@ -53,7 +52,7 @@
                                             </label> <input type="text" required class="form-control"> </div>
                                     </div>
                                 </div>
-                                <div class="card-footer"> <button type="button" class="subscribe btn btn-primary btn-block shadow-sm"> Confirmar Pagamento </button>
+                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" formaction="{% url 'space_trip:purchase' %}" formmethod="post" type="submit">Confirmar</button>
                             </form>
                         </div>
                     </div> <!-- End -->

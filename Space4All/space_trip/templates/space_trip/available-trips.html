@@ -6,7 +6,7 @@
 
 {% block body %}
 
-<div>
+<form>
       <br><br>
        <h1 style="color: white; text-align: center;" class="glow display-4">Viagens disponíveis</h1>
         <br><br>
@@ -47,16 +47,19 @@
                 <td>
                     {{ trip.available_seats }}
                 </td>
+                  <form form="pay" method="post">
+                      {% csrf_token %}
                 <td>
-                <input class="form-check-input" type="radio" name="selected_trip" id="selected_trip{{ forloop.counter }}" value="{{ trip.id }}"/>
+                <input class="form-check-input" type="radio" name="selected_trip" id="trip{{ forloop.counter }}" value="{{ trip.id }}"/>
                 </td>
               </tr>
             {% endfor %}
         </tbody>
       </table>
+        </form>
 <br><br>
-      <a href="{% url 'space_trip:payment' %}"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="position: relative; left: 78.5%">Escolher Viagem</button></a>
-<br><br>
+      <input form="pay" formaction="{% url 'space_trip:purchase' %}" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style="position: relative; left: 78.5%" type="submit" value="Escolher Viagem"/></a>
+        <br><br>
     {% endif %}
 </div>
 

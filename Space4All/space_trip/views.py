@@ -205,8 +205,9 @@ def deleteUser(request, user_id):
     return HttpResponseRedirect(reverse('space_trip:client-management'))
 
 def availableTrips(request):
-    number_of_passengers = int(request.POST.get('number_of_passengers'))
-    if request.POST.get('destination') is not None and request.POST.get('origin') is not None and request.POST.get('departure_date') is not None and request.POST.get('return_date') and (number_of_passengers <= 60):
+    #number_of_passengers = int(request.POST.get('number_of_passengers'))
+    if request.POST.get('destination') is not None and request.POST.get('origin') is not None and request.POST.get('departure_date') is not None and request.POST.get('return_date'):
+            #and (number_of_passengers <= 60):
         destination = request.POST.get('destination')
         origin = request.POST.get('origin')
         departure_date = request.POST.get('departure_date')
@@ -218,17 +219,20 @@ def availableTrips(request):
         return render(request, 'space_trip/plan-trip.html')
     return render(request, 'space_trip/available-trips.html')
 
-def purchase(request,trip_id):
+def purchase(request, trip_id):
     trip = get_object_or_404(Trip, pk=trip_id)
     try:
         selected_trip = Trip.objects.get(pk=request.POST['trip'])
-
     except (KeyError, Trip.DoesNotExist):
         return render(request, 'space_trip/available-trips.html', {'trip': trip, 'error_message': 'Não foi selecionada nenhuma viagem.'})
+    else:
+        selected_trip.available_seats -= selected_trip.number_of_passengers
+        total_price = selected_trip.price * selected_trip.number_of_passengers
+        user = request.user
+        p = Purchase(selected_trip, user, total_price)
+        p.save()
+        return HttpResponseRedirect(reverse('space_trip:tripPurchaseSuccessful', args=(trip.id,)))
 
-    selected_trip.available_seats -= selected_trip.number_of_passengers
-    total_price = selected_trip.price * selected_trip.number_of_passengers
-    user = request.user
-    purchase = Purchase(selected_trip, user, total_price)
-    purchase.save()
-    return HttpResponseRedirect(reverse('space_trip:payment', args=(trip.id,)))
+def tripPurchaseSuccessful(request):
+    messages.success(request, 'Viagem comprada com sucesso!')
+    return render(request, 'space_trip/trip-purchase-successful.html')
