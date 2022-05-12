@@ -23,8 +23,8 @@ class Trip(models.Model):
  return_date = models.DateTimeField('return_date')
  price = models.IntegerField(default=600)
  spaceship = models.CharField(max_length=50)
- number_of_passengers = models.IntegerField(default=1)
  available_seats = models.IntegerField(default=60)
+ number_of_passengers = models.IntegerField(default=0)
 
 class Purchase(models.Model):
  trip = models.ForeignKey(Trip, on_delete=models.CASCADE)

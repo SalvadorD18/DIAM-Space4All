@@ -141,8 +141,8 @@ def tripManagement(request):
         return_date = request.POST['return_date']
         price = request.POST['price']
         spaceship = request.POST['spaceship']
-        number_of_passengers = request.POST['number_of_passengers']
-        trip = Trip(origin=origin, destination=destination, departure_date=departure_date, return_date=return_date, price=price, spaceship=spaceship, number_of_passengers=number_of_passengers)
+        available_seats = request.POST['available_seats']
+        trip = Trip(origin=origin, destination=destination, departure_date=departure_date, return_date=return_date, price=price, spaceship=spaceship, available_seats=available_seats)
         trip.save()
         return HttpResponseRedirect(reverse('space_trip:trip-list'))
     else:
@@ -166,8 +166,6 @@ def planTrip(request):
     else:
         messages.error(request, 'Não existem viagens com estes atributos.')
         return render(request, 'space_trip/plan-trip.html')
-
-#def displayTrips(request):
 
 def editUserData(request):
     user = request.user
@@ -210,7 +208,7 @@ def deleteUser(request, user_id):
     return HttpResponseRedirect(reverse('space_trip:client-management'))
 
 def availableTrips(request):
-    if request.session.get('destination') is not None and request.session.get('origin') is not None and request.session.get('departure_date') is not None and request.session.get('return_date') is not None:
+    if request.session.get('destination') is not None and request.session.get('origin') is not None and request.session.get('departure_date') is not None and request.session.get('return_date') is not None and (request.session.get('number_of_passengers') <= request.session.get('available_seats')):
         destination = request.session.get('destination')
         origin = request.session.get('origin')
         departure_date = request.session.get('departure_date')

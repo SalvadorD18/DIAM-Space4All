@@ -25,6 +25,7 @@
                 <th>Data de Regresso</th>
                 <th>Preço/Viagem</th>
                 <th>Nave Espacial</th>
+                <th>Lugares disponíveis</th>
                 <th>Número de Passageiros</th>
                 <th>Apagar Viagem</th>
               </tr>
@@ -50,6 +51,9 @@
                     </td>
                     <td>
                         {{ trip.spaceship }}
+                    </td>
+                    <td>
+                        {{ trip.available_seats }}
                     </td>
                     <td>
                         {{ trip.number_of_passengers }}
