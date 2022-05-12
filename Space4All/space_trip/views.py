@@ -261,9 +261,9 @@ def tripList(request):
     trip_list = Trip.objects.all()
     return render(request, 'space_trip/trip-list.html', {'trip_list': trip_list})
 
-def clientList(request):
-    client_list = Client.objects.all()
-    return render(request, 'space_trip/client-management.html', {'client_list': client_list})
+def userList(request):
+    user_list = User.objects.all()
+    return render(request, 'space_trip/client-management.html', {'user_list': user_list})
 
 @permission_required('space_trip.trip-management', login_url=reverse_lazy('space_trip:login'))
 def deleteTrip(request, trip_id):
@@ -271,10 +271,10 @@ def deleteTrip(request, trip_id):
     trip.delete()
     return HttpResponseRedirect(reverse('space_trip:trip-list'))
 
-@permission_required('space_trip.trip-management', login_url=reverse_lazy('space_trip:login'))
-def deleteClient(request, client_id):
-    client = Client.objects.get(id=client_id)
-    client.delete()
+@permission_required('space_trip.register', login_url=reverse_lazy('space_trip:login'))
+def deleteUser(request, user_id):
+    user = User.objects.get(id=user_id)
+    user.delete()
     return HttpResponseRedirect(reverse('space_trip:client-management'))
 
 def availableTrips(request):

@@ -57,7 +57,7 @@
                     <td>
                         <form action="{% url 'space_trip:deleteTrip' trip.id %}" method="get">
                             {% csrf_token %}
-                            <input onclick="myFunction()" class="btn btn-primary btn-block fa-lg gradient-custom-2" type="submit" value="Apagar" />
+                            <input class="btn btn-primary btn-block fa-lg gradient-custom-2" type="submit" value="Apagar" />
                         </form>
 
                     </td>

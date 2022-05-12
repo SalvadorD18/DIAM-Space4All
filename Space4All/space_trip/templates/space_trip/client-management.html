@@ -10,56 +10,57 @@
 {% block body %}
 <div>
       <br><br>
-      <h2 class="glow" style="text-align: center; font-family: 'Arial Black'">Gestão de Utilizadores</h2>
+      <h1 style="color: white; text-align: center;" class="glow display-4">Gestão de Utilizadores</h1>
       <br><br>
-
+      {% if user_list %}
       <table class="table align-middle mb-0 bg-white w-75" style="border-radius: 10px; margin-left: auto; margin-right: auto;">
         <thead class="bg-light">
           <tr>
-            <th>Nome</th>
-            <th>Data de nascimento</th>
-            <th>Género</th>
-            <th>Planetalidade</th>
+            <th>Nome de utilizador</th>
+            <th>Email</th>
+            <th>Último inicio de sessão</th>
+            <th>Data de criação</th>
             <th>Apagar</th>
           </tr>
         </thead>
         <tbody>
-          {% if client_list %}
-            {% for client in client_list %}
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    {% if uploaded_file_url %}
-                        <img src="{{ uploaded_file_url }}" alt="Imagem do utilizador" style="width: 45px; height: 45px" class="rounded-circle">
-                    {% else %}
-                        <img src="{% static 'media/astronaut-user.png' %}" alt="Imagem do utilizador" style="width: 45px; height: 45px" class="rounded-circle">
-                    {% endif %}
-                    <div class="ms-3">
-                      {{ client.firstname }} {{ client.surname }}
-                    </div>
-                  </div>
-                </td>
-                <td>
-                    {{ client.birthday }}
-                </td>
-                  <td>
-                    {{ client.gender }}
-                </td>
-                <td>
-                    {{ client.planetionality }}
-                </td>
-                <td>
-                    <form action="{% url 'space_trip:deleteClient' client.id %}" method="get">
-                        {% csrf_token %}
-                        <input class="btn btn-primary btn-block fa-lg gradient-custom-2" type="submit" value="Apagar" />
-                    </form>
-                </td>
-              </tr>
+            {% for user in user_list %}
+                {% if user.is_superuser == 0 %}
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        {% if uploaded_file_url %}
+                            <img src="{{ photo.photo_url }}" alt="Imagem do utilizador" style="width: 45px; height: 45px" class="rounded-circle">
+                        {% else %}
+                            <img src="{% static 'media/astronaut-user.png' %}" alt="Imagem do utilizador" style="width: 45px; height: 45px" class="rounded-circle">
+                        {% endif %}
+                        <div class="ms-3">
+                          {{ user.username }}
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                        {{ user.email }}
+                    </td>
+                      <td>
+                        {{ user.last_login }}
+                    </td>
+                    <td>
+                        {{ user.date_joined }}
+                    </td>
+                    <td>
+                        <form action="{% url 'space_trip:deleteUser' user.id %}" method="get">
+                            {% csrf_token %}
+                            <input class="btn btn-primary btn-block fa-lg gradient-custom-2" type="submit" value="Apagar" />
+                        </form>
+                    </td>
+                  </tr>
+                {% endif %}
             {% endfor %}
         </tbody>
       </table>
       {% else %}
-          <h1 style="color: white; text-align: center;" class="glow display-4">Não existem viagens disponíveis</h1>
+          <h1 style="color: white; text-align: center;" class="glow display-4">Não existem utilizadores</h1>
       {% endif %}
 </div>
 
