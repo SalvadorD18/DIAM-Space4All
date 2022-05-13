@@ -174,10 +174,6 @@ def editUserData(request):
 def payment(request):
     return render(request, 'space_trip/payment.html')
 
-
-def payment(request):
-    return render(request, 'space_trip/payment.html')
-
 def aboutUs(request):
     return render(request, 'space_trip/about-us.html')
 
