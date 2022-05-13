@@ -127,9 +127,6 @@ def uranus(request):
 def neptune(request):
     return render(request, 'space_trip/neptune.html')
 
-def gallery(request):
-    return render(request, 'space_trip/gallery.html')
-
 def tripManagement(request):
     if request.method == 'POST' and request.user.is_authenticated and request.user.is_superuser:
         destination = request.POST['destination']
@@ -199,14 +196,23 @@ def deleteUser(request, user_id):
 
 def availableTrips(request):
     number_of_passengers = int(request.POST.get('number_of_passengers'))
-    print(number_of_passengers)
+    request.session['number_of_passengers'] = number_of_passengers
     if request.POST.get('destination') is not None and request.POST.get('origin') is not None and request.POST.get('departure_date') is not None and request.POST.get('return_date'):
         destination = request.POST.get('destination')
         origin = request.POST.get('origin')
         departure_date = request.POST.get('departure_date')
         return_date = request.POST.get('return_date')
         trips = Trip.objects.filter(origin=origin, destination=destination, departure_date=departure_date, return_date=return_date, available_seats__gte=number_of_passengers)
-        if Trip.objects.filter(available_seats__gte=number_of_passengers):
+        if trips.filter(available_seats__gte=number_of_passengers).count() > 0:
+            return render(request, 'space_trip/available-trips.html', {'trips': trips})
+        else:
+            messages.error(request, 'Não existem viagens disponíveis para os critérios selecionados.')
+            return render(request, 'space_trip/plan-trip.html')
+    if request.POST.get('destination') is not None and request.POST.get('origin') is not None:
+        destination = request.POST.get('destination')
+        origin = request.POST.get('origin')
+        trips = Trip.objects.filter(origin=origin, destination=destination, available_seats__gte=number_of_passengers)
+        if trips.filter(available_seats__gte=number_of_passengers).count() > 0:
             return render(request, 'space_trip/available-trips.html', {'trips': trips})
         else:
             messages.error(request, 'Não existem viagens disponíveis para os critérios selecionados.')
@@ -218,15 +224,18 @@ def purchase(request):
         selected_trip = Trip.objects.get(pk=request.POST['selected_trip'])
     except (KeyError, Trip.DoesNotExist):
         return render(request, 'space_trip/available-trips.html', {'error_message': 'Não foi selecionada nenhuma viagem.'})
-    selected_trip.available_seats -= selected_trip.number_of_passengers
-    total_price = selected_trip.price * selected_trip.number_of_passengers
-    user = request.user
-    p = Purchase(trip=selected_trip, user=user, total_price=total_price)
-    p.save()
-    selected_trip.save()
+    if request.session.get('number_of_passengers') is not None:
+        number_of_passengers = request.session.get('number_of_passengers')
+        selected_trip.available_seats -= number_of_passengers
+        total_price = selected_trip.price * number_of_passengers
+        user = request.user
+        p = Purchase(trip=selected_trip, user=user, total_price=total_price)
+        p.save()
+        selected_trip.save()
     return HttpResponseRedirect(reverse('space_trip:payment'))
 
 
 def tripPurchaseSuccessful(request):
+    request.session.flush()
     messages.success(request, 'Viagem comprada com sucesso!')
     return render(request, 'space_trip/index.html')
