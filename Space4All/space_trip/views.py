@@ -216,20 +216,18 @@ def availableTrips(request):
         return render(request, 'space_trip/plan-trip.html')
     return render(request, 'space_trip/available-trips.html')
 
-def purchase(request, trip_id):
-    trip = get_object_or_404(Trip, pk=trip_id)
+def purchase(request):
     try:
-        selected_trip = Trip.objects.get(pk=request.POST['trip'])
+        selected_trip = Trip.objects.get(pk=request.POST['selected_trip'])
     except (KeyError, Trip.DoesNotExist):
-        return render(request, 'space_trip/available-trips.html', {'trip': trip, 'error_message': 'Não foi selecionada nenhuma viagem.'})
-    else:
-        selected_trip.available_seats -= selected_trip.number_of_passengers
-        total_price = selected_trip.price * selected_trip.number_of_passengers
-        user = request.user
-        p = Purchase(selected_trip, user, total_price)
-        p.save()
-        return HttpResponseRedirect(reverse('space_trip:tripPurchaseSuccessful', args=(trip.id,)))
+        return render(request, 'space_trip/available-trips.html', {'trip': selected_trip, 'error_message': 'Não foi selecionada nenhuma viagem.'})
+    selected_trip.available_seats -= selected_trip.number_of_passengers
+    total_price = selected_trip.price * selected_trip.number_of_passengers
+    user = request.user
+    p = Purchase(trip=selected_trip, user=user, total_price=total_price)
+    p.save()
+    return HttpResponseRedirect(reverse('space_trip:payment'))
 
 def tripPurchaseSuccessful(request):
     messages.success(request, 'Viagem comprada com sucesso!')
-    return render(request, 'space_trip/trip-purchase-successful.html')
+    return render(request, 'space_trip/index.html')

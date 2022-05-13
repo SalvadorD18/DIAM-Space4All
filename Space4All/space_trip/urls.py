@@ -39,6 +39,6 @@ urlpatterns = [path("", views.index, name="index"),
                path("<int:trip_id>/deleteTrip", views.deleteTrip, name="deleteTrip"),
                path("available-trips", views.availableTrips, name="availableTrips"),
                path("<int:user_id>/deleteUser", views.deleteUser, name="deleteUser"),
-               path("<int:trip_id>/purchase", views.purchase, name="purchase"),
-               path("trip-purchase-successful", views.tripPurchaseSuccessful, name="trip-purchase-successful")
+               path("purchase", views.purchase, name="purchase"),
+               path("trip-purchase-successful", views.tripPurchaseSuccessful, name="tripPurchaseSuccessful")
                ]
