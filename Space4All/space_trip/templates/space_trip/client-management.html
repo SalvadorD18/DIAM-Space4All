@@ -43,10 +43,10 @@
                         {{ user.email }}
                     </td>
                       <td>
-                        {{ user.last_login }}
+                        {{ user.last_login|date:"d/m/Y - h:m" }}
                     </td>
                     <td>
-                        {{ user.date_joined }}
+                        {{ user.date_joined|date:"d/m/Y - h:m"  }}
                     </td>
                     <td>
                         <form action="{% url 'space_trip:deleteUser' user.id %}" method="get">
