@@ -127,9 +127,6 @@ def uranus(request):
 def neptune(request):
     return render(request, 'space_trip/neptune.html')
 
-def gallery(request):
-    return render(request, 'space_trip/gallery.html')
-
 def tripManagement(request):
     if request.method == 'POST' and request.user.is_authenticated and request.user.is_superuser:
         destination = request.POST['destination']
