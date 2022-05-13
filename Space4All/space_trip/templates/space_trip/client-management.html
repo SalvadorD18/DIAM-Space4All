@@ -29,7 +29,7 @@
                   <tr>
                     <td>
                       <div class="d-flex align-items-center">
-                        {% if uploaded_file_url %}
+                        {% if user.photo.photo_url %}
                             <img src="{{ user.photo.photo_url }}" alt="Imagem do utilizador" style="width: 45px; height: 45px" class="rounded-circle">
                         {% else %}
                             <img src="{% static 'media/astronaut-user.png' %}" alt="Imagem do utilizador" style="width: 45px; height: 45px" class="rounded-circle">
