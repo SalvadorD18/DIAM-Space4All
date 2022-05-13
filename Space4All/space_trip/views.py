@@ -199,7 +199,7 @@ def deleteUser(request, user_id):
 
 def availableTrips(request):
     number_of_passengers = int(request.POST.get('number_of_passengers'))
-    print(number_of_passengers)
+    request.session['number_of_passengers'] = number_of_passengers
     if request.POST.get('destination') is not None and request.POST.get('origin') is not None and request.POST.get('departure_date') is not None and request.POST.get('return_date'):
         destination = request.POST.get('destination')
         origin = request.POST.get('origin')
@@ -218,15 +218,18 @@ def purchase(request):
         selected_trip = Trip.objects.get(pk=request.POST['selected_trip'])
     except (KeyError, Trip.DoesNotExist):
         return render(request, 'space_trip/available-trips.html', {'error_message': 'Não foi selecionada nenhuma viagem.'})
-    selected_trip.available_seats -= selected_trip.number_of_passengers
-    total_price = selected_trip.price * selected_trip.number_of_passengers
-    user = request.user
-    p = Purchase(trip=selected_trip, user=user, total_price=total_price)
-    p.save()
-    selected_trip.save()
+    if request.session.get('number_of_passengers') is not None:
+        number_of_passengers = request.session.get('number_of_passengers')
+        selected_trip.available_seats -= number_of_passengers
+        total_price = selected_trip.price * number_of_passengers
+        user = request.user
+        p = Purchase(trip=selected_trip, user=user, total_price=total_price)
+        p.save()
+        selected_trip.save()
     return HttpResponseRedirect(reverse('space_trip:payment'))
 
 
 def tripPurchaseSuccessful(request):
+    request.session.flush()
     messages.success(request, 'Viagem comprada com sucesso!')
     return render(request, 'space_trip/index.html')
