@@ -218,18 +218,16 @@ def availableTrips(request):
     return render(request, 'space_trip/available-trips.html')
 
 def purchase(request):
-    if request.POST.get(['selected_trip']) is not None:
-        try:
-            selected_trip = Trip.objects.get(pk=request.POST['selected_trip'])
-        except (KeyError, Trip.DoesNotExist):
-            return render(request, 'space_trip/available-trips.html', {'error_message': 'Não foi selecionada nenhuma viagem.'})
-        selected_trip.available_seats -= selected_trip.number_of_passengers
-        total_price = selected_trip.price * selected_trip.number_of_passengers
-        user = request.user
-        p = Purchase(trip=selected_trip, user=user, total_price=total_price)
-        p.save()
-        return HttpResponseRedirect(reverse('space_trip:payment'))
-    return redirect(request, 'space_trip/available-trips.html', {'error_message': 'Não foi selecionada nenhuma viagem.'})
+    try:
+        selected_trip = Trip.objects.get(pk=request.POST['selected_trip'])
+    except (KeyError, Trip.DoesNotExist):
+        return render(request, 'space_trip/available-trips.html', {'trip': selected_trip, 'error_message': 'Não foi selecionada nenhuma viagem.'})
+    selected_trip.available_seats -= selected_trip.number_of_passengers
+    total_price = selected_trip.price * selected_trip.number_of_passengers
+    user = request.user
+    p = Purchase(trip=selected_trip, user=user, total_price=total_price)
+    p.save()
+    return HttpResponseRedirect(reverse('space_trip:payment'))
 
 
 def tripPurchaseSuccessful(request):
