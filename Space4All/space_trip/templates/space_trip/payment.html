@@ -52,7 +52,7 @@
                                             </label> <input type="text" required class="form-control"> </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" formaction="{% url 'space_trip:purchase' %}" formmethod="post" type="submit">Confirmar</button>
+                                <input class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" formaction="{% url 'space_trip:purchase' selected_trip.trip.id %}" formmethod="post" type="submit">Confirmar</button>
                             </form>
                         </div>
                     </div> <!-- End -->
