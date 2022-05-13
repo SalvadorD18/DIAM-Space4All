@@ -130,9 +130,6 @@ def neptune(request):
 def gallery(request):
     return render(request, 'space_trip/gallery.html')
 
-def promotions(request):
-    return render(request, 'space_trip/promotions.html')
-
 def tripManagement(request):
     if request.method == 'POST' and request.user.is_authenticated and request.user.is_superuser:
         destination = request.POST['destination']
