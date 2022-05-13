@@ -204,16 +204,17 @@ def deleteUser(request, user_id):
 def availableTrips(request):
     number_of_passengers = int(request.POST.get('number_of_passengers'))
     print(number_of_passengers)
-    if request.POST.get('destination') is not None and request.POST.get('origin') is not None and request.POST.get('departure_date') is not None and request.POST.get('return_date') and (number_of_passengers <= request.POST.get('available_seats')):
+    if request.POST.get('destination') is not None and request.POST.get('origin') is not None and request.POST.get('departure_date') is not None and request.POST.get('return_date'):
         destination = request.POST.get('destination')
         origin = request.POST.get('origin')
         departure_date = request.POST.get('departure_date')
         return_date = request.POST.get('return_date')
-        trips = Trip.objects.filter(origin=origin, destination=destination, departure_date=departure_date, return_date=return_date)
-        return render(request, 'space_trip/available-trips.html', {'trips': trips})
-    else:
-        messages.error(request, 'Não existem viagens disponíveis para os critérios selecionados')
-        return render(request, 'space_trip/plan-trip.html')
+        trips = Trip.objects.filter(origin=origin, destination=destination, departure_date=departure_date, return_date=return_date, available_seats__gte=number_of_passengers)
+        if Trip.objects.filter(available_seats__gte=number_of_passengers):
+            return render(request, 'space_trip/available-trips.html', {'trips': trips})
+        else:
+            messages.error(request, 'Não existem viagens disponíveis para os critérios selecionados')
+            return render(request, 'space_trip/plan-trip.html')
     return render(request, 'space_trip/available-trips.html')
 
 def purchase(request):
