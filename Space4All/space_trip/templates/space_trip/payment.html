@@ -27,7 +27,7 @@
                     <div class="tab-content">
                         <!-- credit card info-->
                         <div id="credit-card" class="tab-pane fade show active pt-3">
-                            <form action="{% url 'space_trip:tripPurchaseSuccessful' %}" method="post">
+                            <form action="{% url 'space_trip:payment' %}" method="post">
                               {% csrf_token %}
                                 <div class="form-group"> <label for="cardName">
                                         <h6>Titular do cartão</h6>
@@ -52,7 +52,7 @@
                                             </label> <input type="text" required class="form-control"> </div>
                                     </div>
                                 </div>
-                                <input class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" formmethod="post" type="submit" value="Confirmar"></input>
+                                <input class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" formaction="{% url 'space_trip:tripPurchaseSuccessful' %}" formmethod="post" type="submit" value="Confirmar"></input>
                             </form>
                         </div>
                     </div> <!-- End -->
