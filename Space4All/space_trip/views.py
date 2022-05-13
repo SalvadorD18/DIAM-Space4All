@@ -206,12 +206,18 @@ def availableTrips(request):
         departure_date = request.POST.get('departure_date')
         return_date = request.POST.get('return_date')
         trips = Trip.objects.filter(origin=origin, destination=destination, departure_date=departure_date, return_date=return_date, available_seats__gte=number_of_passengers)
-        print(destination)
-        print(departure_date)
         if trips.filter(available_seats__gte=number_of_passengers).count() > 0:
             return render(request, 'space_trip/available-trips.html', {'trips': trips})
         else:
-            print("adfghjk")
+            messages.error(request, 'Não existem viagens disponíveis para os critérios selecionados.')
+            return render(request, 'space_trip/plan-trip.html')
+    if request.POST.get('destination') is not None and request.POST.get('origin') is not None:
+        destination = request.POST.get('destination')
+        origin = request.POST.get('origin')
+        trips = Trip.objects.filter(origin=origin, destination=destination, available_seats__gte=number_of_passengers)
+        if trips.filter(available_seats__gte=number_of_passengers).count() > 0:
+            return render(request, 'space_trip/available-trips.html', {'trips': trips})
+        else:
             messages.error(request, 'Não existem viagens disponíveis para os critérios selecionados.')
             return render(request, 'space_trip/plan-trip.html')
     return render(request, 'space_trip/available-trips.html')
