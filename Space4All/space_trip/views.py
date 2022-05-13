@@ -18,10 +18,13 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
-from .models import Client, Photo, Trip, Purchase, Payment, Planet
+from .models import Client, Photo, Trip, Purchase, Payment
 
 
 def index(request):
+    #request.session['destination'] = request.POST['destination']
+    #request.session['origin'] = request.POST['origin']
+    # latest_question_list = Questao.objects.all()
     return render(request, 'space_trip/index.html')
 
 def register(request):
@@ -48,9 +51,11 @@ def user_login(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
+
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse('space_trip:index'))
+
         else:
             return render(request, 'space_trip/register.html')
     except MultiValueDictKeyError:
@@ -94,6 +99,33 @@ def uploadPhoto(request):
 
 def destinations(request):
     return render(request, 'space_trip/destinations.html')
+
+def moon(request):
+    return render(request, 'space_trip/moon.html')
+
+def mercury(request):
+    return render(request, 'space_trip/mercury.html')
+
+def venus(request):
+    return render(request, 'space_trip/venus.html')
+
+def earth(request):
+    return render(request, 'space_trip/earth.html')
+
+def mars(request):
+    return render(request, 'space_trip/mars.html')
+
+def jupiter(request):
+    return render(request, 'space_trip/jupiter.html')
+
+def saturn(request):
+    return render(request, 'space_trip/saturn.html')
+
+def uranus(request):
+    return render(request, 'space_trip/uranus.html')
+
+def neptune(request):
+    return render(request, 'space_trip/neptune.html')
 
 def tripManagement(request):
     if request.method == 'POST' and request.user.is_authenticated and request.user.is_superuser:
@@ -207,7 +239,3 @@ def tripPurchaseSuccessful(request):
     request.session.flush()
     messages.success(request, 'Viagem comprada com sucesso!')
     return render(request, 'space_trip/index.html')
-
-def planet(request, name):
-    planet = get_object_or_404(Planet, name=name)
-    return render(request, 'space_trip/planet.html', {'planet': planet})

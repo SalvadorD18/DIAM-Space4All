@@ -40,7 +40,7 @@ class Payment(models.Model):
  expirationDate = models.DateTimeField('expirationDate')
  cvv = models.CharField(max_length=3)
 
-class Planet(models.Model):
-    name = models.CharField(max_length=50)
-    name_pt = models.CharField(max_length=50)
-    details = models.CharField(max_length=500000)
+ class Planets(models.Model):
+  name = models.CharField(max_length=50)
+  name_pt = models.CharField(max_length=50)
+  details = models.CharField(max_length=300000)

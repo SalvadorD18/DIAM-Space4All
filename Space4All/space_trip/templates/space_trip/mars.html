@@ -1,0 +1,67 @@
+{% extends "./index.html" %}
+
+{% block title %} Space4All | Marte {% endblock %}
+
+{% load static %}
+
+{% block body %}
+
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <br>
+        <div id="aSide">
+        <model-viewer loading="eager" src="{% static "media/3D/mars.glb" %}" alt="Marte" auto-rotate camera-controls ar ios-src="{% static "media/3D/mars.glb" %}"></model-viewer>
+        <style>
+            /* This styles the aside container */
+            #aSide {
+                height: 600px;
+                width: 600px;
+                position: fixed;
+                top: calc(50% - 250px);
+                right: 50%;
+            }
+
+            /* This styles the 3D object inserted in the aside container */
+            #aSide model-viewer {
+                height: 600px;
+                width: 600px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border: none;
+                --poster-color: transparent;s
+            }
+        </style>
+    </div>
+    <br>
+    <div style="float: right; width: 50%">
+            <style>
+                @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+                .planetname {
+                    display: block;
+                    font-size: 1.80em;
+                    font-weight: bold;
+                    color: #fbdcb9;
+                    font-family: 'Titillium Web', sans-serif;
+                    letter-spacing: 2px;
+                    text-align: center;
+                }
+            </style>
+        <h2 class="planetname">Marte</h2>
+    <br>
+    <figure class="text-center" style="margin: 30px 20px 10px 20px">
+        <p class="lead" style="color: white">Marte é o último dos planetas telúricos, vem a seguir à Terra e ocupa o quarto lugar na ordem das distâncias ao Sol. Tem um brilho apreciável e a sua cor é avermelhada. Pelo interesse que sempre despertou e suposição de existência de vida, este planeta foi e continua a ser alvo de inúmeras as missões. As expedições até Marte começaram com as sondas americanas Mariner-4 em 1964, Mariner-6 e Mariner-7 em 1969, passando pelas soviéticas Mars-2 e Mars-3 em 1973. Nenhuma destas missões conseguiu alcançar os objetivos. Foi com a Mariner-9, em 1971, e com os engenhos Viking, a partir de 1976, que começaram a ser recolhidos os primeiros dados sobre este planeta, nos quais se incluíam: inúmeras fotografias, informações sobre a densidade da atmosfera, valores de temperatura e dados da constituição dos solos, passando pela análise sismológica. A partir de meados dos anos 90, as sondas enviadas com sucesso a Marte - nomeadamente a Mars Global Surveyor (lançada em 1996 pelos EUA), a Mars Odyssey (lançada em 2001 pelos EUA) e a Mars Express (lançada em 2003 pela ESA - Agência Espacial Europeia) - permitiram realizar estudos cartográficos do planeta e analisar com mais precisão as condições atmosféricas e do solo. Estas três missões, juntamente com a Mars Reconaissance Orbiter (lançada em 2005 pelos EUA), continuam a recolher e a enviar para a Terra informações sobre Marte.</p>
+        <p class="lead" style="color: white">Marte possui uma órbita excêntrica (e = 0,093) e a sua distância média ao Sol é de 227,9 milhões de quilómetros. Uma translação é feita em 686,93 dias, ou seja, quase o dobro de um ano terrestre. Os movimentos orbitais deste planeta e da Terra encontram-se alinhados, em relação ao Sol, em média de 780 em 780 dias. Este é o período médio que separa as duas oposições consecutivas de Marte, o chamado período da revolução sinódica.</p>
+        <p class="lead" style="color: white">A seguir a Vénus, Marte é o planeta mais brilhante no céu. Comparado com a Terra, tem uma dimensão muito pequena: o seu diâmetro equatorial é de 6794 km, que é pouco mais de metade do diâmetro do nosso globo. Marte tem a forma de elipsoide de revolução, ligeiramente achatado nos polos. O seu volume é 6,58 vezes menor do que o da Terra e a sua massa é 9,307 vezes menor do que a do nosso planeta, isto é, 6,418 x1023 kg. A densidade média do planeta é relativamente baixa, 3,94 g/cm3. Quando observado ao telescópio Marte apresenta, sobre um fundo amarelo-ocre, algumas manchas escuras permanentes, de cor cinzento-azulada, com formas bem definidas. Foi a observação destas manchas que permitiu determinar o seu período de rotação, que é de 24h 37min 22,7s (dia sideral). O dia solar será um pouco mais longo, 24h 39min 35s, bastante semelhante ao do nosso planeta. Assim, o ano marciano tem a duração de 668,5 dias marcianos. Uma outra semelhança com a Terra é a inclinação do plano equatorial em relação ao plano da órbita, que é de 25º 19´, o que lhe permite ter bem definidas as quatro estações do ano. Marte gira em torno do Sol com uma velocidade média de 24 m/s.</p>
+        <p class="lead" style="color: white">A observação de Marte por telescópio parecia indicar a existência de uma vasta rede de canais, que se supunha ter sido construída por seres inteligentes, a fim de fornecer água, proveniente da fusão das calotes polares, às planícies marcianas desérticas. Estas conclusões estimularam as imaginações e suscitaram o aparecimento dos marcianos na literatura de ficção e no cinema. Contudo, e contrariando estas suposições, os dados recolhidos pelas diversas sondas enviadas até Marte não mostram evidências da existência de vida neste planeta, pelo menos sob a forma como a conhecemos.</p>
+        <p class="lead" style="color: white">Além das crateras e das bacias de impacto análogas às que se encontram na Lua, é, também, possível observar na superfície do planeta planícies vulcânicas, numerosas falhas, vales sinuosos, campos de dunas, etc. Notam-se igualmente indícios de um bombardeamento meteórico antigo e provas duma intensa atividade tectónica, fenómenos de vulcanismo, de erosão pela água e de desgaste e sedimentação pelo vento. Os canais observados através do telescópio eram afinal numerosos vales sinuosos e tinham todas as características de leitos de rios secos. Supõe-se que o líquido que outrora correu nesse vales foi a água.</p>
+        <p class="lead" style="color: white">A atmosfera de Marte é conhecida com grande precisão: 95,3% de dióxido de carbono, 2,7% de azoto, 1,6% de árgon e vestígios de oxigénio, de monóxido de carbono e de outros gases. O vapor de água está presente numa percentagem de cerca de 0,035% mas este valor pode variar com a região e a época do ano. As temperaturas são baixas e os desvios térmicos diurnos acentuados: no equador as temperaturas extremas atingem +22 ºC durante o dia e descem aos -73 ºC durante a noite. Por vezes desencadeiam-se bruscamente violentas tempestades que podem varrer vastas regiões. Nestas tempestades a velocidade dos ventos pode ultrapassar os 200 km/h, levantando grandes nuvens de poeira ocre, que chegam a atingir alturas da ordem dos 50 km e encobrem a superfície do planeta.</p>
+        <p class="lead" style="color: white">A atividade sísmica de Marte é fraca e o seu campo magnético é da ordem de 2% do terrestre.</p>
+        <p class="lead" style="color: white">Marte tem dois pequenos satélites, Fobos e Deimos, descobertos em 1877 pelo astrónomo Asaph Hall, que têm órbitas circulares a 6000 km e 20 000 km, respetivamente. A órbita de Fobos está a diminuir constantemente e calcula-se que daqui a 50 milhões de anos se esmague contra a superfície de Marte.</p>
+    </figure>
+
+{% endblock %}
+
+{% block planetSlider %}
+
+{% endblock %}
