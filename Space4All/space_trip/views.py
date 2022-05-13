@@ -161,7 +161,7 @@ def planTrip(request):
         return_date = request.POST['return_date']
         return render(request, 'space_trip/available-trips.html', {'destination': destination, 'origin': origin, 'departure_date': departure_date, 'return_date': return_date})
     else:
-        messages.error(request, 'Não existem viagens com estes atributos.')
+        messages.error(request, 'Não existem viagens disponíveis para os critérios selecionados.')
         return render(request, 'space_trip/plan-trip.html')
 
 def editUserData(request):
@@ -209,7 +209,7 @@ def availableTrips(request):
         if Trip.objects.filter(available_seats__gte=number_of_passengers):
             return render(request, 'space_trip/available-trips.html', {'trips': trips})
         else:
-            messages.error(request, 'Não existem viagens disponíveis para os critérios selecionados')
+            messages.error(request, 'Não existem viagens disponíveis para os critérios selecionados.')
             return render(request, 'space_trip/plan-trip.html')
     return render(request, 'space_trip/available-trips.html')
 
