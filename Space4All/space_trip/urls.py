@@ -16,7 +16,6 @@ urlpatterns = [path("", views.index, name="index"),
                path("profile", views.profile, name="profile"),
                path("uploadPhoto", views.uploadPhoto, name="uploadPhoto"),
                path("destinations", views.destinations, name="destinations"),
-               path("<str:name>", views.planet, name="planet"),
                path("payment", views.payment, name="payment"),
                path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('spicy space/favicon.ico'))),
                path("about-us", views.aboutUs, name="about-us"),
@@ -31,5 +30,6 @@ urlpatterns = [path("", views.index, name="index"),
                path("available-trips", views.availableTrips, name="availableTrips"),
                path("<int:user_id>/deleteUser", views.deleteUser, name="deleteUser"),
                path("purchase", views.purchase, name="purchase"),
-               path("trip-purchase-successful", views.tripPurchaseSuccessful, name="tripPurchaseSuccessful")
+               path("trip-purchase-successful", views.tripPurchaseSuccessful, name="tripPurchaseSuccessful"),
+               path("<str:name>", views.planet, name="planet")
                ]
