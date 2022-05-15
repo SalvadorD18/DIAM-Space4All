@@ -10,17 +10,17 @@
 {% block body %}
 <div>
       <br><br>
-      <h1 style="color: white; text-align: center;" class="glow display-4">Gestão de Utilizadores</h1>
+      <h1 style="color: white; text-align: center;" class="glow display-4">Gestão de Clientes</h1>
       <br><br>
       {% if user_list %}
       <table class="table align-middle mb-0 bg-white w-75" style="border-radius: 10px; margin-left: auto; margin-right: auto;">
         <thead class="bg-light">
           <tr>
             <th>Nome de utilizador</th>
-            <th>Email</th>
-            <th>Último inicio de sessão</th>
+            <th>E-mail</th>
+            <th>Último início de sessão</th>
             <th>Data de criação</th>
-            <th>Apagar</th>
+            <th>Eliminar Cliente</th>
           </tr>
         </thead>
         <tbody>
@@ -52,21 +52,18 @@
                         <script>
                             function validate(form) {
 
-                                // validation code here ...
-
-
                                 if(!valid) {
-                                    alert('Please correct the errors in the form!');
+                                    alert('Por favor, corrija os erros do formulário!');
                                     return false;
                                 }
                                 else {
-                                    return confirm('Do you really want to submit the form?');
+                                    return confirm('Tem a certeza de que deseja eliminar o utilizador?');
                                 }
                             }
                         </script>
-                        <form action="{% url 'space_trip:deleteUser' user.id %}" onSubmit="return confirm('Tem a certeza de que deseja apagar o utilizador?')">
+                        <form action="{% url 'space_trip:deleteUser' user.id %}" onSubmit="return confirm('Tem a certeza de que deseja eliminar o utilizador?')">
                             {% csrf_token %}
-                            <input class="btn btn-primary btn-block fa-lg gradient-custom-2" type="submit" value="Apagar"/>
+                            <input class="btn btn-primary btn-block fa-lg gradient-custom-2" type="submit" value="Eliminar"/>
                         </form>
                     </td>
                   </tr>
