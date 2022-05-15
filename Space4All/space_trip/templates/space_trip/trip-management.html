@@ -32,7 +32,7 @@
 
                                         <div class="form-outline mb-4">
                                             <label for="origin" class="form-label">Origem:</label>
-                                            <select name="origin" id="origin" class="form-control">
+                                            <select name="origin" id="origin" class="form-control" required>
                                                 <option value="" selected disabled>- Por favor, selecione a Origem -</option>
                                                 <option>Mercúrio</option><option>Vénus</option><option>Terra</option><option>Lua</option><option>Marte</option><option>Júpiter</option><option>Saturno</option><option>Urano</option><option>Neptuno</option>
                                             </select>
@@ -40,7 +40,7 @@
 
                                         <div class="form-outline mb-4">
                                             <label for="destination" class="form-label">Destino:</label>
-                                            <select name="destination" id="destination" class="form-control">
+                                            <select name="destination" id="destination" class="form-control" required>
                                                 <option value="" selected disabled>- Por favor, selecione o Destino -</option>
                                                 <option value="Mercúrio">Mercúrio</option><option value="Vénus">Vénus</option><option value="Terra">Terra</option><option value="Lua">Lua</option><option value="Marte">Marte</option><option value="Júpiter">Júpiter</option><option value="Saturno">Saturno</option><option value="Urano">Urano</option><option value="Neptuno">Neptuno</option>
                                             </select>
@@ -48,18 +48,18 @@
 
                                         <div class="form-outline mb-4">
                                             <label for="departure_date" class="form-label">Data de Partida:</label>
-                                            <input name="departure_date" type="date" id="departure_date" class="form-control"/>
+                                            <input name="departure_date" type="date" id="departure_date" class="form-control" required/>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label for="return_date" class="form-label">Data de Regresso:</label>
-                                            <input name="return_date" type="date" id="return_date" class="form-control"/>
+                                            <input name="return_date" type="date" id="return_date" class="form-control" required/>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label for="price" class="form-label">Preço:</label>
                                             <div class="input-group mb-3">
-                                              <input name="price" id="price" class="form-control" aria-label="Preço">
+                                              <input name="price" id="price" class="form-control" aria-label="Preço" required>
                                               <div class="input-group-append">
                                                 <span class="input-group-text">€</span>
                                               </div>
@@ -68,7 +68,7 @@
 
                                         <div class="form-outline mb-4">
                                             <label for="spaceship" class="form-label">Nave Espacial:</label>
-                                            <select name="spaceship" id="spaceship" class="form-control">
+                                            <select name="spaceship" id="spaceship" class="form-control" required>
                                                 <option value="" selected disabled>- Por favor, selecione a Nave Espacial -</option>
                                                 <option value="deathStar">Death Star</option><option value="imperialShuttle">Imperial Shuttle</option><option value="millenniumFalcon">Millennium Falcon</option><option value="xWing">X-wing</option>
                                             </select>
@@ -77,7 +77,7 @@
                                         <div class="form-outline mb-4">
                                             <label for="available_seats" class="form-label">Lugares disponíveis:</label>
                                             <div class="input-group mb-3">
-                                              <input name="available_seats" id="available_seats" class="form-control" type="number">
+                                              <input name="available_seats" id="available_seats" class="form-control" type="number" required>
                                             </div>
                                         </div>
 
